@@ -3,7 +3,7 @@ html{font-size:16px; scroll-behavior: smooth;}
 
 body{
     position: relative;
-    height: 100vh;
+    height: 100%;
     overflow: hidden;
     font-family: 'Noto Sans', sans-serif;
     background-color: #000;
@@ -14,8 +14,6 @@ span{display: block;}
 
 .section{
         position: relative;
-        width: 100%;
-        height: 100vh;
          overflow: hidden;
         scroll-snap-align:center;
     }
@@ -24,10 +22,10 @@ span{display: block;}
     position: relative;
     width: 100%;
     height: 100vh;
-    scroll-behavior: smooth;
-    overflow-y: hidden;
-    scroll-snap-type:y mandatory;
-    scroll-snap-points-y:repeat(100vh);
+/*    scroll-behavior: smooth;
+    overflow-y: hidden;*/
+/*    scroll-snap-type:y mandatory;*/
+    /*scroll-snap-points-y:repeat(100vh);*/
     z-index: -9
     }
 /*====================base end==================*/
@@ -356,6 +354,10 @@ span{display: block;}
     cursor:pointer; 
     z-index: 9999;
     transition:0.5s;
+    visibility: hidden;
+}
+.action.black .hambergerIcon{
+    visibility: visible;
 }
 
 .hamberger
@@ -388,6 +390,7 @@ span{display: block;}
 .hambergerIcon.active .hamberger:after{transform: rotate(45deg); top:0px;}
 .hambergerIcon.active .hamberger:before{transform: rotate(135deg); top:0px;}
 
+.Menu_fixed_lineBox,
 .fixed_lineBox{
     width: 100%;
     height: 100%;
@@ -395,19 +398,25 @@ span{display: block;}
     z-index:-1;
     transition: all 0.8s;
     text-align: center;
-    }
+}
 
+.Menu_fixed_lineBox{
+ z-index: 999;
+ visibility: hidden;
+}
+
+.Menu_fixed_lineBox img,
 .fixed_lineBox img{
     width: 100%;
     height:100%;
     min-height:550px;
 }
 
+.action.black .Menu_fixed_lineBox,
 .action.black .fixed_lineBox{
-    height: 90%;
+    height: 92%;
     bottom:0px;
 }
-
 
 .main_video_Box{
     position: absolute;
@@ -421,6 +430,85 @@ span{display: block;}
     width: 100%; 
     height: 100vh;
 }
+
+.scroll-nav {
+      width:50%;
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      top:-300px;
+      z-index: 999;
+      transition: 0.4s;
+      display: flex;
+      justify-content: space-between;
+}
+.action.black .scroll-nav{
+      top: 10px;
+}
+
+.scroll-nav a{
+    color: #fff;
+}
+.scroll-next,
+.scroll-prev{
+      margin-left: 120px;
+      display: block;
+      font-size: 1.8em;
+      text-align: center;
+      font-weight: bold;
+      float: left;
+      text-shadow: 5px 5px 10px #000;
+      position: relative;
+}
+.scroll-prev{
+      margin-left: 0;
+}
+
+.scroll-prev:after{
+    animation-name: prevani;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: infinite;
+    animation-direction:  alternate;
+    content: "";
+    display: block;
+    position: absolute;
+    top: 5px;
+    left: -40px;
+    width: 30px;
+    height: 40px;
+    background: url(../images/leftBtn.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.scroll-next:after{
+    animation-name: nextani;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    content: "";
+    display: block;
+    position: absolute;
+    top: 5px;
+    right: -40px;
+    width: 30px;
+    height: 40px;
+    background: url(../images/rightBtn.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+@keyframes prevani{
+    to{left: -45px;}
+}
+@keyframes nextani{
+    to{right: -45px;}
+}
+
 /*====================fixed end==================*/
 
 /*====================startBtn start==================*/
@@ -436,7 +524,7 @@ span{display: block;}
     text-align: center;
     box-shadow: 0px 30px 100px #000;
     transition: 1s;
-    z-index: 99;
+    z-index: 990;
   }
 
 .logo_text_Box > img{
@@ -536,12 +624,16 @@ span{display: block;}
      width: 100%;
     height: 100%;
     opacity: 0;
-    background-color: rgba(0,0,0,0.65);
+    background-color: rgba(0,0,0,0.8);
     transition:all 0.6s;
 }
 
+.menuNavWrap.active .Menu_fixed_lineBox{
+    visibility: visible;
+}
+
 .menuNavWrap.active {
-    z-index: 99;
+    z-index: 999;
 }
 
 .menuNavWrap.active .menuNavBlack{
@@ -554,7 +646,7 @@ span{display: block;}
     top: -1000px;
     left: 50%;
     transform: translate(-50%, 0);
-    width: 600px;
+    width: 500px;
     height: 370px;
     border-radius: 100px;
     background:linear-gradient(-90deg, rgba(255,255,255,0.15),rgba(255,255,255,0.08),rgba(255,255,255,0.03),rgba(255,255,255,0.03),rgba(255,255,255,0.08),rgba(255,255,255,0.15));

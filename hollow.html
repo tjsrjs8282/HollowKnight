@@ -16,34 +16,39 @@
 </head>
 
 <body>
-    
+     
 	<div id="fullpageWrap" class="action">
 		<section id="start" class="section">
 			<div class="fixedWrap">
-				
+				<div class="scroll-nav">
+				   	 <a href="#" class="scroll-prev">이전 페이지</a>
+				   	 <a href="#" class="scroll-next">다음 페이지</a>
+			 	 </div>
 				<div class="fixed_lineBox">
 					<img src="images/fixed_line.png" alt="">
 				</div>
 				 <div class="main_video_Box">
-				 	<audio autoplay controls class="audio"> <source src="images/Enter Hallownest.mp3" type="audio/mp3"> </audio>
 					<video src="images/Hollow_Knight_Trailer.mp4" class="video" autoplay loop muted></video>
 				</div>
 
 			 	<div class="menuNavWrap">
+			 		<div class="Menu_fixed_lineBox">
+					<img src="images/fixed_line.png" alt="">
+					</div>
 			 		<div class="hambergerIcon">
 						 <div class="hamberger"></div>
 					</div>
-			 		<div class="menuNavBlack">
-			 			<div class="menuNavBox"> 
-							<ul>
-								<li><a href="#start" class="navBtn rsBtn">처음으로</a></li>
-								<li><a href="#story" class="navBtn">스토리 보기</a></li>
-								<li><a href="#character" class="navBtn">등장인물</a></li>
-								<li><a href="#content" class="navBtn">콘텐츠 보기</a></li>
-								<li><a href="#news" class="navBtn">새로운 소식</a></li>
-							</ul>
-			 			</div>
-			 		</div>
+			 		<div class="menuNavBlack"></div>
+		 			<div class="menuNavBox"> 
+						<ul>
+							<li><a href="#start" class="navBtn rsBtn">처음으로</a></li>
+							<li><a href="#story" class="navBtn">스토리 보기</a></li>
+							<li><a href="#character" class="navBtn">등장인물</a></li>
+							<li><a href="#content" class="navBtn">콘텐츠 보기</a></li>
+							<li><a href="#news" class="navBtn">새로운 소식</a></li>
+						</ul>
+		 			</div>
+			 		
 			 	</div>
 			</div>
 			
@@ -98,6 +103,8 @@
 
 
 <script>
+
+// ===============js plugin srart=============
 		 new WOW().init();		
 
 		 $('.modal').colorbox();
@@ -107,12 +114,26 @@
 		// var scene2 = document.getElementById('scene2');
 		// var parallax2 = new Parallax(scene2);
 
+// ===============js plugin end=============
+
+		$(window).scroll(function() {
+			resize();
+			var scroll = $(window).scrollTop();
+			var vheight = $(window).height();
+			//console.log(scroll);
+			if (scroll > vheight -200) {
+				//console.log('a');
+				$(".action").addClass("black");
+			} else {
+				//console.log('a');
+				$(".action").removeClass("black");
+			}
+		});
+
 		$('.hambergerIcon').click(function(){
 			$('.hambergerIcon').toggleClass('active');
 			$('.menuNavWrap').toggleClass('active');
 		});
-
-		
 
 		$(".stBtn").mouseover(function(){
 			$(".start_img_Box > img").attr("src","images/hollow_start_hover.png");
@@ -130,53 +151,61 @@
 			})
 		});
 
-		$(".stBtn").click(function(){
-			var vid = $(".video");
-			$(".action").addClass('black');
-			vid.muted = true;
-			$(".audio").play();
-		});
-
 		$(".navBtn").click(function(){
-			$(".action").addClass('black')
 			$(".menuNavWrap").removeClass('active')
 			$(".hambergerIcon").removeClass('active')
 		});
 
-		$(".rsBtn").click(function(){
-			$(".action").removeClass('black');
-		});	
+// ===============scroll 100vh btn srart=============
 
+		// The resize function
+		function resize() {
+		  var vheight = $(window).height();
+		  var vwidth = $(window).width();
+		  $('.section').css({
+		    'height': vheight,
+		    'width': vwidth 
+		  });
+		};
 
-		function fnMove(seq){
-        var offset = $("#div" + seq).offset();
-        $('html, body').animate({scrollTop : offset.top}, 400);
-  	  }
+		// The scroll-up function
+		function scrollUp() {
+		  var vheight = $(window).height();
+		  $('html, body').animate({
+		    scrollTop: (Math.ceil($(window).scrollTop() / vheight)-1) * vheight
+		  }, 300);
+		};
 
+		// The scroll-down function
+		function scrollDown() {
+		  var vheight = $(window).height();
+		  $('html, body').animate({
+		    scrollTop: (Math.floor($(window).scrollTop() / vheight)+1) * vheight
+		  }, 300);  
+		};
 
+		$(document).ready(function(){
+		  resize();
+		  
+		  $('.scroll-next').click(function(event){
+		    scrollDown();
+		    event.preventDefault();
+		  });
+		  
+		  $('.scroll-prev').click(function(event){
+		    scrollUp();
+		    event.preventDefault();
+		  });
+		 
+		});
 
+		$(window).resize(function(){
+		  resize();
+		});
 
+// ===============scroll 100vh btn srart=============
     
-//        $("#page1").onmouseover(function(){
-//            $(".fixed-backBox").removeClass('active');
-//        });
-//        $("#page2").onmouseover(function(){
-//            $(".fixed-backBox").addClass('active');
-//        });
-
     
-
-    
-    
-
-	// 	$("#fullpage").fullpage({
-	// 	anchors:["1st","2st","3st","4st","5st","6st"],
-	// 	menu:"#topMenu",
-	// 	navigation:true,
-	// 	slideNavigation:true
-	// });
-
-
 </script>
 
 
