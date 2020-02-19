@@ -332,38 +332,69 @@ span{display: block;}
         display: none;
     }
 }
-
 /*====================index.html end==================*/
 
 
 /*====================hollow.html start==================*/
 /*====================fixed start==================*/
-.fixedWrap{
-    width: 100px;
-    overflow: hidden;
-}
-
+/*=========hamberger start=========*/
 .hambergerIcon
 {
-    width: 80px; 
-    height: 75px; 
+    width: 70px; 
+    height: 65px; 
     position:fixed; 
     top: 20px; 
     right: 20px; 
-    background-color: #000; 
     cursor:pointer; 
     z-index: 9999;
     transition:0.5s;
-    visibility: hidden;
+    display: none;
 }
 .action.black .hambergerIcon{
-    visibility: visible;
+    display: block;
+}
+
+.hambergerIcon:after{
+    position: absolute;
+    content: "";
+    display: block;
+    width: 130px;
+    height: 50px;
+    background: url("../images/text-menu.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    top:10px;
+    left: -130px;
+    display: block;
+}
+
+.hambergerIcon:before{
+    position: absolute;
+    content: "";
+    display: block;
+    width: 130px;
+    height: 50px;
+    background: url("../images/text-close.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    top:5px;
+    left: -130px;
+    display: none;
+}
+.hambergerIcon.active:before{
+    display: block;
+}
+
+.hambergerIcon.active:after{
+    display: none;
 }
 
 .hamberger
 {
-    width: 60px; 
-    height:8px;
+    width: 50px; 
+    height:7px;
     position:absolute;
     top: 50%;
     left: 50%;
@@ -376,21 +407,417 @@ span{display: block;}
 .hamberger:after,
 .hamberger:before
 {
-    width: 60px; 
-    height:8px; 
+    width: 50px; 
+    height:7px; 
     content:'';
     position: absolute; 
     background-color: #fff; 
     box-shadow:0px 2px 5px rgba(0,0,0,.3); 
     transition: 0.4s;
 }
-.hamberger:after{top:-20px;}
-.hamberger:before{top:20px;}
+.hamberger:after{top:-17px;}
+.hamberger:before{top:17px;}
 .hambergerIcon.active .hamberger{background-color: rgba(0,0,0,0);box-shadow:0px 0px 0px rgba(0,0,0,0);}
 .hambergerIcon.active .hamberger:after{transform: rotate(45deg); top:0px;}
 .hambergerIcon.active .hamberger:before{transform: rotate(135deg); top:0px;}
+/*=========hamberger end=========*/
 
-.Menu_fixed_lineBox,
+/*=========navigation start=========*/
+.menuNavWrap{
+    position: relative;
+    position:fixed;
+    width: 100%;
+    height: 100%;
+}
+.menuNavBlack{
+    position:absolute;
+    top: 0;left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background-color: rgba(0,0,0,0.8);
+    transition:all 0.6s;
+    z-index: -99;
+}
+.menuHollowGost{
+    animation-name: hollowgost;
+    animation-duration: 2s;
+    animation-timing-function: cubic-bezier(0.49, 0.06, 0.6, 1.1);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    position: absolute;
+    width: 40%;
+    height: 650px;
+    background: url(../images/hollow_gost.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    left:50px;
+    bottom:70px;
+    transform: rotateY(180deg);
+}
+@keyframes hollowgost{
+    to{bottom: 100px;}
+}
+
+.menuNavBlack span{
+    animation-timing-function:ease-in;
+    animation-iteration-count: infinite;
+    display: inline-block;
+    position: absolute;
+    bottom: -50px;
+    border-radius: 50%;
+    opacity: 1;
+     background-color: #000;
+}
+
+.menuNavBlack span:nth-child(1){
+    animation-name: bubble1;
+     animation-duration: 1.3s;
+    width: 20px;
+    height: 20px;  
+    left: 10%;
+}
+.menuNavBlack span:nth-child(2){
+    animation-name: bubble2;
+     animation-duration: 2s;
+    width: 35px;
+    height: 35px;
+    left: 20%;
+}
+.menuNavBlack span:nth-child(3){
+    animation-name: bubble3;
+     animation-duration: 1.5s;
+    width: 15px;
+    height: 15px;
+     left: 40%;
+}
+.menuNavBlack span:nth-child(4){
+    animation-name: bubble4;
+     animation-duration: 1.9s;
+    width: 40px;
+    height: 40px;
+     left: 60%;
+}
+.menuNavBlack span:nth-child(5){
+     animation-name: bubble5;
+     animation-duration:1s;
+    width: 15px;
+    height: 15px;
+     left: 75%;
+}
+.menuNavBlack span:nth-child(6){
+    animation-name: bubble5;
+    animation-duration: 2.5s;
+    width: 35px;
+    height: 35px;
+     left: 85%;
+}
+
+@keyframes bubble1{
+    to{bottom: 50%; opacity: 0;}
+}
+@keyframes bubble2{
+    to{bottom: 45%; opacity: 0;}
+}
+@keyframes bubble3{
+    to{bottom: 55%; opacity: 0;}
+}
+@keyframes bubble4{
+    to{bottom: 45%; opacity: 0;}
+}
+@keyframes bubble5{
+    to{bottom: 45%; opacity: 0;}
+}
+@keyframes bubble6{
+    to{bottom: 55%; opacity: 0;}
+}
+
+
+.menuNavWrap.active {
+    z-index: 999;
+}
+
+.menuNavWrap.active .menuNavBlack{
+    opacity: 1;
+    z-index: 99;
+}
+
+.settingBox,
+.menuNavBox{
+    position: absolute;
+    position: relative;
+    top: -800px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 450px;
+    height: 440px;
+    border-radius: 100px;
+    background:linear-gradient(-90deg, rgba(255,255,255,0.15),rgba(255,255,255,0.08),rgba(255,255,255,0.03),rgba(255,255,255,0.03),rgba(255,255,255,0.08),rgba(255,255,255,0.15));
+    box-shadow: 0px 30px 50px #000;
+    z-index: 9999;
+    transition: 0.4s;
+}
+
+.settingBox:after,
+.menuNavBox:after{
+    position: absolute;
+    top: -168px;
+    left: -73px;
+    content: "";
+    display: block;
+    width:600px;
+    height: 160px;
+    background: url(../images/menu_top.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: 999;
+}
+
+.settingBox:before,
+.menuNavBox:before{
+    position: absolute;
+    top: 455px;
+    left: 25px;
+    content: "";
+    display: block;
+    width:400px;
+    height: 70px;
+    background: url(../images/menu_bottom.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: 999;
+}
+.settingBox:before{
+    top: 535px;
+}
+
+.settingBox{
+    height: 520px;
+}
+/*.menuNavBox{display: none;}*/
+.settingBox{display: none;}
+.settingBox h3{
+    font-size: 0.6em;
+    color: #fff;
+}
+
+.menuNavWrap.active .settingBox,
+.menuNavWrap.active .menuNavBox{
+   top: 50%;
+   transform: translate(-50%, -50%);
+}
+
+.settingBox ul,
+.menuNavBox ul{
+    width: 300px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    transition: 0.4s;
+}
+
+.menuNavBox ul li{
+    height: 50px;
+    font-size: 2em;
+    line-height: 50px;
+}
+.settingBox ul li{
+     font-size: 2em;
+    position: relative;
+     height: 100px;
+     line-height: 100px;
+}
+
+.menuNavBox ul li h3{
+ font-size: 1em;
+}
+
+.menuNavBox ul:hover a{
+    opacity: 0.5;
+}
+
+.settingBox ul li a,
+.menuNavBox ul li a{
+    position: relative;
+    color: #fff;
+    transition: all 0.4s;
+}
+
+.settingBox ul li a:hover,
+.menuNavBox ul li a:hover,
+.menuNavBox ul li a.active{
+   opacity: 1;
+    text-shadow: 0 0 20px #fff;
+}
+
+.settingBox ul li a:hover:after,
+.menuNavBox ul li a.active:after,
+.menuNavBox ul li a:hover:after{
+    content: "";
+    display: block;
+    width: 50px; height: 45px;
+    background: url(../images/left_hover.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0px;
+    left: -70px;
+}
+
+.settingBox ul li a:hover:before,
+.menuNavBox ul li a.active:before,
+.menuNavBox ul li a:hover:before{
+    content: "";
+    display: block;
+    width: 50px; height: 45px;
+    background: url(../images/right_hover.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+        top:0px;
+}
+
+.menuNavBox ul li:nth-child(1) a:before{
+    left: 115px;
+}
+.menuNavBox ul li:nth-child(2) a:before{
+    left: 130px;
+}
+.menuNavBox ul li:nth-child(3) a:before{
+    left: 200px;
+}
+.menuNavBox ul li:nth-child(4) a:before{
+    left: 165px;
+}
+.menuNavBox ul li:nth-child(5) a:before{
+    left: 110px;
+}
+.menuNavBox ul li:nth-child(6) a:before{
+    left: 147px;
+}
+.menuNavBox ul li:nth-child(7) a:before{
+    left: 117px;
+}
+
+
+.settingBox ul li a:before{
+    left: 100px;
+}
+
+
+
+/*=========navigation end=========*/
+
+/*=========setting start=========*/
+    
+    label{
+        position: absolute;
+        top: 70px;
+        width: 200px;
+        height: 70px;
+        cursor: pointer;
+        transform: translate(-50%, 0);
+    }
+
+    label input{
+        opacity: 0;
+    }
+
+    label .check{
+        position: absolute;
+        top: 0;
+        left: 0;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        background-color: #101010;
+        border-radius: 40px;
+        box-shadow: 0 0 0 4px #101010;
+    }
+
+    label .check:before{
+        content: "";
+        display: block;
+        position: absolute;
+        top: calc(50% - 5px);
+        left: -30px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #f00;
+        transition: 0.5s;
+        box-shadow: 0 0 5px #f00,
+                    0 0 10px #f00,
+                    0 0 20px #f00,
+                    0 0 40px #f00,
+                    0 0 80px #f00;
+    }
+
+    label input:checked ~ .check:before{
+        background: #101010;
+        box-shadow: none;
+    }
+
+    label .check:after{
+        content: "";
+        display: block;
+        position: absolute;
+        top: calc(50% - 5px);
+        right: -30px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #101010;
+        transition: 0.5s;
+        box-shadow: none;
+        
+    }
+    label input:checked ~ .check:after{
+        background: #0f0;
+        box-shadow: 0 0 5px #0f0,
+                    0 0 10px #0f0,
+                    0 0 20px #0f0,
+                    0 0 40px #0f0,
+                    0 0 80px #0f0;
+    }
+
+    label .checkBtn{
+        position: absolute;
+        top: -5px;
+        left: 0;
+        width: 90px;
+        height: 80px;
+        border-radius: 50%;
+        background: url(../images/Void_Heart.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        transition: 0.5s;/*
+        box-shadow: inset 0 -20px 15px #292929;*/
+    }
+
+    label input:checked ~ .checkBtn{
+        left: 55%;
+        background: url(../images/Kingsoul.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+/*=========setting end=========*/
+
+/*=========line box start=========*/
+.fixedWrap{
+    width: 100%;
+    overflow: hidden;
+}
+
 .fixed_lineBox{
     width: 100%;
     height: 100%;
@@ -398,26 +825,22 @@ span{display: block;}
     z-index:-1;
     transition: all 0.8s;
     text-align: center;
+    bottom: 0;
+    display: block;
 }
 
-.Menu_fixed_lineBox{
- z-index: 999;
- visibility: hidden;
-}
-
-.Menu_fixed_lineBox img,
 .fixed_lineBox img{
     width: 100%;
     height:100%;
     min-height:550px;
 }
 
-.action.black .Menu_fixed_lineBox,
 .action.black .fixed_lineBox{
     height: 92%;
-    bottom:0px;
 }
+/*=========line box end=========*/
 
+/*========video start=========*/
 .main_video_Box{
     position: absolute;
     top: 0;
@@ -431,6 +854,12 @@ span{display: block;}
     height: 100vh;
 }
 
+.action.black .main_video_Box{
+    display: none;
+}
+/*========video end=========*/
+
+/*=========scroll btn start=========*/
 .scroll-nav {
       width:50%;
       position: fixed;
@@ -447,8 +876,13 @@ span{display: block;}
 }
 
 .scroll-nav a{
+    display: inline-block;
     color: #fff;
 }
+.scroll-nav a:hover{
+    text-shadow: 1px 1px 20px #fff;
+}
+
 .scroll-next,
 .scroll-prev{
       margin-left: 120px;
@@ -459,6 +893,7 @@ span{display: block;}
       float: left;
       text-shadow: 5px 5px 10px #000;
       position: relative;
+      transition: 0.4s;
 }
 .scroll-prev{
       margin-left: 0;
@@ -473,10 +908,10 @@ span{display: block;}
     content: "";
     display: block;
     position: absolute;
-    top: 5px;
+    top: 0px;
     left: -40px;
     width: 30px;
-    height: 40px;
+    height: 45px;
     background: url(../images/leftBtn.png);
     background-size: cover;
     background-repeat: no-repeat;
@@ -492,10 +927,10 @@ span{display: block;}
     content: "";
     display: block;
     position: absolute;
-    top: 5px;
+    top: 0px;
     right: -40px;
     width: 30px;
-    height: 40px;
+    height: 45px;
     background: url(../images/rightBtn.png);
     background-size: cover;
     background-repeat: no-repeat;
@@ -508,7 +943,7 @@ span{display: block;}
 @keyframes nextani{
     to{right: -45px;}
 }
-
+/*=========scroll btn end=========*/
 /*====================fixed end==================*/
 
 /*====================startBtn start==================*/
@@ -518,9 +953,12 @@ span{display: block;}
 }
 
 .logo_text_Box{
+    position: fixed;
+     display: inline-block;
     width:60%;
     height:100%;
-    margin: auto;
+    left: 50%;
+    transform: translate(-50%, 0);
     text-align: center;
     box-shadow: 0px 30px 100px #000;
     transition: 1s;
@@ -532,6 +970,23 @@ span{display: block;}
     width: 100%;
     max-width:850px;
     transition: 1s;
+}
+.action.black .start_btn_Box{
+    display: none;
+}
+
+
+.action.black .logo_text_Box{
+    width: 15%;
+    height:100px;
+    top:10px;
+    
+    box-shadow:none;
+}
+.action.black .logo_text_Box >img{
+    padding-top:0;
+    min-height: 100px;
+    width: 100%;
 }
 
 .start_btn_Box{
@@ -599,8 +1054,7 @@ span{display: block;}
 /*====================startBtn end==================*/
 
 
-/*====================section start start==================*/
-
+/*====================section story start==================*/
 .homeback{
     position: relative;
     z-index: -9;
@@ -612,127 +1066,22 @@ span{display: block;}
     background-position: center;
      }
 
-.menuNavWrap{
-    position: relative;
-    position:fixed;
-    width: 100%;
-    height: 100%;
-}
-.menuNavBlack{
+.story_textBox{
     position:absolute;
-    top: 0;left: 0;
-     width: 100%;
-    height: 100%;
-    opacity: 0;
-    background-color: rgba(0,0,0,0.8);
-    transition:all 0.6s;
-}
-
-.menuNavWrap.active .Menu_fixed_lineBox{
-    visibility: visible;
-}
-
-.menuNavWrap.active {
-    z-index: 999;
-}
-
-.menuNavWrap.active .menuNavBlack{
-    opacity: 1;
-    z-index: 99;
-}
-
-.menuNavBox{
-    position: absolute;
-    top: -1000px;
+    width: 70%;    
+    top: 40%;
     left: 50%;
-    transform: translate(-50%, 0);
-    width: 500px;
-    height: 370px;
-    border-radius: 100px;
-    background:linear-gradient(-90deg, rgba(255,255,255,0.15),rgba(255,255,255,0.08),rgba(255,255,255,0.03),rgba(255,255,255,0.03),rgba(255,255,255,0.08),rgba(255,255,255,0.15));
-    box-shadow: 0px 30px 50px #000;
-    overflow: hidden;
-    z-index: 9999;
-    transition: 0.4s;
+    transform: translateX(-50%);
+    background-color: rgba(0,0,0,0.4);
 }
 
-.menuNavWrap.active .menuNavBox{
-   top: 60%;
-   transform: translate(-50%, -50%);
-}
-
-.menuNavBox ul{
-    width: 300px;
-    height: 100%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    animation-delay: 0.5s;
-}
-.menuNavBox ul li{
-    height: 70px;
-    font-size: 2.5em;
-    line-height: 70px;
-}
-.menuNavBox ul:hover a{
-    opacity: 0.5;
-}
-
-.menuNavBox ul li a{
-    position: relative;
+.story_textBox p{
+    font-size: 1.4em;
     color: #fff;
-    transition: all 0.4s;
-}
-.menuNavBox ul li a:hover,
-.menuNavBox ul li a.active{
-   opacity: 1;
-    text-shadow: 0 0 20px #fff;
 }
 
-.menuNavBox ul li a.active:after,
-.menuNavBox ul li a:hover:after{
-    content: "";
-    display: block;
-    width: 55px; height: 50px;
-    background: url(../images/left_hover.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    position: absolute;
-    top: 5px;
-    left: -70px;
-}
 
-.menuNavBox ul li a.active:before,
-.menuNavBox ul li a:hover:before{
-    content: "";
-    display: block;
-    width: 55px; height: 50px;
-    background: url(../images/right_hover.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    position: absolute;
-        top: 5px;
-}
-
-.menuNavBox ul li:nth-child(1) a:before{
-    left: 135px;
-}
-.menuNavBox ul li:nth-child(2) a:before{
-    left: 135px;
-}
-.menuNavBox ul li:nth-child(3) a:before{
-    left: 240px;
-}
-.menuNavBox ul li:nth-child(4) a:before{
-    left: 200px;
-}
-.menuNavBox ul li:nth-child(5) a:before{
-    left: 130px;
-}
-
-/*====================section start end==================*/
+/*====================section story end==================*/
 
 
 /*====================section story start==================*/
@@ -741,12 +1090,31 @@ span{display: block;}
 #character{z-index: -9}
 #content{z-index: -9}
 .storyBack{
-width: 100%;
-height: 100%;
-position: relative;
+    background:url(../images/Hollow-Knight-Gameplay-Desktop-Backgrounds-HD.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
 }
-.storyBack img{
-    position: absolute;
-    bottom: 0;
 
+.storyBack h2{
+    position: absolute;
+    bottom: 500px;
+    color: #fff;
+    font-size: 2em;
+    z-index: 1;
+}
+
+
+
+.characterBack{
+    background:url(../images/Wallpaper-Hollow-Knight.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
 }

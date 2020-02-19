@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="css/colorbox.css">
-	<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">
+<!-- 	<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css"> -->
 
 </head>
 
@@ -21,8 +21,8 @@
 		<section id="start" class="section">
 			<div class="fixedWrap">
 				<div class="scroll-nav">
-				   	 <a href="#" class="scroll-prev">이전 페이지</a>
-				   	 <a href="#" class="scroll-next">다음 페이지</a>
+				   	 <a href="#" class="scroll-prev">PREV PAGE</a>
+				   	 <a href="#" class="scroll-next">NEXT PAGE</a>
 			 	 </div>
 				<div class="fixed_lineBox">
 					<img src="images/fixed_line.png" alt="">
@@ -32,29 +32,65 @@
 				</div>
 
 			 	<div class="menuNavWrap">
-			 		<div class="Menu_fixed_lineBox">
-					<img src="images/fixed_line.png" alt="">
-					</div>
 			 		<div class="hambergerIcon">
 						 <div class="hamberger"></div>
 					</div>
-			 		<div class="menuNavBlack"></div>
+			 		<div class="menuNavBlack">
+			 			<span></span>
+			 			<span></span>
+			 			<span></span>
+			 			<span></span>
+			 			<span></span>
+			 			<span></span>
+			 			<div class="menuHollowGost"></div>
+			 		</div>
 		 			<div class="menuNavBox"> 
 						<ul>
-							<li><a href="#start" class="navBtn rsBtn">처음으로</a></li>
-							<li><a href="#story" class="navBtn">스토리 보기</a></li>
-							<li><a href="#character" class="navBtn">등장인물</a></li>
-							<li><a href="#content" class="navBtn">콘텐츠 보기</a></li>
-							<li><a href="#news" class="navBtn">새로운 소식</a></li>
+							<li><a href="#start" class="navBtn rsBtn">HOME</a></li>
+							<li><a href="#story" class="navBtn">STOYRY</a></li>
+							<li><a href="#character" class="navBtn">CHARACTER</a></li>
+							<li><a href="#content" class="navBtn">CONTENT</a></li>
+							<li><a href="#news" class="navBtn">NEWS</a></li>
+							<li><a href="" class="sttBtn">SETTING</a></li>
+							<li><a href="#" class="clsBtn">CLOSE</a></li>
 						</ul>
-		 			</div>
-			 		
+				</div>
+				<div class="settingBox"> 
+					<ul>
+						<li>
+							<h3>배경음악 off/on</h3>
+							<label class="audio_StBox">
+						        <input type="checkbox" name="" class="audio_ChBtn">
+						        <span class="check"></span>
+						        <span class="checkBtn"></span>
+							</label>
+						</li>
+						<li>
+							<h3>스크롤바 off/on</h3>
+							<label class="scroll_StBox">
+						        <input type="checkbox" name="" class="scroll_ChBtn">
+						        <span class="check"></span>
+						        <span class="checkBtn"></span>
+							    </label>
+						</li>
+						<li>
+							<h3>박스라인 off/on</h3>
+							<label class="lineBox_StBox">
+						        <input type="checkbox" name="" checked="checked" class="line_ChBtn">
+						        <span class="check"></span>
+						        <span class="checkBtn"></span>
+							 </label>
+						</li>
+						<li>
+							<a href="" class="sttBtnBack" style="bottom: -20px;">BACK</a>
+						</li>
+					</ul>
 			 	</div>
 			</div>
 			
 			<div class="startBox">
 				<div class="logo_text_Box">
-					<img src="images/fixed_logo.png" alt="" class="fadeInUp wow">
+					<img src="images/fixed_logo.png" alt="">
 					<div class="start_btn_Box">
 						<a href="#story" class="stBtn">
 							<p>탐험 하러가기</p>
@@ -68,18 +104,30 @@
 		</section>
 
 		<section id="story" class="section">
-			<div class="homeback"></div>  
+			<div class="homeback"></div> 
+			<div class="story_textBox">
+				<p class="fadeInUp wow">쇠퇴해가는 흙의 마을 아래 고대의 곤충 왕국 신성둥지가 잠들어 있습니다.
+				많은 이들이 부를, 명예를, 오래된 비밀의 답을 찾아 지하세계를 탐험해왔습니다.
+				이제 폐허에서 무엇인가가 깨어나 벌레들을 미치게 만들고 여행자들의 이성을 앗아가고 있습니다.
+				이 새로운 전염병의 원천은 무엇일까요? 한때 위대했던 왕국을 쓰러뜨린 재앙은 무엇이었을까요?
+				이 미스테리를 해소하려면 바닥모를 깊은 곳으로의 여행을 시작해야하지만, 어떤 비밀들은 밝혀지지 않는 것이 좋을지도 모릅니다…</p>
+			</div>
+			 
 		</section>
 
 
 		<section id="story_second" class="section">
 			<div class="storyBack">
-				<img src="images/hollow-knight-wallpaper.jpg" alt="">
+				<h2 class="fadeInUp wow">Lorem ipsum dolor sit amet.</h2>
 			</div>
+
 		</section>
 
 		<section id="character" class="section">
-			<h2>Lorem ipsum dolor sit amet.</h2>
+			<div class="characterBack">
+				<h2>Lorem ipsum dolor sit amet.</h2>
+			</div>
+			
 		</section>
 
 		<section id="content" class="section">
@@ -96,118 +144,11 @@
 
 
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	<script src="https://unpkg.com/swiper/js/swiper.js"></script>
+<!-- 	<script src="https://unpkg.com/swiper/js/swiper.js"></script> -->
 	<script src="js/wow.js"></script>
-	<script src="js/parallax.js"></script>
+<!-- 	<script src="js/parallax.js"></script> -->
 	<script src="js/jquery.colorbox-min.js"></script>
-
-
-<script>
-
-// ===============js plugin srart=============
-		 new WOW().init();		
-
-		 $('.modal').colorbox();
-
-		// var scene = document.getElementById('scene');
-		// var parallax = new Parallax(scene);
-		// var scene2 = document.getElementById('scene2');
-		// var parallax2 = new Parallax(scene2);
-
-// ===============js plugin end=============
-
-		$(window).scroll(function() {
-			resize();
-			var scroll = $(window).scrollTop();
-			var vheight = $(window).height();
-			//console.log(scroll);
-			if (scroll > vheight -200) {
-				//console.log('a');
-				$(".action").addClass("black");
-			} else {
-				//console.log('a');
-				$(".action").removeClass("black");
-			}
-		});
-
-		$('.hambergerIcon').click(function(){
-			$('.hambergerIcon').toggleClass('active');
-			$('.menuNavWrap').toggleClass('active');
-		});
-
-		$(".stBtn").mouseover(function(){
-			$(".start_img_Box > img").attr("src","images/hollow_start_hover.png");
-			$(".start_img_Box > img").css({
-				"width":300,
-				"height":300
-			})
-		});
-
-		$(".stBtn").mouseout(function(){
-			$(".start_img_Box > img").attr("src","images/hollow_start.png");
-			$(".start_img_Box > img").css({
-				"width":230,
-				"height":280
-			})
-		});
-
-		$(".navBtn").click(function(){
-			$(".menuNavWrap").removeClass('active')
-			$(".hambergerIcon").removeClass('active')
-		});
-
-// ===============scroll 100vh btn srart=============
-
-		// The resize function
-		function resize() {
-		  var vheight = $(window).height();
-		  var vwidth = $(window).width();
-		  $('.section').css({
-		    'height': vheight,
-		    'width': vwidth 
-		  });
-		};
-
-		// The scroll-up function
-		function scrollUp() {
-		  var vheight = $(window).height();
-		  $('html, body').animate({
-		    scrollTop: (Math.ceil($(window).scrollTop() / vheight)-1) * vheight
-		  }, 300);
-		};
-
-		// The scroll-down function
-		function scrollDown() {
-		  var vheight = $(window).height();
-		  $('html, body').animate({
-		    scrollTop: (Math.floor($(window).scrollTop() / vheight)+1) * vheight
-		  }, 300);  
-		};
-
-		$(document).ready(function(){
-		  resize();
-		  
-		  $('.scroll-next').click(function(event){
-		    scrollDown();
-		    event.preventDefault();
-		  });
-		  
-		  $('.scroll-prev').click(function(event){
-		    scrollUp();
-		    event.preventDefault();
-		  });
-		 
-		});
-
-		$(window).resize(function(){
-		  resize();
-		});
-
-// ===============scroll 100vh btn srart=============
-    
-    
-</script>
-
+	<script src="js/main.js"></script>
 
 </body>
 </html>
