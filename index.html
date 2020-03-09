@@ -76,19 +76,27 @@
 
 
 <script>
-	$(".mb_silk").click(function(){
+
+
+
+
+	$(function(){
+		$(".mb_silk").click(function(){
 		alert("죄송합니다. Silksong은 현재 사이트 준비 중입니다.")
-	});
+		});
 
-	$("#startPage").mouseleave(function(){
-			$(".startPage_back").css("background-image","url('images/startpage_back.png')");
-	});
+		$("#startPage").mouseleave(function(){
+				$(".startPage_back").css("background-image","url('images/startpage_back.png')");
+		});
 
 
-	var mbq = window.matchMedia("screen and (min-width: 560px)");
 
-	if (mbq.matches){
-    	$(".startPage_left").mouseenter(function(){
+		var mbq = window.matchMedia("screen and (min-width: 560px)");
+
+		var spl = $(".startPage_left");
+
+		if (mbq.matches){
+    	spl.mouseenter(function(){
 			$(".startPage_back").css("background-image","url('images/skillsong_hoverBack.png')");
 			$(".startPage_left .startPage_logo_text_box").stop().animate({top:0},400);
 			$(".startPage_left .content_text_box").stop().animate({top:0},600)
@@ -107,8 +115,19 @@
 				$(".startPage_right .startPage_logo_text_box").stop().animate({top:-500},300)
 				$(".startPage_right .content_text_box").stop().animate({top:-800},300)
 		});
-	} else {
+		} else {
 	}
+
+
+
+
+	});
+	
+	
+
+	
+
+	
 
 
 
