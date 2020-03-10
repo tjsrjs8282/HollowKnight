@@ -1417,10 +1417,8 @@ left: 108px;}
     left: 130px;
 }
 .chCloseBtnBox a:hover:before{
-    left: 115px;
+    left: 100px;
 }
-
-
 
 /*=========navigation end=========*/
 
@@ -2005,25 +2003,47 @@ left: 108px;}
     z-index: 10
 }
 
-.character_contentBox{
+.character_contentBoxWrap{
+    width: 100%;
+    height: 100%;
     position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width:1200px;
-    height: 600px;
-    min-width: 800px;
-    background-color: rgba(0,0,0,0.6);
-    border: 3px solid #eee;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.character_contentBox{
+    margin-top: 50px;
+    position: relative;
+    width:90%;
+    max-width: 1260px;
+    height: 500px;
+    background-color: rgba(0,0,0,0.8);
+    border: 1px solid #eee;
     display: none;
     z-index: 10;
 }
+.character_contentBox.active{
+    display: block;
+}
 
 .character_content{
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     transition: 0.8s;
+    justify-content: space-around;
+    align-items: center;
+    opacity: 0;
+    display: none;
+}
+.character_content.active{
+    display: flex;
+    opacity: 1;
 }
 
 .chCloseBtnBox{
@@ -2033,19 +2053,70 @@ left: 108px;}
     height: 60px;
     line-height: 60px; 
     text-align: center;
-    border-top: 3px solid #fff;
+    border-top: 1px solid #fff;
     box-sizing: border-box;
 }
+
 .chCloseBtnBox a{
     position: relative;
     font-size: 2em;
     color: #fff;
 }
 
-.character_contentBox img{
+.hollow_leftContent{
+    width: 47%;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+
+.hollow_rightContent{
+    width: 47%;
+    max-width: 470px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 30px;
+}
+.hollow_rightContent img{
     width: 100%;
 }
 
+.character_imageBox{
+    width: 100%;
+}
+
+.character_imageBox ul{
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.character_imageBox ul li{
+    width: 210px;    border: 2px solid #fff;
+}
+.character_imageBox ul li img{
+    width: 100%;
+    height: 100%;
+}
+.hollow_leftContent h3{
+    margin-bottom: 5px;
+}
+.character_trailer{
+    cursor: pointer;
+    position: relative;
+    width: 250px;
+    margin: 15px auto;
+    height: 142px;
+    overflow: hidden;
+    background-color: #eee;
+}
+
+.character_trailer img{
+    border: 2px solid #fff;
+    box-sizing: border-box;
+}
 /*====================section character end==================*/
 
 
@@ -2103,7 +2174,7 @@ left: 108px;}
 
 .content_cardBox:hover img{
     transform: scale(0.95);
-    filter: blur(1.2px);
+    filter: blur(1px);
 }
 
 .content_cardBox img:hover{
@@ -2174,6 +2245,7 @@ left: 108px;}
     width: 100%;
 }
 
+.character_contentBox:after,
 .modal_textBox:after,
 .content_cardBox:after,
 .character_listBox ul:after,
@@ -2203,6 +2275,11 @@ left: 108px;}
     height: 50px;
     top: -30px;
 }
+.character_contentBox:after{
+    top: -27px;
+    width: 490px;
+    height: 40px;
+}
 .content_cardBox:after{
     top: -130px;
 }
@@ -2223,6 +2300,7 @@ left: 108px;}
      left: 51%;
 }
 
+.character_contentBox:before,
 .modal_closeBtnBox:before,
 .content_cardBox:before,
 .character_listBox ul:before,
@@ -2241,6 +2319,12 @@ left: 108px;}
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.character_contentBox:before{
+   bottom: -25px; 
+   width: 320px;
+    height: 35px;
 }
 
 .content_cardBox:before,
@@ -2268,6 +2352,7 @@ left: 108px;}
    width: 95%;
 }
 
+.hollow_leftContent p,
 .FriendsBox p,
 .PurchaseBox p,
 .content_toptextBox p,
@@ -2277,6 +2362,7 @@ left: 108px;}
     text-shadow: 3px 3px 5px rgba(255,255,255,0.3)
 }
 
+.hollow_leftContent h3,
 .content_toptextBox h3,
 .storyBox h3,
 .FriendsBox h3,
@@ -2289,6 +2375,7 @@ left: 108px;}
     text-shadow: 3px 3px 5px rgba(255,255,255,0.6);
 }
 
+.hollow_leftContent h3,
 .slikLogo h3{
     font-size: 2em;
 }
@@ -2327,14 +2414,19 @@ left: 108px;}
     position: relative;
     cursor: pointer;
 }
+
+.character_trailer img,
 .silkTrailer img{
     width: 100%;
     transition: 0.4s;
 }
+
+.character_trailer:hover img,
 .silkTrailer:hover img{
     transform: scale(1.1);
 }
 
+.character_trailer p:nth-of-type(1),
 .silkTrailer p:nth-of-type(1){
     position: absolute;
     font-size: 3em;
@@ -2344,11 +2436,13 @@ left: 108px;}
     color: rgba(255,255,255,0.5);
 }
 
+.character_trailer p:nth-of-type(2),
 .silkTrailer p:nth-of-type(2){
     position: absolute;
     color: #fff;
     bottom: 5px; right: 10px;
 }
+.character_trailer p:nth-of-type(3),
 .silkTrailer p:nth-of-type(3){
     position: absolute;
     color: #fff;
@@ -2357,6 +2451,7 @@ left: 108px;}
     transform: translate(-50%, 0);
 }
 
+.character_trailer:hover p,
 .silkTrailer:hover p{
     color: #fff;
 }
@@ -2609,10 +2704,31 @@ left: 108px;}
         font-size: 1em;
         line-height: 23px;
     }
+    
+    .character_imageBox ul li{
+        width: 180px;
+    }
+    .hollow_leftContent p{
+        font-size: 1em;
+    }
+
+
 }
 /*============media pc end============*/
 
 /*============media tablet start============*/
+
+@media screen and (max-width: 850px){
+   .hollow_rightContent{
+    display: none;
+   }
+   .hollow_leftContent{
+    width: 90%;
+   }
+   .character_imageBox ul li{
+    width: 260px;
+   }
+}
 
 @media screen and (max-width: 800px){
     .character_listBox ul li{
@@ -2681,6 +2797,9 @@ left: 108px;}
         margin-top: 10px;
         margin-bottom: 10px;
     }
+    .character_imageBox ul li{
+        width: 220px;
+    }
 
 }
 /*============media tablet end============*/
@@ -2691,20 +2810,32 @@ left: 108px;}
         min-height: 70px;
     width: 80%;
     }
+
+
+}
+@media screen and (max-height: 730px){
+    .start_img_Box{
+        opacity: 0;
+    }
 }
 @media screen and (max-height: 600px){
     .fixed_lineBox{
         opacity: 0;
     }
+    .guide_textWrap{
+        display: none;
+    }
+    .start_img_Box{
+        opacity: 0;
+    }
 }
 
 @media screen and (max-height: 500px){
-    .logo_text_Box{
-        opacity: 0;
-    }
     .action.black .scroll-nav{
         opacity: 0;
     }
+     
 }
+
 /*============media height end============*/
 /*====================media query end==================*/

@@ -1,13 +1,5 @@
 // ===============js plugin srart=============
 		 new WOW().init();		
-
-		 // $('.modal').colorbox();
-
-		// var scene = document.getElementById('scene');
-		// var parallax = new Parallax(scene);
-		// var scene2 = document.getElementById('scene2');
-		// var parallax2 = new Parallax(scene2);
-
 // ===============js plugin end=============
 
 // ===============loding page start==============
@@ -376,15 +368,20 @@ $(function(){
 // ===============character Box start============
 	var chList = $(".character_listBox > ul > li");
 	var chBoxList = $(".character_imagesBox > div");
+	var chConList = $(".character_contentBox > .character_content")
+		
 		chList.click(function(){
 			var liNum = $(this).index();
 			$(".character_listBox").fadeOut();
-			$(".character_contentBox").fadeIn();
+			$(".character_contentBox").addClass("active");
+			chConList.eq(liNum).addClass("active");
 		});
 
 		$(".chClsBtn").click(function(event){
-		$(".character_listBox").fadeIn();
+		$(".character_contentBox").removeClass("active");
+			chConList.removeClass("active");
 		$(".character_contentBox").fadeOut();
+		$(".character_listBox").fadeIn();
 		event.preventDefault();
 });
 

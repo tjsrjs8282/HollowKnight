@@ -4,6 +4,9 @@ body{
     overflow: visible;
 }
 /*================index.html start==============*/
+.start_img_Box{
+        opacity: 1 !important;
+    }
  .mobile_text{
     display: block;
 }
@@ -268,6 +271,8 @@ body{
 .FriendsBox p, .PurchaseBox p{
     font-size: 1em;
 }
+
+.character_contentBox:after,
 .newsBox:after,
 .character_listBox ul:after,
 .content_cardBox:after,
@@ -282,6 +287,9 @@ body{
 .content_cardBox:after{
     top: -100px;
 }
+
+
+.character_contentBox:before,
 .newsBox:before,
 .character_listBox ul:before,
 .content_cardBox:before,
