@@ -4,6 +4,12 @@ body{
     overflow: visible;
 }
 /*================index.html start==============*/
+.load_text{
+        width: 80%;
+    }
+.load_image{
+        width: 80%;
+    }
 .start_img_Box{
         opacity: 1 !important;
     }

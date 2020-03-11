@@ -1,5 +1,11 @@
 // ===============js plugin srart=============
 		 new WOW().init();		
+
+
+
+
+		// var scene2 = document.getElementById('scene2');
+		// var parallax2 = new Parallax(scene2);
 // ===============js plugin end=============
 
 // ===============loding page start==============
@@ -7,7 +13,7 @@
 		$('.lodingBoxWrap').hide();
 	}
 
-	setTimeout(aniBox , 4200); 
+	setTimeout(aniBox ,5000); 
 // ===============loding page end==============
 
 // ===============scroll 100vh start============
@@ -44,7 +50,7 @@ $(".section").each(function () {
 });
 // ===============scroll 100vh end============
 
-// ===============next & down btn srart=============
+// ============next & down btn / resize srart=============
 		// The resize function
 		function resize() {
 		  var vheight = $(window).height();
@@ -85,11 +91,7 @@ $(".section").each(function () {
 		  });
 		 
 		});
-
-		$(window).resize(function(){
-		  resize();
-		});
-// ===============next & down btn  btn end============
+// =============next & down btn / resize end============
 
 $(function(){
 // ===============action move start==============
@@ -113,6 +115,11 @@ $(function(){
 		$("html").mousemove(function(){
 			resize();
 			action();
+		});
+
+		$(window).resize(function(){
+		  resize();
+		  action();
 		});
 // ===============action move end==============
 
@@ -185,9 +192,9 @@ $(function(){
 		$(".sound_CDBox > ul > li").on('click', function() {
 			$('body').toggleClass("audio-on audio-off");         
 				if ($('body').hasClass('audio-off')) {
-				audio.currentTime = 0;
-				silk.currentTime = 0;
-				nightmare.currentTime = 0;
+				// audio.currentTime = 0;
+				// silk.currentTime = 0;
+				// nightmare.currentTime = 0;
 				audio.pause();
 				silk.pause();
 				nightmare.pause();
@@ -195,16 +202,22 @@ $(function(){
 		});
 		$(".ost").on('click', function() { 
 				if ($('body').hasClass('audio-on')) {
+				silk.pause();
+				nightmare.pause();
 				audio.play();
 			}
 		});
 		$(".silk").on('click', function() { 
 				if ($('body').hasClass('audio-on')) {
+				nightmare.pause();
+				audio.pause();
 				silk.play();
 			}
 		});
 		$(".nightmare").on('click', function() { 
 				if ($('body').hasClass('audio-on')) {
+				audio.pause();
+				silk.pause();
 				nightmare.play();
 			}
 		});
@@ -214,57 +227,61 @@ $(function(){
 		$(".music_closeBtn").click(function(){
 			$(".ostMusic_Wrap").removeClass('active');
 		});
+
+		$(".soundSlider_prevBtn").click(function(){
+		var cdNum = $(".sound_CDBox > ul > li.active").index();
+		var txtNum = $(".music_sliderBtnbox > ul > li.active").index();
+		var SpNum = $(".music_sliderNavBtn > span.active").index();
+		var cdList = $(".sound_CDBox > ul > li");
+		var cdBtnList = $(".music_sliderBtnbox > ul > li");
+		var cdNavBtnList = $(".music_sliderNavBtn > span");
+		$('body').removeClass('audio-on');
+		$('body').addClass('audio-off');
+			audio.pause();
+			silk.pause();
+			nightmare.pause();
+			cdList.removeClass();
+			cdBtnList.removeClass();
+			cdNavBtnList.removeClass();
+			if(cdNum >= 0){
+				cdList.eq(cdNum - 1).addClass('active');
+				cdBtnList.eq(txtNum - 1).addClass('active');
+				cdNavBtnList.eq(SpNum - 1).addClass('active');
+			} else if(cdNum == 0){
+				cdList.eq(cdList.length).addClass('active');
+				cdBtnList.eq(cdList.length).addClass('active');
+				cdNavBtnList.eq(cdList.length).addClass('active');
+			}	
+		});
+
+		$(".soundSlider_nextBtn").click(function(){
+		var cdNum = $(".sound_CDBox > ul > li.active").index();
+		var txtNum = $(".music_sliderBtnbox > ul > li.active").index();
+		var SpNum = $(".music_sliderNavBtn > span.active").index();
+		var cdList = $(".sound_CDBox > ul > li");
+		var cdBtnList = $(".music_sliderBtnbox > ul > li");
+		var cdNavBtnList = $(".music_sliderNavBtn > span");
+		$('body').removeClass('audio-on');
+		$('body').addClass('audio-off');
+			audio.pause();
+			silk.pause();
+			nightmare.pause();
+			cdList.removeClass();
+			cdBtnList.removeClass();
+			cdNavBtnList.removeClass();
+			if(cdNum < 2){
+				cdList.eq(cdNum + 1).addClass('active');
+				cdBtnList.eq(txtNum + 1).addClass('active');
+				cdNavBtnList.eq(SpNum + 1).addClass('active');
+			} else if(cdNum == 2){
+				cdList.eq(0).addClass('active');
+				cdBtnList.eq(0).addClass('active');
+				cdNavBtnList.eq(0).addClass('active');
+			}	
+		});
+
+
 	}
-
-	$(".soundSlider_prevBtn").click(function(){
-		var audio = document.getElementById("audio-player");
-	var cdNum = $(".sound_CDBox > ul > li.active").index();
-	var txtNum = $(".music_sliderBtnbox > ul > li.active").index();
-	var SpNum = $(".music_sliderNavBtn > span.active").index();
-	var cdList = $(".sound_CDBox > ul > li");
-	var cdBtnList = $(".music_sliderBtnbox > ul > li");
-	var cdNavBtnList = $(".music_sliderNavBtn > span");
-	$('body').removeClass('audio-on');
-	$('body').addClass('audio-off');
-	audio.pause();
-		cdList.removeClass();
-		cdBtnList.removeClass();
-		cdNavBtnList.removeClass();
-		if(cdNum >= 0){
-			cdList.eq(cdNum - 1).addClass('active');
-			cdBtnList.eq(txtNum - 1).addClass('active');
-			cdNavBtnList.eq(SpNum - 1).addClass('active');
-		} else if(cdNum == 0){
-			cdList.eq(cdList.length).addClass('active');
-			cdBtnList.eq(cdList.length).addClass('active');
-			cdNavBtnList.eq(cdList.length).addClass('active');
-		}	
-	});
-
-	$(".soundSlider_nextBtn").click(function(){
-	var cdNum = $(".sound_CDBox > ul > li.active").index();
-	var txtNum = $(".music_sliderBtnbox > ul > li.active").index();
-	var SpNum = $(".music_sliderNavBtn > span.active").index();
-	var cdList = $(".sound_CDBox > ul > li");
-	var cdBtnList = $(".music_sliderBtnbox > ul > li");
-	var cdNavBtnList = $(".music_sliderNavBtn > span");
-	$('body').removeClass('audio-on');
-	$('body').addClass('audio-off');
-	audio.pause();
-		cdList.removeClass();
-		cdBtnList.removeClass();
-		cdNavBtnList.removeClass();
-		if(cdNum < 2){
-			cdList.eq(cdNum + 1).addClass('active');
-			cdBtnList.eq(txtNum + 1).addClass('active');
-			cdNavBtnList.eq(SpNum + 1).addClass('active');
-		} else if(cdNum == 2){
-			cdList.eq(0).addClass('active');
-			cdBtnList.eq(0).addClass('active');
-			cdNavBtnList.eq(0).addClass('active');
-		}	
-	});
-
 // ===============sound play end==============
 
 // ===============hambargerNav & setting start==============
@@ -322,7 +339,7 @@ $(function(){
 		});
 
 		$(".audio_StBox").click(function(event){
-			alert("2020년 1월부로 배경음악 지원이 중단됬습니다.");
+			alert("왼쪽 하단에 LP아이콘을 이용해주세요.");
 			event.preventDefault();
 		});
 		// =====setting======
