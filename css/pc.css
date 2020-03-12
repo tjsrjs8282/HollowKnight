@@ -1381,7 +1381,7 @@ body.audio-on .sound_CDBox ul li.active img{
     left: 115px;
 }
 .menuNavBox ul li:nth-child(2) a:before{
-    left: 160px;
+    left: 185px;
 }
 .menuNavBox ul li:nth-child(3) a:before{
     left: 200px;
@@ -1431,6 +1431,7 @@ left: 108px;}
         height: 70px;
         cursor: pointer;
         transform: translate(-50%, 0);
+        z-index: 1;
     }
 
     label input{
@@ -1817,7 +1818,7 @@ left: 108px;}
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    transition: 0.5s;
+    transition: 1s;
      }
 
 .storyBoxWrap{
@@ -1900,43 +1901,74 @@ left: 108px;}
     width: 190px;
     height:120px;
     position: relative;
+    opacity: 0;
 }
-.character_listBox ul li:nth-child(1){
-    animation-delay: 0.4s;
+.section.on .character_listBox ul li:nth-child(1){
+    animation:chCard 0.4s 0.4s forwards ease-in;
 }
-.character_listBox ul li:nth-child(2){
-    animation-delay: 0.6s;
-}
-
-.character_listBox ul li:nth-child(3){
-    animation-delay: 0.8s;
+.section.on .character_listBox ul li:nth-child(2){
+    animation:chCard 0.4s 0.5s forwards ease-in;
 }
 
-.character_listBox ul li:nth-child(4){
-    animation-delay: 1s;
+.section.on .character_listBox ul li:nth-child(3){
+    animation:chCard 0.4s 0.6s forwards ease-in;
 }
 
-.character_listBox ul li:nth-child(5){
-    animation-delay: 1.2s;
+.section.on .character_listBox ul li:nth-child(4){
+    animation:chCard 0.4s 0.7s forwards ease-in;
 }
 
-.character_listBox ul li:nth-child(6){
-    animation-delay: 1.4s;
-}
-.character_listBox ul li:nth-child(7){
-    animation-delay: 1.6s;
+.section.on .character_listBox ul li:nth-child(5){
+    animation:chCard 0.4s 0.8s forwards ease-in;
 }
 
-.character_listBox ul li:nth-child(8){
-    animation-delay: 1.8s;
+.section.on .character_listBox ul li:nth-child(6){
+    animation:chCard 0.4s 0.9s forwards ease-in;
+}
+.section.on .character_listBox ul li:nth-child(7){
+    animation:chCard 0.4s 1s forwards ease-in;
 }
 
-.character_listBox ul li:nth-child(9){
-    animation-delay: 2s;
+.section.on .character_listBox ul li:nth-child(8){
+    animation:chCard 0.4s 1.1s forwards ease-in;
 }
 
+.section.on .character_listBox ul li:nth-child(9){
+    animation:chCard 0.4s 1.2s forwards ease-in;
+}
+@keyframes chCard{
+    from {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
 
+  40% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
 
+  60% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    opacity: 1;
+  }
+
+  80% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+  }
+
+  to {
+    -webkit-transform: perspective(400px);
+    transform: perspective(400px);
+    opacity: 1;
+  }
+}
 
 .character_NameBox{
     width: 100%;
@@ -2118,22 +2150,21 @@ left: 108px;}
 }
 
 .contentLight{
-    animation:ctLight 10s infinite cubic-bezier(0.51,-0.29, 0.59, 1.96);
+    animation:ctLight 5s infinite cubic-bezier(0.51,-0.29, 0.59, 1.96);
     width: 100%;
     height: 100%;
     background:url(../images/ct_light.png);
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
     position:absolute;
     top: 0;
     left: 0;
 }
 @keyframes ctLight{
-    30%{background: url(../images/ct_light2.png);
+    20%{background: url(../images/ct_light2.png);
     background-repeat: no-repeat;
     background-size: cover;}
-    50%{background: url(../images/ct_light3.png);
+    40%{background: url(../images/ct_light3.png);
     background-repeat: no-repeat;
     background-size: cover;}
     80%{background: url(../images/ct_light4.png);
@@ -2177,6 +2208,7 @@ left: 108px;}
      height: 100%;
     cursor: pointer;
     transition: 0.4s;
+    opacity: 0;
 }
 
 .content_cardBox:hover img{
@@ -2189,21 +2221,50 @@ left: 108px;}
     filter: blur(0);
 }
 
-.content_cardBox img:nth-child(1){
-    animation-delay: 0.6s;
+.section.on .content_cardBox img:nth-child(1){
+    animation:ctCard 0.4s 0.6s forwards ease-in;
 }
-.content_cardBox img:nth-child(2){
-    animation-delay: 1s;
+.section.on .content_cardBox img:nth-child(2){
+    animation:ctCard 0.4s 0.9s forwards ease-in;
 }
-.content_cardBox img:nth-child(3){
-    animation-delay: 1.4s;
+.section.on .content_cardBox img:nth-child(3){
+    animation:ctCard 0.4s 1.2s forwards ease-in;
 }
-.content_cardBox img:nth-child(4){
-    animation-delay: 1.8s;
+.section.on .content_cardBox img:nth-child(4){
+     animation:ctCard 0.4s 1.5s forwards ease-in;
 }
 
+@keyframes ctCard{
+   from {
+    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+    transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+    opacity: 0;
+  }
 
+  40% {
+    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+    transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
 
+  60% {
+    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+    transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+    opacity: 1;
+  }
+
+  80% {
+    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+    transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+  }
+
+  to {
+    -webkit-transform: perspective(400px);
+    transform: perspective(400px);
+      opacity: 1;
+  }
+}
 /*====================section content end==================*/
 
 
@@ -2246,8 +2307,32 @@ left: 108px;}
     background-color: rgba(0,0,0,0.6);
     text-align: center;
     position: relative;
+    opacity: 0;
+    transform: translate(0, 50%);
+    transition: 0.5s;
 }
 
+/*==========Section animation start========*/
+.character_listBox ul,
+.characterText,
+.content_cardBox,
+.content_toptextBox{
+    opacity: 0;
+    transform: translate(0, 50%);
+    transition: 0.6s;
+}
+
+section.on .character_listBox ul,
+section.on .characterText,
+section.on .content_cardBox,
+section.on .content_toptextBox,
+section.on .footerBox,
+section.on .storyBox,
+section.on .newsBox{
+    transform: translate(0, 0);
+    opacity: 1;
+}
+/*==========Section animation end========*/
 .storyBox{
     width: 100%;
 }
@@ -2719,7 +2804,7 @@ left: 108px;}
         font-size: 1em;
     }
     .section-parallax{
-        display: none;
+        display: none !important;
     }
 
 }
@@ -2755,6 +2840,9 @@ left: 108px;}
     }
 }
 @media screen and (max-width: 650px){
+    .contentLight{
+        display: none;
+    }
      .characterBack{
         background-image: url(../images/character_back3.jpg);
     }
@@ -2813,7 +2901,7 @@ left: 108px;}
         width: 220px;
     }
     .flameAniBox{
-        display: none;
+        display: none !important;
     }
 }
 /*============media tablet end============*/
