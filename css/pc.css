@@ -1808,7 +1808,7 @@ left: 108px;}
 
 
 /*====================section story start==================*/
-.homeback{
+.storyBack{
     position: relative;
     z-index: -9;
     width: 100%;    
@@ -1817,23 +1817,9 @@ left: 108px;}
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    transition: 0.5s;
      }
 
-
-/*====================section story end==================*/
-
-
-/*====================section story2 start==================*/
-.storyBack{
-    background:url(../images/Hollow-Knight-Gameplay-Desktop-Backgrounds-HD.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: 100%;
-    position: relative;
-    z-index: -1;
-}
 .storyBoxWrap{
     position: absolute;
     top: 55%;
@@ -1844,19 +1830,16 @@ left: 108px;}
     display:flex;
     justify-content: space-around;
 }
-
-
-.story_textBox p{
-    font-size: 1.4em;
-    color: #fff;
+.storyBack.aniNone{
+    background: url(../images/story_back.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
+/*====================section story end==================*/
 
-
-
-/*====================section story2 end==================*/
 
 /*====================section character start==================*/
-
 .characterBack{
     background:url(../images/Wallpaper-Hollow-Knight.jpg);
     background-repeat: no-repeat;
@@ -2132,6 +2115,30 @@ left: 108px;}
     position:relative;
     z-index: -1;
     transition: 0.5s;
+}
+
+.contentLight{
+    animation:ctLight 10s infinite cubic-bezier(0.51,-0.29, 0.59, 1.96);
+    width: 100%;
+    height: 100%;
+    background:url(../images/ct_light.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position:absolute;
+    top: 0;
+    left: 0;
+}
+@keyframes ctLight{
+    30%{background: url(../images/ct_light2.png);
+    background-repeat: no-repeat;
+    background-size: cover;}
+    50%{background: url(../images/ct_light3.png);
+    background-repeat: no-repeat;
+    background-size: cover;}
+    80%{background: url(../images/ct_light4.png);
+    background-repeat: no-repeat;
+    background-size: cover;}
 }
 .content_cardWrap{
     top: 0;
@@ -2909,6 +2916,7 @@ left: 108px;}
 .flame5{
      animation:flame5 1.2s infinite ease-in;
     position: absolute;
+    transform: rotate(-80deg);
     bottom: -100%;
     left: 800px;
 }
@@ -2955,8 +2963,7 @@ left: 108px;}
     transform: rotate(-100deg); }
 }
 @keyframes flame5{
-    to{bottom: 5000px;  left: -2500px;
-    transform: rotate(-100deg); }
+    to{bottom: 5000px;  left: -2500px;}
 }
 @keyframes flame6{
     to{bottom: 4000px;  left: 5000px;

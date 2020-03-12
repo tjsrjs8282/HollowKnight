@@ -293,9 +293,9 @@
 				<div class="settingBox"> 
 					<ul>
 						<li>
-							<h3>배경음악 off/on</h3>
-							<label class="audio_StBox">
-						        <input type="checkbox" name="navigation" class="audio_ChBtn">
+							<h3>애니메이션 off/on</h3>
+							<label class="ani_StBox">
+						        <input type="checkbox" name="navigation" checked="checked" class="ani_ChBtn">
 						        <span class="check"></span>
 						        <span class="checkBtn"></span>
 							</label>
@@ -339,7 +339,7 @@
 		</section>
 
 		<section id="story" class="section">
-			<div class="homeback"></div> 
+			<div class="storyBack"></div> 
 			<div class="storyBoxWrap">
 				<div class="fadeInUp wow storyBox">
 					<div class="slikLogo">
@@ -362,8 +362,8 @@
 			<div class="characterBack"></div>
 			<div class="section-parallax">
 				<ul id="scene">
-					<li class="layer" data-depth=".25"><img src="images/parallax1.png"></li>
-					<li class="layer" data-depth=".5"><img src="images/parallax2.png"></li>
+					<li class="layer" data-depth=".4"><img src="images/parallax1.png"></li>
+					<li class="layer" data-depth="1"><img src="images/parallax2.png"></li>
 				</ul>
 			</div>
 			<div class="section-parallax">
@@ -641,6 +641,7 @@
 
 		<section id="content" class="section">
 			<div class="contentBack"></div>
+			<div class="contentLight"></div>
 			<div class="content_cardWrap">
 				<div class="fadeInUp wow content_toptextBox">
 					<h3>CONTENT</h3>
@@ -806,12 +807,12 @@
 
 		var scene = document.getElementById('scene');
 		var parallax = new Parallax(scene,{
-			scalarX: 4.0,
+			scalarX: 3.0,
     		scalarY: 10.0
 		});
 		var scene = document.getElementById('scene2');
 		var parallax = new Parallax(scene2,{
-			scalarX: 8.0,
+			scalarX: 9.0,
     		scalarY: 3.0
 		});
 

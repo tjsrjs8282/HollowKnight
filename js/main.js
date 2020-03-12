@@ -338,9 +338,22 @@ $(function(){
 			}
 		});
 
-		$(".audio_StBox").click(function(event){
-			alert("왼쪽 하단에 LP아이콘을 이용해주세요.");
-			event.preventDefault();
+		$(".ani_StBox").click(function(event){
+			if($(".ani_ChBtn").prop('checked')){
+				$(".section-parallax").css({"display":"block"});
+				$(".flameAniBox").css({"display":"block"});
+				$(".contentLight").css({"display":"block"});
+				$(".menuNavBlack > span").css({"display":"block"});
+				$(".menuHollowGost").css({"display":"block"});
+				$(".storyBack").removeClass("aniNone");
+			}else{
+				$(".section-parallax").css({"display":"none"});
+				$(".flameAniBox").css({"display":"none"});
+				$(".contentLight").css({"display":"none"});
+				$(".menuNavBlack > span").css({"display":"none"});
+				$(".menuHollowGost").css({"display":"none"});
+				$(".storyBack").addClass("aniNone");
+			}
 		});
 		// =====setting======
 // ===============hambargerNav & setting end==============
