@@ -94,7 +94,6 @@ body{overflow: visible;}
 .storyBox .slikLogo h3{ font-size: 2em !important;}
 .character_listBox ul li{ height: 100px; width: 30%; margin: 5px 0px;}
 .storyBoxWrap{ width: 95%;}
-.content_cardBox img{height: 260px; width: 160px;}
 .character_NameBox h3{ top: 60%; width: 100%; z-index: 999; font-size: 0.9em; background-color: rgba(0,0,0,0.3);}
 .character_listBox ul li:hover h3{top: 40%;}
 .character_NameBox{z-index: 11;}
@@ -102,7 +101,7 @@ body{overflow: visible;}
 .action.black .sound_lpBar,
 .action.black .sound_note,
 .action.black .sound_lp{display: none;}
-
+.section.on .content_cardBox img{height: 205px; width: 100px;}
 /*==============Iphone5 start==============*/
 @media screen and (max-width: 450px){
     @keyframes soundnote{ to{bottom: 85px;right: -195px;transform: rotate(0deg);} }
@@ -110,6 +109,8 @@ body{overflow: visible;}
     .sound_lpBar{ right: -230px; bottom: 50px;}
     .sound_note{ right: -175px; bottom: 70px;}
     .sound_lp{ right: -230px; bottom: 30px;}
+    .section.on .content_cardBox img{width: 120px; height: 220px;}
+    .content_toptextBox{padding-top: 30px;}
 }
 @media screen and (max-width: 350px){
     .storyTextBox,

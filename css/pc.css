@@ -328,8 +328,8 @@ label input:checked ~ .checkBtn{ left: 55%; background: url(../images/Kingsoul.p
 /*====================startBtn start==================*/
 .startBox{ position: fixed; top: 0; width: 100%; height: 100%; display: flex; justify-content: center; z-index: 1;}
 .logo_text_Box{ position: fixed; width:60%; height:100%; text-align: center; box-shadow: 0px 30px 100px #000; transition: 1s;}
-.logo_text_Box:after{position:absolute; top: 60%; left:100px; content:""; display: block; width: 180px; height:150px; background: url(../images/tc.png);  background-repeat: no-repeat; background-size: cover; cursor: pointer;}
-.logo_text_Box:before{position:absolute; top: 60%; right:100px; content:""; display: block; width: 180px; height:150px; background: url(../images/unity.png);  background-repeat: no-repeat; background-size: cover; cursor: pointer;}
+.logo_text_Box:after{position:absolute; top: 60%; left:100px; content:""; display: block; width: 180px; height:150px; background: url(../images/tc.png);  background-repeat: no-repeat; background-size: cover; }
+.logo_text_Box:before{position:absolute; top: 60%; right:100px; content:""; display: block; width: 180px; height:150px; background: url(../images/unity.png);  background-repeat: no-repeat; background-size: cover; z-index: 1}
 .action.black .logo_text_Box:after,
 .action.black .logo_text_Box:before{top: -200px;}
 .logo_text_Box > img{ padding-top:60px; width: 90%; max-width:850px; transition: 1s;}
@@ -358,7 +358,7 @@ label input:checked ~ .checkBtn{ left: 55%; background: url(../images/Kingsoul.p
 /*====================section character start==================*/
 .characterBack{ background:url(../images/Wallpaper-Hollow-Knight.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; width: 100%; height: 100%; position: relative; z-index: -1; transition: 0.5s;}
 .character_listBox{ width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 9; display:flex; justify-content: center; flex-direction: column; align-items: center;}
-.character_listBox ul{ width:70%; min-width: 700px; display: flex; justify-content: space-around; flex-wrap: wrap; background-color: rgba(0,0,0,0.7); position: relative;}
+.character_listBox ul{ width:80%; min-width: 700px; display: flex; justify-content: space-around; flex-wrap: wrap; background-color: rgba(0,0,0,0.7); position: relative;}
 .character_listBox ul li{ cursor: pointer; margin: 20px 8px; width: 190px; height:120px; position: relative; opacity: 0; transform: perspective(400px) rotate3d(1, 0, 0, 90deg);}
 .character_listBox ul li:nth-child(1){transition:0.4s 0.4s ease-in;}
 .character_listBox ul li:nth-child(2){transition:0.4s 0.5s ease-in;}
@@ -375,7 +375,7 @@ label input:checked ~ .checkBtn{ left: 55%; background: url(../images/Kingsoul.p
 .character_listBox ul li:hover img:last-child{transform: rotateX(75deg) skewX(-25deg);   }
 .character_listBox ul li img:last-child{z-index: 10}
 .section.on .character_listBox ul li{opacity: 1; transform: perspective(400px);}
-.characterText{ text-align: center; width:70%; min-width: 700px; height: 70px; background-color: rgba(0,0,0,0.7); padding-top: 20px;}
+.characterText{ text-align: center; width:80%; min-width: 700px; height: 70px; background-color: rgba(0,0,0,0.7); padding-top: 20px;}
 .characterText h3{ font-weight: bold; font-size: 2em; color: #fff; text-shadow: 3px 3px 5px rgba(255,255,255,0.6);}
 .characterText p{ font-size: 1.1em; color: #eee; text-shadow: 3px 3px 5px rgba(255,255,255,0.3)}
 .character_NameBox{ width: 100%; height: 100%; color: #fff; overflow: hidden; text-align: center; position: relative; z-index: 9;}
@@ -573,6 +573,9 @@ label input:checked ~ .checkBtn{ left: 55%; background: url(../images/Kingsoul.p
 @media screen and (max-width: 1450px){
     .content_toptextBox,
     .content_cardBox{width: 1060px;}
+    .character_listBox ul li{
+    	width: 150px;
+    }
 }
 @media screen and (max-width:1260px){
     .footerTextBox{justify-content: flex-end;}
@@ -628,6 +631,9 @@ label input:checked ~ .checkBtn{ left: 55%; background: url(../images/Kingsoul.p
     .character_imageBox ul li{width: 180px;}
     .hollow_leftContent p{font-size: 1em;}
     .section-parallax{display: none !important;}
+    .character_listBox ul li{
+    	height: 90px;
+    }
 }
 /*============media pc end============*/
 
@@ -639,10 +645,18 @@ label input:checked ~ .checkBtn{ left: 55%; background: url(../images/Kingsoul.p
 }
 
 @media screen and (max-width: 800px){
-    .character_listBox ul li{ margin: 12px 0px; width: 26%; height: 130px;}
+    .character_listBox ul li{ margin: 12px 0px; width: 26%; height: 110px;}
     .characterText,
     .character_listBox ul{ width: 95%; min-width:450px;}
     .load_text{ width: 50%;}
+}
+@media screen and (max-width: 700px){
+	.content_toptextBox, .content_cardBox{
+		width: 600px;
+	}
+	.section.on .content_cardBox img{
+		width: 140px;
+	}
 }
 @media screen and (max-width: 650px){
     .contentLight{display: none;}
@@ -651,12 +665,20 @@ label input:checked ~ .checkBtn{ left: 55%; background: url(../images/Kingsoul.p
     .newsBack{background-image: url(../images/news_back2.jpg);}
     .storyBox:after{width: 360px;height: 21px;top: -13px;}
     .storyBox:before{width: 290px;bottom: -22px;}
-    .content_cardBox{width: 700px;}
+    .content_toptextBox, .content_cardBox{
+		width: 520px;
+	}
+
+	.section.on .content_cardBox img{
+		width: 120px;
+	}
     .newsBox:nth-of-type(1){width: 260px;}
     .newsBox:nth-of-type(2){width: 260px;animation-delay: 0.5s;}
     .newsBox h3{font-size: 1.2em;}
     .silkTrailer{width: 220px;height: 124px;}
     .newsBoxWrap{width: 590px;}
+    .content_cardBox:after{width: 528px; height: 40px;top: -124px;}
+    .content_cardBox:before{width:300px; bottom: -22px;}
     .newsBox:after{width: 260px;height: 20px;top: -12px;}
     .newsBox:before{ bottom: -12px; width: 189px; height: 18px;}
     .silkTrailerBox .silkTrailer:nth-child(2){margin-top: 10px;margin-bottom: 10px;}
