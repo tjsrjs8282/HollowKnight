@@ -1,445 +1,129 @@
 @charset "utf-8";
-
-body{
-    overflow: visible;
-}
+body{overflow: visible;}
 /*================index.html start==============*/
-.load_text{
-        width: 80%;
-    }
-.load_image{
-        width: 80%;
-    }
-.start_img_Box{
-        opacity: 1 !important;
-    }
- .mobile_text{
-    display: block;
-}
-.mobile_logo{
-    display: block;
-}
-#startPage ul li{
-    width: 100%;
-}
-.startPage_back{
-    display: none;
-}
-.content_text_box{
-    display: none;
-}
-.click_text_box{
-    bottom: 30px;
-}
-.click_text_box p{
-    font-size: 2em;
-}
-.startPage_logo_text_box{
-    display: none;
-}
+#startPage ul li{width: 100%;}
+.startPage_back{display: none;}
+.startPage_logo_text_box{display: none;}
+.click_text_box{bottom: 30px;}
+.click_text_box p{font-size: 2em;}
 .click_text_box,
-.hover_line_box{
-    opacity: 1;
-}
-.click_text_box p:before{
-    width: 30px;
-    height: 25px;
-    left: 95px;
-    top: 10px;
-}
-@keyframes rightLeftBtn{
-    to{left:100px;}
-}
-.click_text_box p:after{
-    width: 30px;
-    height: 25px;
-    left: -35px;
-    top: 10px;
-}
-@keyframes startLeftBtn{
-    to{left: -40px;}
-}
-.content_text_box p{
-    font-size: 1em;
-}
-.mb_silk{
-    background-image:url(../images/mobile_silksong.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
- .mb_hollow{
-    background-image:url(../images/mobile_hollow.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
+.hover_line_box{opacity: 1;}
+.click_text_box p:before{ width: 30px; height: 25px; left: 95px; top: 10px;}
+.click_text_box p:after{ width: 30px; height: 25px; left: -35px; top: 10px; }
+@keyframes rightLeftBtn{ to{left:100px;} }
+@keyframes startLeftBtn{ to{left: -40px;} }
+.content_text_box p{font-size: 1em;}
+.mb_silk{ background-image:url(../images/mobile_silksong.png); background-size: cover; background-repeat: no-repeat; background-position: center;}
+.mb_hollow{ background-image:url(../images/mobile_hollow.png); background-size: cover; background-repeat: no-repeat; background-position: center;}
 /*================index.html end==============*/
-.menuNavWrap.active .settingBox, .menuNavWrap.active .menuNavBox{
-    top: 54%;
-}
-.hambergerIcon{
-    width: 55px;
-    height: 50px;
-}
-.action.black .hambergerIcon{
-    top: 15px;
-    right: 15px;
-}
-.hamberger:after{
-    width: 40px;
-    height: 5px;
-    top: -13px;
-}
-.hamberger:before{
-    width: 40px;
-    height: 5px;
-    top: 13px;
-}
-.hamberger{
-    width: 40px;
-    height: 5px;
-}
-.scroll-nav{
-    display: none;
-}
-.settingBox, .menuNavBox{
-    width: 320px;
-    height: 380px;
-}
-.settingBox{
-    height: 430px;
-}
-.settingBox:after, .menuNavBox:after {
-    top: -100px;
-    left: -5px;
-    width: 330px;
-    height: 90px;
-}
-.settingBox:before, .menuNavBox:before{
-    top: 390px;
-    left: 20px;
-    width: 280px;
-    height: 48px;
-}
-.logo_text_Box{
-    width: 85%;
-}
-.logo_text_Box p{
-    display: none;
-}
-.logo_text_Box > img{
-    padding-top: 90px;
-}
-.action.black .logo_text_Box >img{
-    display: none;
-}
-.ostMusic_Wrap{
-    width: 100%;
-    left: -489px;
-}
-.content_cardBox{
-    width: 95%;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    padding: 0;
-}
-.content_toptextBox{
-    width: 95%;
-    padding: 15px 0 0 0;
-}
-.content_cardBox img{
-    margin: 5px 5px;
-    width: 40%;
-    height: 220px;
-}
-.logo_text_Box:after{
-     width: 100px;
-    height:80px;
-}
-.logo_text_Box:before{
-    width: 80px;
-    height:80px;
-} 
-.ostMusic_topTxt:after {
-    bottom: -45px;
-    opacity: 0.3;
-}
-.music_sliderBtnbox p{
-    font-size: 1.5em;
-}
-.trailer_playBtn{
-    display: none;
-}
-.guide_trailer{
-    display: none;
-}
-.modalWrap iframe{
- width: 100%;
- height: 250px;
-}
-.modal_textBox{
-    width: 100%;
-}
-.modal_closeBtnBox{
-    width: 100%;
-}
-.modalWrap {
-    z-index: 10000;
-}
-.modal_textBox h3{
-    line-height: 33px;
-    font-size: 1.3em;
-    margin-top: 10px;
-}
-.modal_textBox p{
-    font-size: 0.9em;
-}
-    .menuHollowGost{
-    display: none;
-}
-.modal_content{
-    width: 95%;
-    transform: translate(-50%, -50%);
-    height: 580px;
-}
-
-.modal_Box a{
-    font-size: 1.6em;
-}
-.modal_closeBtnBox{
-    line-height: 40px;
-    height: 40px;
-}
-
-.navbarBtnWrap,.navbarSpanWrap,.navbarWrap{
-    display: none;
-}
-.newsBoxWrap{
-    width: 100%;
-    top: 50%;
-    flex-direction: column;
-}
-.newsBox{
-    width: 95% !important;
-}
-.slikLogo img{
-    width: 200px;
-}
-.silkTrailerBox{
-    display: flex;
-    justify-content: space-around;
-}
-.silkTrailer {
-    height: 90px;  
-    width: 160px;  
-}
-.silkTrailerBox .silkTrailer:nth-child(2){
-    margin: 0;
-}
-.silkTrailer p:nth-of-type(3){
-        width: 115px;
-    bottom: 0px;
-}
-.silkTrailer p:nth-of-type(2){
-    display: none;
-}
-.silkTrailer p:nth-of-type(1){
-    color: rgba(255,255,255,0.8);
-}
-.silkTrailerBox{
-    margin-bottom: 20px;
-}
-.slikLogo p{
-    font-size: 1em;
-}
-.newsTextBox h3{
-    display: none;
-}
-.newsBoxWrap .newsBox:nth-child(2) .newsTextBox p{
-    font-weight: bold;
-    font-size: 1.2em;
-    color: #fff;
-    text-shadow: 3px 3px 5px rgba(255,255,255,0.6);
-}
-.newsTextBox{
-    width: 95%;
-}
-.footerBoxWrap{
-    width: 95%;
-}
-.PurchaseLogoBox img{
-    width: 135px;
-}
-.FriendsBox h3, .footerBox h3, .newsTextBox h3, .slikLogo h3{
-    font-size: 1.2em;
-}
-.FriendsBox p, .PurchaseBox p{
-    font-size: 1em;
-}
-
+.load_text{width: 80%;}
+.load_image{width: 80%;}
+.menuNavWrap.active .settingBox, .menuNavWrap.active .menuNavBox{ top: 54%;}
+.hambergerIcon{ width: 55px; height: 50px;}
+.action.black .hambergerIcon{ top: 15px; right: 15px;}
+.hamberger:after{ width: 40px; height: 5px; top: -13px;}
+.hamberger:before{ width: 40px; height: 5px; top: 13px;}
+.hamberger{ width: 40px; height: 5px;}
+.scroll-nav{ display: none;}
+.settingBox, .menuNavBox{ width: 320px; height: 380px;}
+.settingBox{height: 430px;}
+.settingBox:after, .menuNavBox:after { top: -100px; left: -5px; width: 330px; height: 90px;}
+.settingBox:before, .menuNavBox:before{ top: 390px; left: 20px; width: 280px; height: 48px;}
+.logo_text_Box{width: 85%;}
+.logo_text_Box p{display: none;}
+.logo_text_Box > img{padding-top: 90px;}
+.action.black .logo_text_Box >img{display: none;}
+.ostMusic_Wrap{ width: 100%; left: -515px;}
+.content_cardBox{ width: 95%; justify-content: space-around; flex-wrap: wrap; padding: 0;}
+.content_toptextBox{ width: 95%; padding: 15px 0 0 0;}
+.content_cardBox img{ margin: 5px 5px; width: 40%; height: 220px;}
+.logo_text_Box:after{width: 100px;height:80px;}
+.logo_text_Box:before{width: 80px;height:80px;} 
+.ostMusic_topTxt:after {bottom: -45px;opacity: 0.3;}
+.music_sliderBtnbox p{font-size: 1.5em;}
+.trailer_playBtn{display: none;}
+.guide_trailer{display: none;}
+.modalWrap iframe{width: 100%;height: 250px;}
+.modal_textBox{width: 100%;}
+.modal_closeBtnBox{width: 100%;}
+.modalWrap {z-index: 10000;}
+.modal_textBox h3{line-height: 33px;font-size: 1.3em;margin-top: 10px;}
+.modal_textBox p{font-size: 0.9em;}
+.menuHollowGost{display: none;}
+.modal_content{ width: 95%; transform: translate(-50%, -50%); height: 580px;}
+.modal_Box a{ font-size: 1.6em;}
+.modal_closeBtnBox{ line-height: 40px; height: 40px;}
+.navbarBtnWrap,.navbarSpanWrap,.navbarWrap{ display: none;}
+.newsBoxWrap{ width: 100%; top: 50%; flex-direction: column;}
+.newsBox{ width: 95% !important;}
+.slikLogo img{ width: 200px;}
+.silkTrailerBox{ display: flex; justify-content: space-around;}
+.silkTrailer { height: 90px; width: 160px;}
+.silkTrailerBox .silkTrailer:nth-child(2){ margin: 0;}
+.silkTrailer p:nth-of-type(3){width: 115px; bottom: 0px;}
+.silkTrailer p:nth-of-type(2){display: none;}
+.silkTrailer p:nth-of-type(1){color: rgba(255,255,255,0.8);}
+.silkTrailerBox{margin-bottom: 20px;}
+.slikLogo p{font-size: 1em;}
+.newsTextBox h3{display: none;}
+.newsBoxWrap .newsBox:nth-child(2) .newsTextBox p{ font-weight: bold; font-size: 1.2em; color: #fff; text-shadow: 3px 3px 5px rgba(255,255,255,0.6);}
+.newsTextBox{width: 95%;}
+.footerBoxWrap{width: 95%;}
+.PurchaseLogoBox img{width: 135px;}
+.FriendsBox h3, .footerBox h3, .newsTextBox h3, .slikLogo h3{font-size: 1.2em;}
+.FriendsBox p, .PurchaseBox p{font-size: 1em;}
 .character_contentBox:after,
 .newsBox:after,
 .character_listBox ul:after,
 .content_cardBox:after,
-.footerBox:after{
-    width: 320px;
-    height: 25px;
-    top: -16px;
-}
-.character_listBox ul:after{
-    top: -105px;
-}
-.content_cardBox:after{
-    top: -100px;
-}
-
-
+.footerBox:after{ width: 320px; height: 25px; top: -16px;}
+.character_listBox ul:after{ top: -105px;}
+.content_cardBox:after{ top: -100px;}
 .character_contentBox:before,
 .newsBox:before,
 .character_listBox ul:before,
 .content_cardBox:before,
-.footerBox:before{
-    width: 250px;
-    height: 25px;
-    bottom: -17px;
-}
-.modal_closeBtnBox:before{
-    top: 30px;
-}
-.footerTextBox{
-    bottom: 5px;
-}
-.footerText{
-    width: 100%;
-}
-.footerText p{
-    font-size: 0.8em;
-    line-height: 20px;
-    padding: 0 20px;
-}
-.FriendsLogoBox img{
-    width: 140px;
-}
-
-.snsIconBox{
-    line-height: 0;
-    width: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.snsIconBox a{
-    color: #fff;
-}
-.storyBox .slikLogo h3{
-    font-size: 2em !important;
-}
-.character_listBox ul li{
-     height: 100px;
-     width: 30%;
-     margin: 5px 0px;
-    }
-.storyBoxWrap{
-    width: 95%;
-}
-.content_cardBox img{
-    height: 260px;
-    width: 160px;
-    }
-.character_NameBox h3{
-    top: 60%;
-    width: 100%;
-    z-index: 999;
-    font-size: 0.9em;
-    background-color: rgba(0,0,0,0.3);
-}
-.character_listBox ul li:hover h3{
-    top: 40%;
-}
-.character_NameBox{
-    z-index: 11;
-}
-.character_listBox ul{
-    padding-top: 10px;
-    padding-bottom: 10px;
-    min-width: 250px;
-}
+.footerBox:before{ width: 250px; height: 25px; bottom: -17px;}
+.modal_closeBtnBox:before{top: 30px;}
+.footerTextBox{bottom: 5px;}
+.footerText{width: 100%;}
+.footerText p{ font-size: 0.8em; line-height: 20px; padding: 0 20px;}
+.FriendsLogoBox img{ width: 140px;}
+.snsIconBox{ line-height: 0; width: 100px; display: flex; justify-content: center; align-items: center;}
+.snsIconBox a{ color: #fff;}
+.storyBox .slikLogo h3{ font-size: 2em !important;}
+.character_listBox ul li{ height: 100px; width: 30%; margin: 5px 0px;}
+.storyBoxWrap{ width: 95%;}
+.content_cardBox img{height: 260px; width: 160px;}
+.character_NameBox h3{ top: 60%; width: 100%; z-index: 999; font-size: 0.9em; background-color: rgba(0,0,0,0.3);}
+.character_listBox ul li:hover h3{top: 40%;}
+.character_NameBox{z-index: 11;}
+.character_listBox ul{ padding-top: 10px; padding-bottom: 10px; min-width: 250px;}
 .action.black .sound_lpBar,
 .action.black .sound_note,
-.action.black .sound_lp
-    {
-        display: none;
-    }
+.action.black .sound_lp{display: none;}
 
 /*==============Iphone5 start==============*/
 @media screen and (max-width: 450px){
-    @keyframes soundnote{
-        to{
-        bottom: 85px;
-        right: -195px;
-        transform: rotate(0deg);
-        }
-    }
-.content_cardBox img {
-        height: 210px;
-        width: 120px;
-    }
-    .sound_lpBar{
-        right: -230px;
-        bottom: 50px;
-    }
-    .sound_note{
-        right: -175px;
-        bottom: 70px;
-    }
-    .sound_lp{
-        right: -230px;
-        bottom: 30px;
-    }
+    @keyframes soundnote{ to{bottom: 85px;right: -195px;transform: rotate(0deg);} }
+    .content_cardBox img { height: 210px; width: 120px;}
+    .sound_lpBar{ right: -230px; bottom: 50px;}
+    .sound_note{ right: -175px; bottom: 70px;}
+    .sound_lp{ right: -230px; bottom: 30px;}
 }
-
 @media screen and (max-width: 350px){
     .storyTextBox,
-    .newsTextBox{
-        margin-top: 10px;
-         table-layout: 10px;
-     }
-    .footerBox{
-        margin-bottom: 30px;
-    }
-    .silkTrailer{
-        width: 140px;
-        height: 78px;
-    }
-    .slikLogo img{
-        width: 200px;
-    }
-    .silkTrailer p:nth-of-type(1){
-        font-size: 2em;
-    }
-    .newsTextBox p{
-        font-size: 0.9em;
-        line-height: 20px;
-    }
-    .newsBox:nth-of-type(1){
-        margin-top: 25px;
-    }
-    .newsBox:nth-of-type(2){
-        margin-bottom: 20px;
-    }
-    .content_cardBox img{
-        height: 170px;
-        width: 100px;
-    }
-    .footerText p{
-        padding: 20px;
-    }
-    .footerTC{
-        display: none;
-    }
-    .storyTextBox p{
-        font-size: 1em;
-    }
+    .newsTextBox{margin-top: 10px; table-layout: 10px;}
+    .footerBox{margin-bottom: 30px;}
+    .silkTrailer{width: 140px; height: 78px;}
+    .slikLogo img{ width: 200px;}
+    .silkTrailer p:nth-of-type(1){font-size: 2em;}
+    .newsTextBox p{font-size: 0.9em;line-height: 20px;}
+    .newsBox:nth-of-type(1){margin-top: 25px;}
+    .newsBox:nth-of-type(2){margin-bottom: 20px;}
+    .content_cardBox img{height: 170px; width: 100px;}
+    .footerText p{padding: 20px;}
+    .footerTC{display: none;}
+    .storyTextBox p{font-size: 1em;}
 }
 /*==============Iphone5 end==============*/
