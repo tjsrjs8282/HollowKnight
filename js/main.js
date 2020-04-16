@@ -51,6 +51,18 @@ $(function(){
 		StChImg.attr("src","images/hollow_start.png");
 		StChImg.css({"width":230, "height":280});
 	});
+
+
+	var StChImg = $(".s_start_img_Box > .Stch")
+	$(".stBtn").mouseover(function(){
+		StChImg.attr("src","images/silk_start_hover.png");
+		StChImg.css({"width":260, "height":240});
+	});
+
+	$(".stBtn").mouseout(function(){
+		StChImg.attr("src","images/silk_start.png");
+		StChImg.css({"width":240, "height":280});
+	});
 // ===============start character end==============	
 
 // ============scroll action & resize setting start===========

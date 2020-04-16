@@ -3,7 +3,7 @@
 html{font-size:16px; scroll-behavior: smooth;}
 body{ position: relative; overflow: hidden; font-family: 'Noto Sans', sans-serif; background-color: #000;}
 span{display: block;}
-.section{position: relative; overflow: hidden; scroll-snap-align:center; transition: 0.5s; width: 100%; height: 100%;}
+.section{position: relative; overflow: hidden; scroll-snap-align:center; width: 100%; height: 100%;}
 /*====================base end==================*/
 
 /*====================index.html start==================*/
@@ -19,24 +19,24 @@ span{display: block;}
 .startPage_right:hover .hover_line_box{opacity: 1;}
 .startPage_left:hover .content_text_box,
 .startPage_right:hover .content_text_box{opacity: 1;}
-.startPage_logo_text_box{position: absolute; top:0px; left: 50%; transform: translate(-50%,0); padding-top: 50px; width: 80%; height: 500px; transition: 0.4s;}
+.startPage_logo_text_box{position: absolute; top:0px; left: 50%; transform: translate(-50%,0); padding-top: 50px; width: 80%; height: 500px; transition: all .4s cubic-bezier(0.68, -0.55, 0.265, 1.55)}
 .startPage_logo_text_box img{width: 100%;}
-.content_text_box{text-align: center; position: absolute; padding-top: 400px; top:0px; left: 50%; transform: translate(-50%,0); width: 80%; opacity: 0; transition: 0.4s;}
+.content_text_box{text-align: center; position: absolute; padding-top: 400px; top:0px; left: 50%; transform: translate(-50%,0); width: 80%; opacity: 0; transition: all .4s cubic-bezier(0.68, -0.55, 0.265, 1.55)}
 .content_text_box p{position: relative; font-size: 1em; color: #fff; text-shadow: 5px 2px 5px #000;}
 .mobile_text p:after,
-.content_text_box p:after{content: ""; width:490px; height:40px; display: block; background: url(../images/text_top_after.png); background-size: cover; background-repeat: no-repeat; background-position: center; position: absolute; transition: 0.4s; top:-40px; left:50.8%; transform:translate(-50%,0);}
+.content_text_box p:after{content: ""; width:490px; height:40px; display: block; background: url(../images/text_top_after.png); background-size: cover; background-repeat: no-repeat; background-position: center; position: absolute; transition: all .75s cubic-bezier(0.68, -0.55, 0.265, 1.55); top:-40px; left:50.8%; transform:translate(-50%,0);}
 .mobile_text p:after{width:330px; height:27px; top:-27px;}
 .mobile_text p:before,
-.content_text_box p:before{ content: ""; width:320px; height:27px; display: block; background: url(../images/text_bottom_before.png); background-size: cover; background-repeat: no-repeat; background-position: center; position: absolute; transition: 0.4s; bottom:-32px; left:50%; transform:translate(-50%,0);}
+.content_text_box p:before{ content: ""; width:320px; height:27px; display: block; background: url(../images/text_bottom_before.png); background-size: cover; background-repeat: no-repeat; background-position: center; position: absolute; transition: all .75s cubic-bezier(0.68, -0.55, 0.265, 1.55); bottom:-32px; left:50%; transform:translate(-50%,0);}
 .mobile_text p:before{width:250px; height:28px; bottom:-27px;}
-.click_text_box{ opacity:1; position: absolute; bottom: 70px; text-align: center; width: 100%; transition: 0.4s;}
+.click_text_box{ opacity:1; position: absolute; bottom: 70px; text-align: center; width: 100%; transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55)}
 .click_text_box p{ display: inline-block; font-size: 4em; color: #fff; text-shadow: 5px 5px 10px #000; position: relative;}
-.click_text_box p:after{animation-name: startLeftBtn; animation-duration: 0.5s; animation-timing-function: ease-in; animation-iteration-count: infinite; animation-direction:  alternate; content: ""; width: 70px; height: 65px; display: block; background: url(../images/left_hover.png); background-size: cover; background-repeat: no-repeat; position: absolute; transition: 0.4s; top:13px; left: -85px;}
-.click_text_box p:before{animation-name: rightLeftBtn; animation-duration: 0.5s; animation-timing-function: ease-in; animation-iteration-count: infinite; animation-direction:  alternate; content: ""; width: 70px; height: 65px; display: block; background: url(../images/right_hover.png); background-size: cover; background-repeat: no-repeat; position: absolute; transition: 0.4s; top:14px; left:190px;}
+.click_text_box p:after{animation-name: startLeftBtn; animation-duration: 0.5s; animation-timing-function: ease-in; animation-iteration-count: infinite; animation-direction:  alternate; content: ""; width: 70px; height: 65px; display: block; background: url(../images/left_hover.png); background-size: cover; background-repeat: no-repeat; position: absolute; transition: all .75s cubic-bezier(0.68, -0.55, 0.265, 1.55); top:13px; left: -85px;}
+.click_text_box p:before{animation-name: rightLeftBtn; animation-duration: 0.5s; animation-timing-function: ease-in; animation-iteration-count: infinite; animation-direction:  alternate; content: ""; width: 70px; height: 65px; display: block; background: url(../images/right_hover.png); background-size: cover; background-repeat: no-repeat; position: absolute; transition: all .75s cubic-bezier(0.68, -0.55, 0.265, 1.55); top:14px; left:190px;}
 @keyframes startLeftBtn{ to{left: -90px;} } @keyframes rightLeftBtn{ to{left: 195px;} }
-.mobile_text{opacity: 0; width:84%; text-align: center; margin: auto; margin-top: 70px; transition: 0.4s;}
+.mobile_text{opacity: 0; width:84%; text-align: center; margin: auto; margin-top: 70px;  transition: all .75s cubic-bezier(0.68, -0.55, 0.265, 1.55);}
 .mobile_text p{font-size: 1em; color: #fff; text-shadow: 0px 5px 20px #000; position: relative;}
-.mobile_logo{opacity: 0; width: 80%; margin: 0 auto; padding-top: 50px; transition: 0.4s;}
+.mobile_logo{opacity: 0; width: 80%; margin: 0 auto; padding-top: 50px; all .75s cubic-bezier(0.68, -0.55, 0.265, 1.55)}
 .mobile_logo img{width: 100%;}
 @media screen and (min-width: 1800px){ 
     .content_text_box{padding-top: 500px;}
@@ -52,7 +52,7 @@ span{display: block;}
 .loadingBox{display: table-cell; vertical-align: middle; }
 .load_image{width:50%; margin:0 auto;}
 .load_image img{width: 100%;}
-.load_text{position: relative; width: 35%; margin:0 auto; text-align: center;}
+.load_text{position: relative; width: 35%; margin:0 auto; text-align:center;}
 .load_text span{padding: 0 2px; transform: translateY(20px); animation-name: loadtext; animation-duration: 1s; animation-timing-function: ease-in; animation-iteration-count: infinite; animation-direction: alternate; display: inline-block; font-size: 2.6em; color: #fff; font-weight: bold;}
 .load_text span:nth-child(1){animation-delay: 0s;}
 .load_text span:nth-child(2){animation-delay: 0.15s;}
@@ -78,26 +78,26 @@ span{display: block;}
 /*====================fixed start====================*/
 /*=========line box start=========*/
 .fixedWrap{ width: 100%; height: 100%; overflow: hidden;}
-.fixed_lineBox{ width: 100%; height: 100%; position: fixed; transition: all 0.8s; text-align: center; bottom: 0; display: block;}
+.fixed_lineBox{ width: 100%; height: 100%; position: fixed; transition: all .7s cubic-bezier(0.68, -0.55, 0.265, 1.55); text-align: center; bottom: 0; display: block;}
 .fixed_lineBox img{width: 100%; height:100%; min-height:550px;}
 .action.black .fixed_lineBox{height: 92%;}
 /*=========line box end=========*/
 
 /*=========nav start=========*/
-.navbarWrap{position: fixed; top: 0; left: 20px; z-index:1000;}
+.navbarWrap{position: fixed; top: 0; left: 20px; z-index:996;}
 .nav_imagesBox{position: relative; width: 300px; display: none;}
 .nav_imagesBox.on{display: block;}
 .nav_imagesBox img{width: 100%;}
-.navbarSpanWrap{position: fixed; top: 22px; left: 50px; z-index: 999;}
+.navbarSpanWrap{position: fixed; top: 22px; left: 50px; z-index: 96;}
 .navbarSpanWrap span:after{content: ""; display: block; position: absolute; top: -29px; left: -12px; width: 45px; height: 60px; background: url(../images/navF.gif); background-repeat: no-repeat; background-size: cover; background-position: center;}
 .navbarSpanBox{ position: relative; width: 300px; height: 80px;}
 .navbarSpanBox span{ position: absolute; top: 0;  border-radius: 50%; display: inline-block; display: none;}
 .navbarSpanBox span.on{display: block;}
-.navbarBtnWrap{ position: fixed; top: 22px; left: 50px; width: 100%; z-index: 9997;}
+.navbarBtnWrap{ position: fixed; top: 22px; left: 50px; width: 100%; z-index: 996;}
 .navbarBtnBox{position: relative; width: 300px;}
 .navbarBtnBox a{ top: 0; left: 0; width: 23px; height: 30px;  border-radius: 50%; display: block; position: absolute; z-index: 998;}
 .navbarBtnBox a:hover:after,
-.navbarBtnBox a:after{content: ""; display: block; position: absolute; font-size: 1.7em; color: #fff; top: 35px; left: -120px; font-weight: bold; transition: .8s; opacity: 0;}
+.navbarBtnBox a:after{content: ""; display: block; position: absolute; font-size: 1.7em; color: #fff; top: 35px; left: -120px; font-weight: bold; transition:.4s; opacity: 0;}
 .navbarBtnBox a.on:after{opacity: 1;left:0px;}
 .navbarBtnBox a.on:nth-child(1):hover:after{color: fuchsia;}
 .navbarBtnBox a.on:nth-child(2):hover:after{color: greenyellow;}
@@ -148,7 +148,7 @@ span{display: block;}
 /*========guide end=========*/
 
 /*========sound music start=========*/
-.ostMusic_Wrap{ width: 400px; height: 100%; position: fixed; z-index: 9999; left: -406px; background-color: #0b0b0b; z-index:8888; display: flex; flex-direction: column; justify-content: center; align-items: center; border-right:6px solid #585858; transition: 1s;}
+.ostMusic_Wrap{ width: 400px; height: 100%; position: fixed; z-index: 9999; left: -406px; background-color: #0b0b0b; z-index:8888; display: flex; flex-direction: column; justify-content: center; align-items: center; border-right:6px solid #585858; transition:all 0.7s;}
 .ostMusic_Wrap.active{left: 0;}
 .sound_fiexdIcon{cursor:pointer;}
 .sound_lp{ position: absolute; right: -120px; bottom: 50px; width: 70px; height: 70px;    background: url(../images/lp.png); background-size: cover; background-repeat: no-repeat; background-position: center;}
@@ -170,15 +170,15 @@ body.audio-on .sound_lpBar:before{display: none;}
 .ostMusic_topTxt p{font-size: 1.4em;}
 .sound_CDBox{ width: 337px; height: 320px; display: flex; justify-content: center; align-items: center; background: url(../images/pointer_img.png); background-size: cover; background-repeat: no-repeat; background-position: center;}
 .sound_CDBox ul{width: 100%;height: 270px;position: relative;overflow: hidden;}
-.sound_CDBox ul li{ text-align: center; position: absolute; left: 450px; width: 100%; height: 100%; transition:1s;}
+.sound_CDBox ul li{ text-align: center; position: absolute; left: 450px; width: 100%; height: 100%; transition:all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55)}
 .sound_CDBox ul li.active{left: 0px;}
-.sound_CDBox ul li img{ width: 270px; cursor: pointer; transition: 1s; transform: rotate(360deg);}
+.sound_CDBox ul li img{ width: 270px; cursor: pointer; transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55); transform: rotate(360deg);}
 .sound_CDBox ul li.active img{transform: rotate(0deg);}
 body.audio-on .sound_CDBox ul li.active img{animation-name: PlayingCD;animation-duration:3s;animation-timing-function: linear;animation-iteration-count: infinite;}
 .music_sliderBtnbox{width: 300px;height: 50px;position: relative;}
 .music_sliderBtnbox ul{ overflow: hidden; width: 300px; height: 50px; position: relative;}
 .music_sliderBtnbox ul li.active{left: 0;}
-.music_sliderBtnbox ul li{ transition: 1s; position: absolute; left: 350px; height: 100%; width: 300px; text-align: center; line-height: 50px;}
+.music_sliderBtnbox ul li{ transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55); position: absolute; left: 350px; height: 100%; width: 300px; text-align: center; line-height: 50px;}
 .music_sliderBtnbox p{ font-size: 1.6em; color: #fff; font-weight: bold}
 .soundSlider_prevBtn{ position: absolute; top: 0; left:-20px; width: 35px; height:53px; background: url(../images/leftBtn.png); background-size: cover; cursor: pointer;}
 .soundSlider_nextBtn{ position: absolute; top: 0; right:-20px; width: 35px; height:53px; background: url(../images/rightBtn.png); background-size: cover; cursor: pointer;}
@@ -186,7 +186,7 @@ body.audio-on .sound_CDBox ul li.active img{animation-name: PlayingCD;animation-
 .music_sliderNavBtn span{ display: inline-block; width: 13px; height: 13px; border-radius: 50%; background-color: #585858; margin: 0px 5px;}
 .music_sliderNavBtn span.active{ width: 20px; height: 20px; background-color:#fff;}
 .music_closeBtn{ margin-top: 50px; width: 300px; height: 50px; line-height: 50px; text-align: center;}
-.music_closeBtn p{ transition: 0.4s; position: relative; padding: 0 10px; display: inline-block; font-size:2em; color: #fff; cursor: pointer;}
+.music_closeBtn p{ transition: all .4s; position: relative; padding: 0 10px; display: inline-block; font-size:2em; color: #fff; cursor: pointer;}
 @keyframes soundBtn{ to{transform: rotate(360deg);} }
 @keyframes soundnote{ to{bottom: 105px; right: -85px; transform: rotate(0deg);} }
 @keyframes PlayingCD{ to{transform: rotate(360deg);} }
@@ -194,15 +194,15 @@ body.audio-on .sound_CDBox ul li.active img{animation-name: PlayingCD;animation-
 
 /*================hamberger navigation start================*/
 /*=========hamberger start=========*/
-.hambergerIcon{width: 70px;  height: 65px;  position:fixed;  top: 20px;  right: -200px;  cursor:pointer;  z-index: 9999 !important; transition:0.5s; background-color: #000;}
+.hambergerIcon{width: 70px;  height: 65px;  position:fixed;  top: 20px;  right: -200px;  cursor:pointer;  z-index: 9999 !important; transition:all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55)s; background-color: #000;}
 .action.black .hambergerIcon{right: 20px;}
 .hambergerIcon:after{ position: absolute; content: ""; display: block; width: 130px; height: 50px; background: url("../images/text-menu.png"); background-size: cover; background-repeat: no-repeat; background-position: center; top:10px; left: -130px;}
 .hambergerIcon:before{ position: absolute; content: ""; width: 130px; height: 50px; background: url("../images/text-close.png"); background-size: cover; background-repeat: no-repeat; background-position: center; top:5px; left: -130px; display: none;}
 .hambergerIcon.active:before{display: block;}
 .hambergerIcon.active:after{display: none;}
-.hamberger{ width: 50px;  height:7px; position:absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);  background-color: #fff;  box-shadow:0px 2px 5px rgba(0,0,0,.3);  transition:0.4s;}
+.hamberger{ width: 50px;  height:7px; position:absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);  background-color: #fff;  box-shadow:0px 2px 5px rgba(0,0,0,.3);  transition:all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);}
 .hamberger:after,
-.hamberger:before{ width: 50px;  height:7px;  content:''; position: absolute;  background-color: #fff;  box-shadow:0px 2px 5px rgba(0,0,0,.3);  transition: 0.4s;}
+.hamberger:before{ width: 50px;  height:7px;  content:''; position: absolute;  background-color: #fff;  box-shadow:0px 2px 5px rgba(0,0,0,.3);  transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);}
 .hamberger:after{top:-17px;} .hamberger:before{top:17px;}
 .hambergerIcon.active .hamberger{background-color: rgba(0,0,0,0);box-shadow:0px 0px 0px rgba(0,0,0,0);}
 .hambergerIcon.active .hamberger:after{transform: rotate(45deg); top:0px;}
@@ -211,7 +211,7 @@ body.audio-on .sound_CDBox ul li.active img{animation-name: PlayingCD;animation-
 
 /*=========navigation start=========*/
 .menuNavWrap{ position: relative; position:fixed; width: 100%; height: 100%; z-index: -99;}
-.menuNavBlack{ position: fixed; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; background-color: rgba(0,0,0,0.8); transition:all 0.6s; z-index: -99;}
+.menuNavBlack{ position: fixed; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; background-color: rgba(0,0,0,0.8); transition:all .75s cubic-bezier(0.68, -0.55, 0.265, 1.55); z-index: -99;}
 .menuNavWrap.active { z-index: 9998;}
 .menuNavBlack.active{ opacity: 1; z-index:998;}
 .menuNavBlack span{ animation-timing-function:ease-in; animation-iteration-count: infinite; display: inline-block; position: absolute; bottom: -50px; border-radius: 50%; opacity: 1;  background-color: #fff;}
@@ -230,13 +230,13 @@ body.audio-on .sound_CDBox ul li.active img{animation-name: PlayingCD;animation-
 @keyframes bubble6{ to{bottom: 55%; opacity: 0;} }
 @keyframes hollowgost{ 50%{bottom: 90px;} 80%{bottom: 70px;} }
 .settingBox,
-.menuNavBox{ position: relative; top: -800px; left: 50%; transform: translate(-50%, 0); width: 450px; height: 440px; border-radius: 100px; background:linear-gradient(-90deg, rgba(255,255,255,0.15),rgba(255,255,255,0.08),rgba(255,255,255,0.03),rgba(255,255,255,0.03),rgba(255,255,255,0.08),rgba(255,255,255,0.15)); box-shadow: 0px 30px 50px #000; z-index: 999; transition: 0.4s; border: 3px solid rgba(255,255,255,0.6);}
+.menuNavBox{ position: relative; top: -800px; left: 50%; transform: translate(-50%, 0); width: 450px; height: 440px; border-radius: 100px; background:linear-gradient(-90deg, rgba(255,255,255,0.15),rgba(255,255,255,0.08),rgba(255,255,255,0.03),rgba(255,255,255,0.03),rgba(255,255,255,0.08),rgba(255,255,255,0.15)); box-shadow: 0px 30px 50px #000; z-index: 999; transition: all .75s cubic-bezier(0.68, -0.55, 0.265, 1.55); border: 3px solid rgba(255,255,255,0.6);}
 .settingBox{height: 520px;}
 .settingBox{display: none;}
 .menuNavWrap.active .settingBox,
-.menuNavWrap.active .menuNavBox{ top: 50%; transform: translate(-50%, -50%);}
+.menuNavWrap.active .menuNavBox{ top: 53%; transform: translate(-50%, -50%); z-index: 1000;}
 .settingBox:after,
-.menuNavBox:after{ position: absolute; top: -168px; left: -73px; content: ""; display: block; width:600px; height: 160px; background: url(../images/menu_top.png); background-repeat: no-repeat; background-position: center; background-size: cover; z-index: 999;}
+.menuNavBox:after{position: absolute; top: -150px; left: 50%; transform: translate(-50%); content: ""; display: block; width: 530px; height: 145px; background: url(../images/menu_top.png); background-repeat: no-repeat; background-position: center; background-size: cover; z-index: 999;}
 .settingBox:before,
 .menuNavBox:before{ position: absolute; top: 455px; left: 25px; content: ""; display: block; width:400px; height: 70px; background: url(../images/menu_bottom.png); background-repeat: no-repeat; background-position: center; background-size: cover; z-index: 999;}
 .settingBox:before{top: 535px;}
@@ -248,7 +248,7 @@ body.audio-on .sound_CDBox ul li.active img{animation-name: PlayingCD;animation-
 .menuNavBox ul li h3{font-size: 1em;}
 .menuNavBox ul:hover a{opacity: 0.5;}
 .settingBox ul li a,
-.menuNavBox ul li a{ position: relative; color: #fff; transition: all 0.4s;}
+.menuNavBox ul li a{ position: relative; color: #fff; transition: all 0.1s;}
 .chCloseBtnBox a:hover,
 .modal_closeBtnBox a:hover,
 .music_closeBtn p:hover,
@@ -287,11 +287,11 @@ body.audio-on .sound_CDBox ul li.active img{animation-name: PlayingCD;animation-
 label{ position: absolute; top: 70px; width: 200px; height: 70px; cursor: pointer; transform: translate(-50%, 0); z-index: 1;}
 label input{opacity: 0;}
 label .check{ position: absolute; top: 0; left: 0; cursor: pointer; width: 100%; height: 100%; background-color: #101010; border-radius: 40px; box-shadow: 0 0 0 4px #101010;}
-label .check:before{ content: ""; display: block; position: absolute; top: calc(50% - 5px); left: -30px; width: 10px; height: 10px; border-radius: 50%; background: #f00; transition: 0.5s; box-shadow: 0 0 5px #f00, 0 0 10px #f00, 0 0 20px #f00, 0 0 40px #f00, 0 0 80px #f00;}
+label .check:before{ content: ""; display: block; position: absolute; top: calc(50% - 5px); left: -30px; width: 10px; height: 10px; border-radius: 50%; background: #f00; transition: all .4s cubic-bezier(0.68, -0.55, 0.265, 1.55); box-shadow: 0 0 5px #f00, 0 0 10px #f00, 0 0 20px #f00, 0 0 40px #f00, 0 0 80px #f00;}
 label input:checked ~ .check:before{ background: #101010; box-shadow: none;}
-label .check:after{ content: ""; display: block; position: absolute; top: calc(50% - 5px); right: -30px; width: 10px; height: 10px; border-radius: 50%; background: #101010; transition: 0.5s; box-shadow: none;    }
+label .check:after{ content: ""; display: block; position: absolute; top: calc(50% - 5px); right: -30px; width: 10px; height: 10px; border-radius: 50%; background: #101010; transition: all .4s cubic-bezier(0.68, -0.55, 0.265, 1.55)s; box-shadow: none;    }
 label input:checked ~ .check:after{ background: #0f0; box-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 20px #0f0, 0 0 40px #0f0, 0 0 80px #0f0;}
-label .checkBtn{ position: absolute; top: -5px; left: 0; width: 90px; height: 80px; border-radius: 50%; background: url(../images/Void_Heart.png); background-position: center; background-repeat: no-repeat; background-size: cover; transition: 0.5s;}
+label .checkBtn{ position: absolute; top: -5px; left: 0; width: 90px; height: 80px; border-radius: 50%; background: url(../images/Void_Heart.png); background-position: center; background-repeat: no-repeat; background-size: cover; transition:all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);}
 label input:checked ~ .checkBtn{ left: 55%; background: url(../images/Kingsoul.png); background-position: center; background-repeat: no-repeat; background-size: cover;}
 /*=========setting end=========*/
 
@@ -360,15 +360,15 @@ label input:checked ~ .checkBtn{ left: 55%; background: url(../images/Kingsoul.p
 .character_listBox{ width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 9; display:flex; justify-content: center; flex-direction: column; align-items: center;}
 .character_listBox ul{ width:80%; min-width: 700px; display: flex; justify-content: space-around; flex-wrap: wrap; background-color: rgba(0,0,0,0.7); position: relative;}
 .character_listBox ul li{ cursor: pointer; margin: 20px 8px; width: 190px; height:120px; position: relative; opacity: 0; transform: perspective(400px) rotate3d(1, 0, 0, 90deg);}
-.character_listBox ul li:nth-child(1){transition:0.4s 0.4s ease-in;}
-.character_listBox ul li:nth-child(2){transition:0.4s 0.5s ease-in;}
-.character_listBox ul li:nth-child(3){transition:0.4s 0.6s ease-in;}
-.character_listBox ul li:nth-child(4){transition:0.4s 0.7s ease-in;}
-.character_listBox ul li:nth-child(5){transition:0.4s 0.8s ease-in;}
-.character_listBox ul li:nth-child(6){transition:0.4s 0.9s ease-in;}
-.character_listBox ul li:nth-child(7){transition:0.4s 1s ease-in;}
-.character_listBox ul li:nth-child(8){transition:0.4s 1.1s ease-in;}
-.character_listBox ul li:nth-child(9){transition:0.4s 1.2s ease-in;}
+.character_listBox ul li:nth-child(1){transition:0.4s 0.3s ease-in;}
+.character_listBox ul li:nth-child(2){transition:0.4s 0.4s ease-in;}
+.character_listBox ul li:nth-child(3){transition:0.4s 0.5s ease-in;}
+.character_listBox ul li:nth-child(4){transition:0.4s 0.6s ease-in;}
+.character_listBox ul li:nth-child(5){transition:0.4s 0.7s ease-in;}
+.character_listBox ul li:nth-child(6){transition:0.4s 0.8s ease-in;}
+.character_listBox ul li:nth-child(7){transition:0.4s 0.9s ease-in;}
+.character_listBox ul li:nth-child(8){transition:0.4s 1s ease-in;}
+.character_listBox ul li:nth-child(9){transition:0.4s 1.1s ease-in;}
 .character_listBox ul li:hover h3{top: 27%;}
 .character_listBox ul li img{ position: absolute; transform-origin: bottom; transition: 0.4s; width: 100%; position: absolute; bottom: 0; z-index: 8;}
 .character_listBox ul li.active img:last-child,
@@ -383,7 +383,7 @@ label input:checked ~ .checkBtn{ left: 55%; background: url(../images/Kingsoul.p
 .character_contentBoxWrap{ width: 100%; height: 100%; position: absolute; left: 0; top: 0; display: flex; justify-content: center; align-items: center;}
 .character_contentBox{ margin-top: 50px; position: relative; width:90%; max-width: 1260px; height: 500px; background-color: rgba(0,0,0,0.8); border: 1px solid #eee; display: none; z-index: 10;}
 .character_contentBox.active{display: block;}
-.character_content{ position: absolute; top: 0; left: 0; width: 100%; height: 100%; transition: 0.8s; justify-content: space-around; align-items: center; opacity: 0; display: none;}
+.character_content{ position: absolute; top: 0; left: 0; width: 100%; height: 100%; justify-content: space-around; align-items: center; opacity: 0; display: none;}
 .character_content.active{ display: flex; opacity: 1;}
 .chCloseBtnBox{ position: absolute; bottom: 0; width: 100%; height: 60px; line-height: 60px;  text-align: center; border-top: 1px solid #fff; box-sizing: border-box;}
 .chCloseBtnBox a{ position: relative; font-size: 2em; color: #fff;}
