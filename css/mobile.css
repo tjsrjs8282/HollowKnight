@@ -27,7 +27,7 @@ body{overflow: visible;}
 .scroll-nav{ display: none;}
 .settingBox, .menuNavBox{ width: 320px; height: 380px;}
 .settingBox{height: 430px;}
-.settingBox:after, .menuNavBox:after { top: -100px; left: -5px; width: 330px; height: 90px;}
+.settingBox:after, .menuNavBox:after { top: -100px; width: 330px; height: 90px;}
 .settingBox:before, .menuNavBox:before{ top: 390px; left: 20px; width: 280px; height: 48px;}
 .logo_text_Box{width: 85%;}
 .logo_text_Box p{display: none;}
@@ -42,6 +42,7 @@ body{overflow: visible;}
 .ostMusic_topTxt:after {bottom: -45px;opacity: 0.3;}
 .music_sliderBtnbox p{font-size: 1.5em;}
 .trailer_playBtn{display: none;}
+.guide_ost,
 .guide_trailer{display: none;}
 .modalWrap iframe{width: 100%;height: 250px;}
 .modal_textBox{width: 100%;}

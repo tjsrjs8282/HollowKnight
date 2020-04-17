@@ -209,6 +209,24 @@ $(function(){
 			cdNavBtnList.eq(0).addClass('active');
 		}	
 	});
+
+	$(".music_sliderNavBtn > span").click(function(){
+		var SpNum = $(this).index();
+		var cdList = $(".sound_CDBox > ul > li");
+		var cdBtnList = $(".music_sliderBtnbox > ul > li");
+		var cdNavBtnList = $(".music_sliderNavBtn > span");
+	$('body').removeClass('audio-on');
+	$('body').addClass('audio-off');
+		audio.pause();
+		silk.pause();
+		nightmare.pause();
+		cdList.removeClass();
+		cdBtnList.removeClass();
+		cdNavBtnList.removeClass();
+		cdList.eq(SpNum).addClass('active');
+		cdBtnList.eq(SpNum).addClass('active');
+		cdNavBtnList.eq(SpNum).addClass('active');
+	});
 // ==============sound play end==============
 
 // ============next & down btn start==============
