@@ -93,7 +93,7 @@ span{display: block;}
 .navbarSpanBox{ position: relative; width: 300px; height: 80px;}
 .navbarSpanBox span{ position: absolute; top: 0;  border-radius: 50%; display: inline-block; display: none;}
 .navbarSpanBox span.on{display: block;}
-.navbarBtnWrap{ position: fixed; top: 22px; left: 50px; width: 100%; z-index: 996;}
+.navbarBtnWrap{ position: fixed; top: 22px; left: 50px; width: 100%; z-index: 997;}
 .navbarBtnBox{position: relative; width: 300px;}
 .navbarBtnBox a{ top: 0; left: 0; width: 23px; height: 30px;  border-radius: 50%; display: block; position: absolute; z-index: 998;}
 .navbarBtnBox a:hover:after,
@@ -465,10 +465,11 @@ label input:checked ~ .checkBtn{ left: 55%; background: url(../images/Kingsoul.p
 .footerText{width: 400px;}
 .footerText p{color: #fff;}
 .snsIconBox{margin-top: 10px;}
-.snsIconBox a{ color: rgba(255,255,255,0.6); font-size: 1.5em; margin-right: 15px;}
+.snsIconBox a{ color: rgba(255,255,255,0.6); font-size: 1.5em; margin-right: 15px; transition: 0.3s ease;}
 .snsIconBox a:hover{color: #fff;}
-.footerTC{width: 100px;}
-.footerTC img{width: 100%;}
+.footerTC{width: 115px;}
+.footerTC img{width: 100%; transition: 0.3s ease; opacity: 0.6;}
+.footerTC:hover img{opacity:1;}
 .footerBoxWrap{ position: absolute; height: 600px; top: 50%; left:50%; width: 70%; transform: translate(-50%, -50%); display: flex; justify-content: space-around; align-items: center;}
 .footerBox{width: 100%;}
 .FriendsBox,
