@@ -4,7 +4,6 @@
 	}
 	setTimeout(aniBox ,5000); 
 // ===============loding page end==============
-
 $(function(){
 // ===============scroll 100vh start============
 	$(".section").each(function () {
@@ -274,13 +273,10 @@ $(function(){
 		secNum.each(function (index){
 			navAf++;
 			if(navAf == 6){navAf = 0}
-			if( index >= 0)
 			if(scrollY >= secNum.eq(index).offset().top-115){
 				$(".navbarWrap > div").removeClass("on").eq(index).addClass("on");
 				$(".navbarBtnBox > a").removeClass("on").eq(navAf).addClass("on");
-				$(".navbarSpanBox > span").removeClass('on');
 			}
-			if( index >= 1)
 			if(scrollY >= secNum.eq(index).offset().top-200){
 				$(".navbarSpanBox > span").removeClass("on").eq(index-1).addClass("on");
 			}
@@ -442,4 +438,34 @@ $(function(){
 		$(this).attr("src",ctHoverList[liNum]);
 	});
 // ===============content hover end============
+
+// ===============Ch section parallax start============
+	var scene = document.getElementById('scene');
+	var parallax = new Parallax(scene,{
+		scalarX: 3.0,
+		scalarY: 10.0
+	});
+	var scene = document.getElementById('scene2');
+	var parallax = new Parallax(scene2,{
+		scalarX: 9.0,
+		scalarY: 3.0
+	});
+	var scene = document.getElementById('ft_scene');
+	var parallax = new Parallax(ft_scene,{
+		scalarX: 1.0,
+		scalarY: 10.0,
+		frictionY: 0.4
+	});
+	var scene = document.getElementById('ft_scene2');
+	var parallax = new Parallax(ft_scene2,{
+		scalarX: 8.0,
+		scalarY: 10.0
+	});
+	var scene = document.getElementById('ft_scene3');
+	var parallax = new Parallax(ft_scene3,{
+		scalarX: 3.0,
+		scalarY: 10.0,
+		frictionY: 0.4
+	});
+	// ===============Ch section parallax end============
 });

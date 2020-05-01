@@ -145,6 +145,15 @@ span{display: block;}
 .guide_trailer p:before{ animation-delay: 0.1s; right: -30px;}
 @keyframes ost{ to{transform:translateX(-30%);} }
 @keyframes trailer{ to{transform:translateX(30%);} }
+.guide_scroll{width: 30px; height: 30px; position: absolute; bottom: 40px; left: 50%; transform: translate(-50%, 0);}
+.guide_scroll span{width: 100%;  height: 100%; position: relative;}
+.guide_scroll span:after,
+.guide_scroll span:before{ animation-name:scrollDown; animation-duration: 0.7s; animation-timing-function: ease; animation-iteration-count: infinite; animation-direction: alternate;  content: ""; display: block; position: absolute; top: 0px; left: 50%; transform: translate(-50%, 0); background:url(../images/guide_down.png); width: 30px; height: 15px; background-repeat: no-repeat; background-size: cover; background-position: center;}
+.guide_scroll span:before{animation-delay: 0.1s; top: 10px;}
+.guide_scroll.none span:after,
+.guide_scroll.none span:before{display: none;}
+@keyframes scrollDown{ to{transform:translate(-50%, 30%);} }
+
 /*========guide end=========*/
 
 /*========sound music start=========*/
@@ -276,7 +285,8 @@ body.audio-on .sound_CDBox ul li.active img{animation-name: PlayingCD;animation-
 .menuNavBox ul li:nth-child(4) a:before{left: 165px;}
 .menuNavBox ul li:nth-child(5) a:before{left: 110px;}
 .menuNavBox ul li:nth-child(6) a:before{left: 140px;}
-.menuNavBox ul li:nth-child(7) a:before{left: 145px;}
+.menuNavBox ul li:nth-child(7) a:before{left: 196px;}
+.menuNavBox ul li:nth-child(7) a:after{left: -60px;}
 .menuNavBox ul li:nth-child(8) a:before{left: 117px;}
 .settingBox ul li a:before{left: 100px;}
 .modal_closeBtnBox a:hover:after,
@@ -597,9 +607,11 @@ label input:checked ~ .checkBtn{ left: 55%; background: url(../images/Kingsoul.p
     .logo_text_Box:before{right: 0px;}
     .logo_text_Box:after{left:0px;}
     .logo_text_Box{width: 70%;}
-    .action.black .logo_text_Box >img{width: 150px;min-height: 70px;}
+    .action.black .logo_text_Box >img{width: 200px;min-height: 70px;}
     .hambergerIcon:after{display: none;}
     .hambergerIcon.active:before{display: none;}
+    .fixed_lineBox{display: none;}
+    .guide_scroll{display: none;}
 }
 @media screen and (max-width:960px){
     .content_text_box{display: none;}
@@ -613,7 +625,6 @@ label input:checked ~ .checkBtn{ left: 55%; background: url(../images/Kingsoul.p
     .content_cardBox img{ margin: 0 5px; width: 160px;}
     .FriendsLogoBox img{width: 170px;}
     .footerBack{background-image: url(../images/footer_back2.jpg);}
-    .fixed_lineBox{display: none;}
     .footerTextBox{ justify-content: space-around; height: 50px; bottom: 10px; width: 100%;}
     .footerText{ width: 520px; display: flex; justify-content: space-between;}
     .footerText p {line-height: 50px;}
@@ -687,7 +698,7 @@ label input:checked ~ .checkBtn{ left: 55%; background: url(../images/Kingsoul.p
 @media screen and (max-height:900px){
     .action.black .logo_text_Box >img{min-height: 70px;width: 80%;}
 }
-@media screen and (max-height: 730px){
+@media screen and (max-height: 830px){
     .start_img_Box{opacity: 0;}
 }
 @media screen and (max-height: 600px){
