@@ -103,6 +103,8 @@ body{overflow: visible;}
 .action.black .sound_note,
 .action.black .sound_lp{display: none;}
 .section.on .content_cardBox img{height: 205px; width: 100px;}
+.character_listBox ul li{transition: 0.5s ease-in !important;}
+.content_cardBox img{transition: 0.5s ease-in !important;}
 /*==============Iphone5 start==============*/
 @media screen and (max-width: 450px){
     @keyframes soundnote{ to{bottom: 85px;right: -195px;transform: rotate(0deg);} }
@@ -111,7 +113,6 @@ body{overflow: visible;}
     .sound_note{ right: -175px; bottom: 70px;}
     .sound_lp{ right: -230px; bottom: 30px;}
     .section.on .content_cardBox img{width: 120px; height: 220px;}
-    .content_toptextBox{padding-top: 30px;}
 }
 @media screen and (max-width: 350px){
     .storyTextBox,

@@ -127,8 +127,8 @@ span{display: block;}
 /*=========nav end=========*/
 
 /*========guide start=========*/
-.trailer_playBtn{ text-align: center; width: 80px; position: fixed; bottom: 40px; right: 40px; z-index: 9998;}
-.action.black .trailer_playBtn{ display: none;}
+.trailer_playBtn{ text-align: center; width: 80px; position: fixed; bottom: 40px; right: 40px; z-index: 9998; transition: all .6s cubic-bezier(0.68, -0.55, 0.265, 1.55)}
+.action.black .trailer_playBtn{right: -200px;}
 .trailer_playBtn a{ font-size: 2em; color: #fff;}
 .trailer_playBtn img{ width: 100%; cursor: pointer;}
 .guide_textWrap{ position: fixed; width: 100%; height: 100%; font-size: 1.2em; color: #fff;}
@@ -145,7 +145,7 @@ span{display: block;}
 .guide_trailer p:before{ animation-delay: 0.1s; right: -30px;}
 @keyframes ost{ to{transform:translateX(-30%);} }
 @keyframes trailer{ to{transform:translateX(30%);} }
-.guide_scroll{width: 30px; height: 30px; position: absolute; bottom: 40px; left: 50%; transform: translate(-50%, 0);}
+.guide_scroll{display: none; width: 30px; height: 30px; position: absolute; bottom: 40px; left: 50%; transform: translate(-50%, 0);}
 .guide_scroll span{width: 100%;  height: 100%; position: relative;}
 .guide_scroll span:after,
 .guide_scroll span:before{ animation-name:scrollDown; animation-duration: 0.7s; animation-timing-function: ease; animation-iteration-count: infinite; animation-direction: alternate;  content: ""; display: block; position: absolute; top: 0px; left: 50%; transform: translate(-50%, 0); background:url(../images/guide_down.png); width: 30px; height: 15px; background-repeat: no-repeat; background-size: cover; background-position: center;}
@@ -222,7 +222,7 @@ body.audio-on .sound_CDBox ul li.active img{animation-name: PlayingCD;animation-
 /*=========hamberger end=========*/
 
 /*=========navigation start=========*/
-.menuNavWrap{ position: relative; position:fixed; width: 100%; height: 100%; z-index: -99;}
+.menuNavWrap{ position: relative; position:fixed; width: 100%; height: 100%; }
 .menuNavBlack{ position: fixed; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; background-color: rgba(0,0,0,0.8); transition:all .75s cubic-bezier(0.68, -0.55, 0.265, 1.55); z-index: -99;}
 .menuNavWrap.active { z-index: 9998;}
 .menuNavBlack.active{ opacity: 1; z-index:998;}
@@ -629,7 +629,7 @@ label input:checked ~ .checkBtn{ left: 55%; background: url(../images/Kingsoul.p
     .footerText{ width: 520px; display: flex; justify-content: space-between;}
     .footerText p {line-height: 50px;}
     .snsIconBox{margin-top: 0; line-height: 50px;}
-    .footerTC{margin-right: 0;}
+    .footerTC{margin-right: 0; margin-left: 20px;}
     .footerBox:after{width: 400px;height: 30px;}
     .PurchaseLogoBox img{width: 165px;}
     .footerBoxWrap{left: 50%;transform: translate(-50%, -50%);}
@@ -647,6 +647,7 @@ label input:checked ~ .checkBtn{ left: 55%; background: url(../images/Kingsoul.p
     .hollow_leftContent p{font-size: 1em;}
     .section-parallax{display: none !important;}
     .character_listBox ul li{height: 90px;}
+
 }
 /*============media pc end============*/
 
