@@ -364,7 +364,7 @@ label input:checked ~ .checkBtn{ left: 55%; background: url(../images/Kingsoul.p
 
 /*====================section story start==================*/
 .storyBack{ position: relative; z-index: -9; width: 100%; height: 100vh; background: url(../images/section1_back.gif); background-repeat: no-repeat; background-size: cover; background-position: center; transition: 1s;}
-.storyBoxWrap{ position: absolute; top: 55%; left: 50%; transform: translate(-50%,-50%); width: 70%; max-width: 1600px; display:flex; justify-content: space-around;}
+.storyBoxWrap{ position: absolute; top: 52%; left: 50%; transform: translate(-50%,-50%); width: 70%; max-width: 1600px; display:flex; justify-content: space-around;}
 .storyBack.aniNone{ background: url(../images/story_back.jpg); background-repeat: no-repeat; background-size: cover; background-position: center;}
 /*====================section story end==================*/
 
@@ -547,8 +547,8 @@ label input:checked ~ .checkBtn{ left: 55%; background: url(../images/Kingsoul.p
 .character_contentBox:before{bottom: -26px; width: 320px;height: 35px;}
 .content_cardBox:before,
 .character_listBox ul:before,
-.storyBox:before{ width:380px; left: 50%; bottom: -25px; transform: translate(-52%,0);}
-.footerBox:before{ width:330px; left: 50%; bottom: -23px; transform: translate(-52%,0);}
+.storyBox:before{ width:380px; left: 50%; bottom: -25px; transform: translate(-50%,0);}
+.footerBox:before{ width:330px; left: 50%; bottom: -23px; transform: translate(-50%,0);}
 .modal_closeBtnBox:before{ top:50px; width: 290px; height: 33px;}
 /*==========before end========*/
 
@@ -557,9 +557,9 @@ label input:checked ~ .checkBtn{ left: 55%; background: url(../images/Kingsoul.p
 .FriendsBox p,
 .PurchaseBox p,
 .content_toptextBox p,
-.slikLogo p{ font-size: 1.1em; color: #eee; text-shadow: 3px 3px 5px rgba(255,255,255,0.3)}
+.slikLogo p{ font-size: 1em; line-height: 23px; color: #eee; text-shadow: 3px 3px 5px rgba(255,255,255,0.3)}
 .storyTextBox p,
-.newsTextBox p{color: #eee;font-size: 1.1em;line-height: 27px}
+.newsTextBox p{color: #eee;font-size: 1em;line-height: 24px}
 .hollow_leftContent h3,
 .content_toptextBox h3,
 .storyBox h3,
