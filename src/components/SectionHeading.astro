@@ -1,0 +1,60 @@
+---
+import { Image } from "astro:assets";
+import divider from "../assets/ornament/divider-top.png";
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  id: string;
+  lead?: string;
+  align?: "center" | "start";
+}
+const { eyebrow, title, id, lead, align = "center" } = Astro.props;
+---
+
+<header class:list={["sh", `sh--${align}`]}>
+  <p class="eyebrow sh__eyebrow" data-reveal>{eyebrow}</p>
+  <h2 class="sh__title" id={id} data-split-title>{title}</h2>
+  <Image src={divider} alt="" class="sh__ornament" width={440} densities={[1, 2]} loading="lazy" data-ornament />
+  {lead && <p class="sh__lead" data-reveal>{lead}</p>}
+</header>
+
+<style>
+  .sh {
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    gap: 14px;
+    margin-bottom: clamp(48px, 7vw, 88px);
+  }
+  .sh--start {
+    justify-items: start;
+    text-align: start;
+  }
+  .sh__title {
+    font-family: var(--font-serif-stack);
+    font-size: var(--fs-h2);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--pale);
+    text-shadow: 0 0 40px rgb(168 212 255 / 0.18);
+    text-wrap: balance;
+  }
+  .sh__ornament {
+    width: min(440px, 78vw);
+    height: auto;
+    opacity: 0.9;
+    transform-origin: center;
+  }
+  .sh--start .sh__ornament {
+    transform-origin: left center;
+  }
+  .sh__lead {
+    max-width: 38em;
+    font-size: var(--fs-lead);
+    line-height: 1.9;
+    color: var(--pale-3);
+    text-wrap: pretty;
+  }
+</style>

@@ -1,0 +1,239 @@
+---
+import { Image } from "astro:assets";
+import { SECTIONS } from "../data/sections";
+import menuTop from "../assets/ornament/menu-top.png";
+import menuBottom from "../assets/ornament/menu-bottom.png";
+import shade from "../assets/art/shade.png";
+import kingsoul from "../assets/art/kingsoul.png";
+import voidHeart from "../assets/art/void-heart.png";
+
+const SETTINGS = [
+  { key: "sound", label: "사운드", hint: "효과음과 동굴의 숨소리" },
+  { key: "motion", label: "애니메이션", hint: "끄면 움직임을 최소화합니다" },
+  { key: "frame", label: "장식 테두리", hint: "화면 가장자리의 문양" },
+] as const;
+---
+
+<dialog class="menu" id="menu" aria-labelledby="menu-title" data-menu data-lenis-prevent>
+  <div class="menu__shade" aria-hidden="true">
+    <Image src={shade} alt="" width={420} densities={[1, 2]} loading="lazy" />
+  </div>
+
+  <div class="menu__panel">
+    <Image src={menuTop} alt="" class="menu__orn" width={400} densities={[1, 2]} loading="lazy" />
+    <h2 id="menu-title" class="sr-only">메뉴</h2>
+
+    <nav aria-label="페이지 메뉴">
+      <ul class="menu__links" role="list">
+        {
+          SECTIONS.map((s) => (
+            <li>
+              <a class="hk-btn menu__link" href={`#${s.id}`} data-menu-link>
+                <span class="menu__en">{s.label}</span>
+                <span class="menu__ko">{s.labelKo}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <fieldset class="menu__settings">
+      <legend class="eyebrow">Options</legend>
+      {
+        SETTINGS.map((s) => (
+          <label class="charm">
+            <input type="checkbox" class="charm__input" data-setting={s.key} />
+            <span class="charm__track" aria-hidden="true">
+              <Image src={voidHeart} alt="" class="charm__knob charm__knob--off" width={40} densities={[1, 2]} loading="lazy" />
+              <Image src={kingsoul} alt="" class="charm__knob charm__knob--on" width={40} densities={[1, 2]} loading="lazy" />
+            </span>
+            <span class="charm__text">
+              <span class="charm__label">{s.label}</span>
+              <span class="charm__hint">{s.hint}</span>
+            </span>
+          </label>
+        ))
+      }
+    </fieldset>
+
+    <Image src={menuBottom} alt="" class="menu__orn menu__orn--bottom" width={320} densities={[1, 2]} loading="lazy" />
+    <button class="hk-btn menu__close" type="button" data-menu-close>Close</button>
+  </div>
+</dialog>
+
+<style>
+  .menu {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    color: inherit;
+    background:
+      radial-gradient(50% 60% at 50% 50%, rgb(20 28 48 / 0.6), transparent 70%),
+      rgb(3 4 9 / 0.94);
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+  .menu::backdrop {
+    background: transparent;
+  }
+  .menu[open] {
+    display: grid;
+    place-items: center;
+    animation: menu-in 0.55s var(--ease-out);
+  }
+  .menu.is-closing {
+    animation: menu-out 0.35s var(--ease-in-out) forwards;
+  }
+  @keyframes menu-in {
+    from { opacity: 0; }
+  }
+  @keyframes menu-out {
+    to { opacity: 0; }
+  }
+
+  .menu__shade {
+    position: fixed;
+    left: 4vw;
+    bottom: 4vh;
+    width: min(28vw, 380px);
+    opacity: 0.16;
+    animation: shade-float 6s var(--ease-in-out) infinite alternate;
+    pointer-events: none;
+  }
+  .menu__shade :global(img) {
+    transform: scaleX(-1);
+  }
+  @keyframes shade-float {
+    to { transform: translateY(-26px); }
+  }
+
+  .menu__panel {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    gap: clamp(10px, 1.8vh, 22px);
+    width: min(520px, 100% - 32px);
+    padding: clamp(20px, 4vh, 56px) 0;
+  }
+  .menu[open] .menu__panel {
+    animation: panel-in 0.7s var(--ease-out);
+  }
+  @keyframes panel-in {
+    from { opacity: 0; transform: translateY(18px) scale(0.98); }
+  }
+  .menu__orn {
+    width: min(400px, 80vw);
+    height: auto;
+  }
+  .menu__orn--bottom {
+    width: min(300px, 64vw);
+  }
+
+  .menu__links {
+    display: grid;
+    gap: 2px;
+    justify-items: center;
+  }
+  .menu__link {
+    flex-direction: column;
+    gap: 0;
+    padding-block: 0.3em;
+    line-height: 1.25;
+  }
+  .menu__en {
+    font-size: clamp(1.05rem, 0.9rem + 0.6vw + 0.4vh, 1.5rem);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .menu__ko {
+    font-family: var(--font-serif-stack);
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: var(--pale-3);
+  }
+
+  .menu__settings {
+    display: grid;
+    gap: 10px;
+    width: min(360px, 100%);
+    margin: 0;
+    padding: 18px 0 0;
+    border: 0;
+    border-top: 1px solid var(--line);
+  }
+  .menu__settings legend {
+    margin: 0 auto;
+    padding: 0 12px;
+  }
+  .charm {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+  }
+  .charm__input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .charm__track {
+    position: relative;
+    width: 84px;
+    height: 34px;
+    border-radius: 999px;
+    background: var(--ink-2);
+    box-shadow: inset 0 0 0 1px var(--line-2);
+    transition: background 0.4s;
+  }
+  .charm__knob {
+    position: absolute;
+    top: 50%;
+    left: 2px;
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    transform: translateY(-50%);
+    transition: left 0.5s var(--ease-out), opacity 0.3s;
+  }
+  .charm__knob--on {
+    opacity: 0;
+  }
+  .charm__input:checked + .charm__track {
+    background: rgb(168 212 255 / 0.16);
+  }
+  .charm__input:checked + .charm__track .charm__knob {
+    left: calc(100% - 42px);
+  }
+  .charm__input:checked + .charm__track .charm__knob--on {
+    opacity: 1;
+  }
+  .charm__input:checked + .charm__track .charm__knob--off {
+    opacity: 0;
+  }
+  .charm__input:focus-visible + .charm__track {
+    outline: 1px solid var(--soul);
+    outline-offset: 4px;
+  }
+  .charm__text {
+    display: grid;
+    line-height: 1.4;
+  }
+  .charm__label {
+    color: var(--pale);
+  }
+  .charm__hint {
+    font-size: 0.78rem;
+    color: var(--pale-4);
+  }
+  .menu__close {
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+  }
+</style>

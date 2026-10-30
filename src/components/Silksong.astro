@@ -1,0 +1,348 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/brand/silksong-logo.png";
+import hornet from "../assets/art/hornet-needle.png";
+import { TRAILERS } from "../data/content";
+---
+
+<section id="silksong" class="silksong" data-section="silksong" aria-labelledby="silksong-title">
+  <div class="bg-media silksong__media" aria-hidden="true">
+    <video
+      muted
+      loop
+      playsinline
+      preload="none"
+      data-poster="/media/silksong-poster.jpg"
+      data-lazy-video="/media/silksong.webm|/media/silksong.mp4"></video>
+  </div>
+  <div class="silksong__veil" aria-hidden="true"></div>
+
+  <svg class="silksong__thread" viewBox="0 0 1440 1000" preserveAspectRatio="none" aria-hidden="true">
+    <path
+      d="M-40 180C220 120 300 420 560 360S820 80 1040 200 1240 520 1480 420"
+      pathLength="1"
+      data-thread></path>
+    <path
+      class="silksong__thread--thin"
+      d="M-40 760C260 840 420 600 700 660S1100 920 1480 760"
+      pathLength="1"
+      data-thread></path>
+  </svg>
+
+  <div class="container silksong__grid">
+    <div class="silksong__copy">
+      <p class="silksong__badge" data-reveal>
+        <span class="silksong__dot" aria-hidden="true"></span>
+        <span class="eyebrow">Out now · 2025.09.04</span>
+      </p>
+      <h2 class="silksong__title" id="silksong-title">
+        <span class="sr-only">Hollow Knight: Silksong</span>
+        <Image src={logo} alt="" class="silksong__logo" widths={[520, 1040]} sizes="(max-width: 640px) 80vw, 520px" loading="lazy" data-reveal />
+      </h2>
+      <p class="silksong__lead" data-reveal>
+        신성둥지의 공주이자 보호자인 호넷이 실과 노래가 다스리는 낯선 왕국으로 끌려갑니다. 왕국의 꼭대기를 향한 죽음의 순례길 위에서, 그녀는 적들과 맞서
+        싸우며 이 땅의 비밀을 풀어야만 합니다.
+      </p>
+
+      <dl class="silksong__facts" data-reveal>
+        <div>
+          <dt>새로운 적</dt>
+          <dd>150+</dd>
+        </div>
+        <div>
+          <dt>출시</dt>
+          <dd>2025</dd>
+        </div>
+        <div>
+          <dt>Game Pass</dt>
+          <dd>Day 1</dd>
+        </div>
+      </dl>
+      <p class="silksong__platforms" data-reveal>PC · Nintendo Switch 2 / Switch · PS5 / PS4 · Xbox Series X|S / One</p>
+
+      <div class="silksong__cta" data-reveal>
+        <button
+          class="hk-btn hk-btn--framed"
+          type="button"
+          data-video-open={TRAILERS.silksongRelease.id}
+          data-video-title={TRAILERS.silksongRelease.title}
+          data-sfx-open="needle">
+          <svg viewBox="0 0 12 14" aria-hidden="true" width="10"><path d="M0 0l12 7-12 7z" fill="currentColor"></path></svg>
+          출시 트레일러
+        </button>
+        <a class="hk-btn" href="#purchase" data-store-jump="silksong">구매처 보기</a>
+      </div>
+    </div>
+
+    <figure class="silksong__hornet" data-hornet>
+      <Image src={hornet} alt="바늘을 휘두르는 호넷" widths={[600, 1000, 1600]} sizes="(max-width: 900px) 90vw, 50vw" loading="lazy" />
+    </figure>
+  </div>
+
+  <div class="container">
+    <article class="sorrow" data-reveal>
+      <div class="sorrow__waves" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="sorrow__text">
+        <p class="eyebrow">Free expansion · 2026</p>
+        <h3 class="sorrow__title display">Sea of Sorrow</h3>
+        <p>
+          호넷의 모험은 바다로 이어집니다. 새로운 지역과 보스, 도구를 담은 실크송의 첫 번째 대형 확장 — 모든 플레이어에게 무료로 찾아옵니다.
+        </p>
+        <p class="sorrow__meta">Team Cherry 발표 기준 2026년 출시 예정 · 정확한 날짜는 아직 미정</p>
+      </div>
+      <button
+        class="hk-btn sorrow__play"
+        type="button"
+        data-video-open={TRAILERS.seaOfSorrow.id}
+        data-video-title={TRAILERS.seaOfSorrow.title}>
+        <svg viewBox="0 0 12 14" aria-hidden="true" width="10"><path d="M0 0l12 7-12 7z" fill="currentColor"></path></svg>
+        티저 보기
+      </button>
+    </article>
+  </div>
+</section>
+
+<style>
+  .silksong {
+    --silk-glow: rgb(224 51 74 / 0.45);
+    position: relative;
+    padding: clamp(110px, 16vh, 200px) 0 clamp(90px, 12vh, 150px);
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .silksong__media video {
+    filter: saturate(1.1) contrast(1.05);
+  }
+  .silksong__veil {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(60% 70% at 72% 45%, rgb(40 6 12 / 0.25), rgb(10 2 6 / 0.82) 70%),
+      linear-gradient(90deg, rgb(8 2 5 / 0.92) 0%, rgb(8 2 5 / 0.55) 55%, rgb(8 2 5 / 0.2)),
+      linear-gradient(var(--ink-0), transparent 16%, transparent 80%, var(--ink-0));
+  }
+
+  .silksong__thread {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  .silksong__thread path {
+    fill: none;
+    stroke: rgb(255 240 236 / 0.75);
+    stroke-width: 1.4;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    vector-effect: non-scaling-stroke;
+    filter: drop-shadow(0 0 6px rgb(255 120 110 / 0.8));
+  }
+  .silksong__thread--thin {
+    stroke-width: 0.8 !important;
+    opacity: 0.5;
+  }
+  :global(html.reduce-motion) .silksong__thread path {
+    stroke-dashoffset: 0;
+  }
+
+  .silksong__grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(24px, 4vw, 64px);
+  }
+  .silksong__copy {
+    display: grid;
+    gap: 20px;
+    justify-items: start;
+  }
+  .silksong__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 14px 6px 10px;
+    border: 1px solid rgb(255 107 90 / 0.4);
+    border-radius: 999px;
+    background: rgb(224 51 74 / 0.12);
+  }
+  .silksong__badge .eyebrow {
+    color: #ffc9c0;
+    letter-spacing: 0.26em;
+  }
+  .silksong__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--silk-2);
+    box-shadow: 0 0 0 0 rgb(255 107 90 / 0.7);
+    animation: live 2s infinite;
+  }
+  @keyframes live {
+    70% { box-shadow: 0 0 0 10px rgb(255 107 90 / 0); }
+    100% { box-shadow: 0 0 0 0 rgb(255 107 90 / 0); }
+  }
+  .silksong__title {
+    margin: 0;
+    line-height: 0;
+  }
+  .silksong__logo {
+    width: min(520px, 80vw);
+    height: auto;
+    filter: drop-shadow(0 0 30px var(--silk-glow));
+  }
+  .silksong__lead {
+    max-width: 34em;
+    font-size: var(--fs-lead);
+    line-height: 1.95;
+    color: #f1dedb;
+    text-wrap: pretty;
+  }
+  .silksong__facts {
+    display: flex;
+    gap: clamp(20px, 4vw, 48px);
+    margin: 4px 0 0;
+  }
+  .silksong__facts div {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 2px;
+  }
+  .silksong__facts dt {
+    font-size: 0.78rem;
+    color: #c99a93;
+  }
+  .silksong__facts dd {
+    margin: 0;
+    font-family: var(--font-display-stack);
+    font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.4rem);
+    line-height: 1.1;
+    color: #fff3f0;
+  }
+  .silksong__platforms {
+    font-size: var(--fs-small);
+    color: #c99a93;
+  }
+  .silksong__cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 28px;
+    margin-top: 8px;
+  }
+  .silksong__cta .hk-btn--framed {
+    border-color: rgb(255 107 90 / 0.5);
+    box-shadow: 0 10px 40px -16px var(--silk-glow);
+  }
+
+  .silksong__hornet {
+    margin: 0;
+    margin-right: calc(var(--gutter) * -1);
+  }
+  .silksong__hornet :global(img) {
+    width: 118%;
+    max-width: none;
+    height: auto;
+    margin-left: -6%;
+    filter: drop-shadow(0 30px 60px rgb(0 0 0 / 0.7)) drop-shadow(0 0 40px rgb(224 51 74 / 0.25));
+    -webkit-mask: linear-gradient(#000 80%, transparent);
+    mask: linear-gradient(#000 80%, transparent);
+  }
+
+  .sorrow {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 24px 40px;
+    margin-top: clamp(56px, 9vh, 110px);
+    padding: clamp(28px, 4vw, 48px);
+    overflow: hidden;
+    border: 1px solid rgb(120 190 230 / 0.25);
+    background: linear-gradient(120deg, rgb(6 20 32 / 0.92), rgb(4 10 22 / 0.82));
+    backdrop-filter: blur(6px);
+  }
+  .sorrow__waves {
+    position: absolute;
+    inset: auto 0 0;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.55;
+  }
+  .sorrow__waves i {
+    position: absolute;
+    left: -50%;
+    width: 200%;
+    height: 220%;
+    bottom: -190%;
+    border-radius: 42%;
+    background: radial-gradient(closest-side, rgb(90 170 220 / 0.18), transparent);
+    animation: tide 14s linear infinite;
+  }
+  .sorrow__waves i:nth-child(2) {
+    bottom: -195%;
+    animation-duration: 19s;
+    animation-direction: reverse;
+    opacity: 0.7;
+  }
+  .sorrow__waves i:nth-child(3) {
+    bottom: -200%;
+    animation-duration: 25s;
+    opacity: 0.5;
+  }
+  @keyframes tide {
+    to { transform: rotate(360deg); }
+  }
+  .sorrow__text {
+    position: relative;
+    display: grid;
+    gap: 10px;
+    max-width: 52em;
+  }
+  .sorrow .eyebrow {
+    color: #8fd0f0;
+  }
+  .sorrow__title {
+    font-size: clamp(1.8rem, 1.3rem + 2vw, 3rem);
+    color: #e6f6ff;
+    text-shadow: 0 0 30px rgb(90 170 220 / 0.5);
+  }
+  .sorrow__meta {
+    font-size: 0.8rem;
+    color: #7fa3b8;
+  }
+  .sorrow__play {
+    position: relative;
+  }
+
+  @media (max-width: 900px) {
+    /* Stacked layout puts the threads across the copy — keep them a whisper. */
+    .silksong__thread {
+      opacity: 0.35;
+    }
+    .silksong__grid {
+      grid-template-columns: 1fr;
+    }
+    .silksong__hornet {
+      order: -1;
+      margin: -40px auto -20px;
+      width: min(560px, 100%);
+    }
+    .silksong__hornet :global(img) {
+      width: 100%;
+      margin: 0;
+    }
+    .sorrow {
+      grid-template-columns: 1fr;
+    }
+    .sorrow__play {
+      justify-self: start;
+      margin-left: -1.2em;
+    }
+  }
+</style>

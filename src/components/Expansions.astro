@@ -1,0 +1,230 @@
+---
+import { Image, Picture, getImage } from "astro:assets";
+import SectionHeading from "./SectionHeading.astro";
+import { EXPANSIONS } from "../data/content";
+import forest from "../assets/bg/forest.jpg";
+import rays from "../assets/bg/light-rays.png";
+
+// Soft light shafts survive heavy compression; attached only when the section is near.
+const raysImg = await getImage({ src: rays, width: 1280, format: "webp", quality: 50 });
+---
+
+<section id="expansions" class="expansions section" data-section="expansions" aria-labelledby="expansions-title">
+  <div class="bg-media expansions__bg" aria-hidden="true">
+    <Picture src={forest} alt="" widths={[960, 1600, 2063]} sizes="100vw" formats={["avif", "webp"]} loading="lazy" />
+  </div>
+  <div class="expansions__rays" aria-hidden="true" data-lazy-bg={`--rays|${raysImg.src}`}></div>
+  <div class="expansions__veil" aria-hidden="true"></div>
+
+  <div class="container">
+    <SectionHeading
+      eyebrow="Free Content Packs"
+      title="네 번의 무료 확장"
+      id="expansions-title"
+      lead="출시 이후 Team Cherry는 네 번의 대형 확장을 모두 무료로 선보였습니다. 카드를 눌러 트레일러를 감상하세요."
+    />
+
+    <ul class="dlc-grid" role="list">
+      {
+        EXPANSIONS.map((x) => (
+          <li class="dlc" style={`--accent:${x.accent}`} data-reveal>
+            <article class="dlc__card" data-tilt>
+              <div class="dlc__poster">
+                <Image src={x.poster} alt={`${x.name} 포스터`} widths={[344, 688]} sizes="(max-width: 640px) 72vw, (max-width: 1100px) 42vw, 280px" loading="lazy" />
+                <span class="dlc__glare" aria-hidden="true" />
+                <span class="dlc__frame" aria-hidden="true" />
+              </div>
+              <div class="dlc__body">
+                <p class="eyebrow dlc__date">{x.date}</p>
+                <h3 class="dlc__name">
+                  <span class="display">{x.name}</span>
+                  <span class="dlc__ko">{x.nameKo}</span>
+                </h3>
+                <p class="dlc__summary">{x.summary}</p>
+                {x.trailer ? (
+                  <button class="hk-btn dlc__play" type="button" data-video-open={x.trailer.id} data-video-title={x.trailer.title}>
+                    <svg viewBox="0 0 12 14" aria-hidden="true" width="10"><path d="M0 0l12 7-12 7z" fill="currentColor" /></svg>
+                    트레일러
+                  </button>
+                ) : (
+                  <p class="dlc__note">공식 트레일러 없이 공개된 업데이트</p>
+                )}
+              </div>
+            </article>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .expansions {
+    overflow: hidden;
+  }
+  .expansions__bg :global(img) {
+    opacity: 0.4;
+    filter: grayscale(0.4);
+  }
+  .expansions__rays {
+    position: absolute;
+    inset: -10% -10% 0;
+    z-index: -1;
+    background: var(--rays) center / cover no-repeat;
+    mix-blend-mode: screen;
+    opacity: 0.35;
+    animation: rays 9s var(--ease-in-out) infinite alternate;
+    pointer-events: none;
+  }
+  @keyframes rays {
+    from { opacity: 0.18; transform: translateX(-2%) skewX(-2deg); }
+    to { opacity: 0.42; transform: translateX(2%) skewX(2deg); }
+  }
+  .expansions__veil {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(70% 60% at 50% 50%, rgb(3 4 9 / 0.35), rgb(3 4 9 / 0.9)),
+      linear-gradient(var(--ink-0), transparent 20%, transparent 80%, var(--ink-0));
+  }
+
+  .dlc-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(16px, 2vw, 28px);
+    margin: 0;
+    padding: 0;
+  }
+  .dlc {
+    perspective: 1100px;
+  }
+  .dlc__card {
+    --rx: 0deg;
+    --ry: 0deg;
+    --gx: 50%;
+    --gy: 30%;
+    display: grid;
+    gap: 18px;
+    height: 100%;
+    transform: rotateX(var(--rx)) rotateY(var(--ry));
+    transform-style: preserve-3d;
+    transition: transform 0.6s var(--ease-out);
+  }
+  .dlc__card.is-tilting {
+    transition: transform 0.12s linear;
+  }
+  .dlc__poster {
+    position: relative;
+    aspect-ratio: 344 / 663;
+    overflow: hidden;
+    background: var(--ink-2);
+    box-shadow:
+      0 30px 60px -30px rgb(0 0 0 / 0.9),
+      0 0 0 1px rgb(255 255 255 / 0.06);
+    transition: box-shadow 0.6s var(--ease-out);
+  }
+  .dlc__poster :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.02);
+    transition: transform 0.9s var(--ease-out), filter 0.6s;
+    filter: saturate(0.85) brightness(0.92);
+  }
+  .dlc__card:hover .dlc__poster,
+  .dlc__card:focus-within .dlc__poster {
+    box-shadow:
+      0 40px 80px -30px color-mix(in srgb, var(--accent) 55%, transparent),
+      0 0 0 1px color-mix(in srgb, var(--accent) 60%, transparent);
+  }
+  .dlc__card:hover .dlc__poster :global(img),
+  .dlc__card:focus-within .dlc__poster :global(img) {
+    transform: scale(1.07);
+    filter: saturate(1.1) brightness(1.02);
+  }
+  .dlc__glare {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(60% 40% at var(--gx) var(--gy), rgb(255 255 255 / 0.28), transparent 60%);
+    mix-blend-mode: overlay;
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  .dlc__card:hover .dlc__glare {
+    opacity: 1;
+  }
+  .dlc__frame {
+    position: absolute;
+    inset: 10px;
+    border: 1px solid rgb(255 255 255 / 0.18);
+    pointer-events: none;
+    transition: inset 0.6s var(--ease-out), border-color 0.6s;
+  }
+  .dlc__card:hover .dlc__frame {
+    inset: 14px;
+    border-color: color-mix(in srgb, var(--accent) 70%, white);
+  }
+
+  .dlc__body {
+    display: grid;
+    gap: 8px;
+    align-content: start;
+    transform: translateZ(30px);
+  }
+  .dlc__date {
+    color: var(--accent);
+  }
+  .dlc__name {
+    display: grid;
+    gap: 2px;
+    font-weight: 400;
+  }
+  .dlc__name .display {
+    font-size: clamp(1.3rem, 1.1rem + 0.7vw, 1.7rem);
+  }
+  .dlc__ko {
+    font-size: var(--fs-small);
+    color: var(--pale-3);
+  }
+  .dlc__summary {
+    font-size: 0.92rem;
+    line-height: 1.8;
+    color: var(--pale-3);
+    text-wrap: pretty;
+  }
+  .dlc__play {
+    justify-self: start;
+    margin-left: -1.2em;
+    font-size: 0.9rem;
+  }
+  .dlc__note {
+    font-size: 0.78rem;
+    color: var(--pale-4);
+  }
+
+  @media (max-width: 1100px) {
+    .dlc-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      row-gap: 56px;
+    }
+  }
+  @media (max-width: 640px) {
+    .dlc-grid {
+      display: flex;
+      gap: 18px;
+      margin-inline: calc(var(--gutter) * -1);
+      padding: 0 var(--gutter) 12px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+    .dlc-grid::-webkit-scrollbar {
+      display: none;
+    }
+    .dlc {
+      flex: 0 0 72vw;
+      scroll-snap-align: center;
+    }
+  }
+</style>

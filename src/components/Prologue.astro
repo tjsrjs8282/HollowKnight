@@ -1,0 +1,107 @@
+---
+import { Image } from "astro:assets";
+import divider from "../assets/ornament/divider-bottom.png";
+
+const LINES = [
+  "쇠퇴해 가는 흙의 마을 아래, 고대 곤충 왕국 신성둥지가 잠들어 있습니다.",
+  "많은 이들이 부와 명예, 그리고 오래된 비밀의 답을 찾아 그 깊은 곳으로 내려갔습니다.",
+  "이제 폐허 속에서 무언가가 깨어나 벌레들을 미치게 하고, 여행자들의 이성을 앗아가고 있습니다.",
+  "이 새로운 역병은 어디에서 왔을까요? 한때 위대했던 왕국을 무너뜨린 재앙은 무엇이었을까요?",
+  "그 답을 찾으려면 바닥 모를 어둠 속으로 내려가야 합니다. 어떤 비밀은 묻혀 있는 편이 나았을지도 모르지만…",
+];
+---
+
+<section id="prologue" class="prologue" data-section="prologue" aria-labelledby="prologue-title">
+  <div class="prologue__pin" data-prologue-pin>
+    <div class="bg-media prologue__media" aria-hidden="true">
+      <video
+        muted
+        loop
+        playsinline
+        preload="none"
+        data-poster="/media/prologue-poster.jpg"
+        data-lazy-video="/media/prologue.webm|/media/prologue.mp4"></video>
+    </div>
+    <div class="prologue__veil" aria-hidden="true"></div>
+
+    <div class="container prologue__inner">
+      <p class="eyebrow" data-reveal>Prologue</p>
+      <h2 class="prologue__title" id="prologue-title" data-reveal>서막</h2>
+      <div class="prologue__text" data-prologue-text>
+        {LINES.map((line) => <p>{line}</p>)}
+      </div>
+      <Image src={divider} alt="" class="prologue__orn" width={322} densities={[1, 2]} loading="lazy" data-reveal />
+    </div>
+  </div>
+</section>
+
+<style>
+  .prologue {
+    position: relative;
+    isolation: isolate;
+  }
+  .prologue__pin {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 100svh;
+    padding: clamp(96px, 14vh, 160px) 0;
+    overflow: hidden;
+  }
+  .prologue__media video {
+    opacity: 0.32;
+    filter: grayscale(1) contrast(1.15) blur(1.5px);
+    transform: scale(1.08);
+  }
+  .prologue__veil {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(55% 60% at 50% 50%, rgb(3 4 9 / 0.35), rgb(3 4 9 / 0.92) 75%),
+      linear-gradient(var(--ink-0), transparent 22%, transparent 78%, var(--ink-0));
+  }
+  .prologue__inner {
+    display: grid;
+    justify-items: center;
+    gap: 20px;
+    max-width: 920px;
+    text-align: center;
+  }
+  .prologue__title {
+    font-size: var(--fs-h3);
+    font-weight: 700;
+    letter-spacing: 0.4em;
+    margin-right: -0.4em;
+    color: var(--pale);
+  }
+  .prologue__text {
+    display: grid;
+    gap: clamp(14px, 2.4vh, 26px);
+    margin-top: clamp(12px, 3vh, 28px);
+    font-size: clamp(1.12rem, 0.95rem + 0.9vw, 1.7rem);
+    font-weight: 400;
+    line-height: 1.75;
+    color: var(--pale);
+    text-wrap: balance;
+  }
+  .prologue__text p:last-child {
+    color: var(--soul);
+    text-shadow: 0 0 30px rgb(168 212 255 / 0.35);
+  }
+  /* Scroll-driven word reveal (JS splits the words). */
+  .prologue__text :global(.w) {
+    display: inline-block;
+    opacity: 0.12;
+    will-change: opacity;
+  }
+  :global(html.reduce-motion) .prologue__text :global(.w) {
+    opacity: 1;
+  }
+  .prologue__orn {
+    width: min(322px, 70vw);
+    height: auto;
+    margin-top: 24px;
+    opacity: 0.85;
+  }
+</style>

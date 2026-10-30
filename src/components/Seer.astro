@@ -1,0 +1,227 @@
+---
+import { Image, Picture } from "astro:assets";
+import SectionHeading from "./SectionHeading.astro";
+import { SEER_SUGGESTIONS } from "../data/content";
+import blueLake from "../assets/bg/blue-lake.jpg";
+import dividerTop from "../assets/ornament/divider-top.png";
+import dividerBottom from "../assets/ornament/divider-bottom.png";
+---
+
+<section id="seer" class="seer section" data-section="seer" aria-labelledby="seer-title">
+  <div class="bg-media seer__bg" aria-hidden="true">
+    <Picture src={blueLake} alt="" widths={[960, 1920]} sizes="100vw" formats={["avif", "webp"]} loading="lazy" />
+  </div>
+  <div class="seer__veil" aria-hidden="true"></div>
+
+  <div class="container seer__inner">
+    <SectionHeading
+      eyebrow="The Seer"
+      title="꿈의 예언자에게 묻다"
+      id="seer-title"
+      lead="휴식의 땅에 홀로 남은 나방 부족의 마지막 예언자가 당신의 질문을 기다립니다. 신성둥지의 전설과 비밀에 대해 물어보세요."
+    />
+
+    <div class="seer__dialog" data-reveal>
+      <Image src={dividerTop} alt="" class="seer__orn" width={550} densities={[1, 2]} loading="lazy" />
+      <div class="seer__box">
+        <p class="seer__speaker eyebrow">Seer · 예언자</p>
+        <p class="seer__answer" aria-live="polite" data-seer-answer>…꿈꾸는 자여, 어서 오렴. 무엇이 그토록 궁금하니?</p>
+        <p class="seer__thinking" data-seer-thinking hidden>
+          <span aria-hidden="true"><i></i><i></i><i></i></span> 꿈을 엿보는 중…
+        </p>
+      </div>
+      <Image src={dividerBottom} alt="" class="seer__orn seer__orn--bottom" width={322} densities={[1, 2]} loading="lazy" />
+    </div>
+
+    <form class="seer__form" data-seer-form data-reveal>
+      <label class="sr-only" for="seer-q">예언자에게 물을 질문</label>
+      <input
+        id="seer-q"
+        name="question"
+        type="text"
+        maxlength="300"
+        required
+        autocomplete="off"
+        placeholder="예: 공허와 빛은 왜 대립하나요?"
+        data-seer-input
+      />
+      <button class="hk-btn hk-btn--framed seer__ask" type="submit" data-seer-submit>묻기</button>
+    </form>
+
+    <ul class="seer__chips" role="list" data-reveal>
+      {
+        SEER_SUGGESTIONS.map((q) => (
+          <li>
+            <button class="seer__chip" type="button" data-seer-suggest>
+              {q}
+            </button>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="seer__note">Gemini가 예언자를 연기합니다 · 공식 설정과 다를 수 있고 스포일러가 담길 수 있어요</p>
+  </div>
+</section>
+
+<style>
+  .seer__bg :global(img) {
+    opacity: 0.38;
+    filter: saturate(0.9);
+  }
+  .seer__veil {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(60% 60% at 50% 55%, rgb(3 4 9 / 0.35), rgb(3 4 9 / 0.92)),
+      linear-gradient(var(--ink-0), transparent 22%, transparent 78%, var(--ink-0));
+  }
+  .seer__inner {
+    display: grid;
+    justify-items: center;
+    max-width: 880px;
+  }
+  .seer__inner :global(.sh) {
+    margin-bottom: 40px;
+  }
+
+  .seer__dialog {
+    display: grid;
+    justify-items: center;
+    width: 100%;
+  }
+  .seer__orn {
+    width: min(550px, 92%);
+    height: auto;
+    margin-bottom: -8px;
+    position: relative;
+    z-index: 1;
+  }
+  .seer__orn--bottom {
+    width: min(322px, 64%);
+    margin: -6px 0 0;
+  }
+  .seer__box {
+    width: 100%;
+    min-height: 190px;
+    padding: 36px clamp(20px, 5vw, 56px) 30px;
+    background: radial-gradient(120% 140% at 50% 0%, rgb(14 20 34 / 0.92), rgb(3 4 9 / 0.96));
+    box-shadow: 0 30px 80px -30px rgb(0 0 0 / 0.9), inset 0 0 0 1px rgb(255 255 255 / 0.04);
+    text-align: center;
+  }
+  .seer__speaker {
+    margin-bottom: 14px;
+    color: #c8b6ff;
+  }
+  .seer__answer {
+    font-size: clamp(1.02rem, 0.96rem + 0.3vw, 1.18rem);
+    line-height: 2;
+    color: var(--pale);
+    white-space: pre-line;
+    text-wrap: pretty;
+  }
+  .seer__answer :global(.caret) {
+    display: inline-block;
+    width: 0.5em;
+    height: 1em;
+    margin-left: 2px;
+    vertical-align: -0.12em;
+    background: var(--soul);
+    animation: blink 0.9s steps(1) infinite;
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+  .seer__thinking {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    font-size: var(--fs-small);
+    color: var(--pale-3);
+  }
+  .seer__thinking span {
+    display: inline-flex;
+    gap: 4px;
+  }
+  .seer__thinking i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #c8b6ff;
+    animation: moth 1.2s var(--ease-in-out) infinite;
+  }
+  .seer__thinking i:nth-child(2) { animation-delay: 0.15s; }
+  .seer__thinking i:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes moth {
+    50% { transform: translateY(-6px); opacity: 0.4; }
+  }
+
+  .seer__form {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    margin-top: 36px;
+  }
+  .seer__form input {
+    flex: 1;
+    min-width: 0;
+    padding: 14px 18px;
+    border: 1px solid var(--line-2);
+    border-radius: 0;
+    background: rgb(3 4 9 / 0.7);
+    color: var(--pale);
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .seer__form input::placeholder {
+    color: var(--pale-4);
+  }
+  .seer__form input:focus {
+    outline: none;
+    border-color: rgb(200 182 255 / 0.7);
+    box-shadow: 0 0 0 4px rgb(200 182 255 / 0.12);
+  }
+  .seer__ask {
+    flex: none;
+  }
+  .seer__ask[disabled] {
+    opacity: 0.5;
+    cursor: progress;
+  }
+
+  .seer__chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0 0;
+    padding: 0;
+  }
+  .seer__chip {
+    padding: 8px 16px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: var(--fs-small);
+    color: var(--pale-3);
+    background: rgb(3 4 9 / 0.5);
+    transition: color 0.3s, border-color 0.3s, background 0.3s;
+  }
+  .seer__chip:hover,
+  .seer__chip:focus-visible {
+    color: var(--pale);
+    border-color: rgb(200 182 255 / 0.5);
+    background: rgb(200 182 255 / 0.08);
+  }
+  .seer__note {
+    margin-top: 22px;
+    font-size: 0.74rem;
+    color: var(--pale-4);
+    text-align: center;
+  }
+
+  @media (max-width: 560px) {
+    .seer__form {
+      flex-direction: column;
+    }
+  }
+</style>

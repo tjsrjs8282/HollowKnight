@@ -1,0 +1,89 @@
+---
+import { STATS } from "../data/content";
+---
+
+<section class="stats" aria-label="숫자로 보는 할로우 나이트">
+  <dl class="container stats__grid">
+    {
+      STATS.map((s) => (
+        <div class="stat" data-reveal>
+          <dt class="stat__label">
+            <span>{s.label}</span>
+            <span class="stat__en">{s.en}</span>
+          </dt>
+          <dd class="stat__value">
+            <span data-count={s.value}>{s.value}</span>
+            {s.suffix && <span class="stat__suffix">{s.suffix}</span>}
+          </dd>
+        </div>
+      ))
+    }
+  </dl>
+  <p class="container stats__source">출처: Steam 스토어 공식 소개 (“Over 130 enemies! 30 epic bosses!”)</p>
+</section>
+
+<style>
+  .stats {
+    position: relative;
+    padding: clamp(56px, 9vh, 110px) 0 clamp(40px, 6vh, 80px);
+  }
+  .stats__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 0 auto;
+    border-block: 1px solid var(--line);
+  }
+  .stat {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 6px;
+    padding: clamp(24px, 4vh, 44px) 12px;
+    text-align: center;
+  }
+  .stat + .stat {
+    border-left: 1px solid var(--line);
+  }
+  .stat__value {
+    margin: 0;
+    font-family: var(--font-display-stack);
+    font-size: clamp(2.4rem, 1.6rem + 3vw, 4.4rem);
+    font-weight: 400;
+    line-height: 1;
+    color: var(--pale);
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 0 34px rgb(168 212 255 / 0.3);
+  }
+  .stat__suffix {
+    color: var(--soul);
+  }
+  .stat__label {
+    display: grid;
+    gap: 2px;
+    color: var(--pale-2);
+  }
+  .stat__en {
+    font-family: var(--font-display-stack);
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--pale-4);
+  }
+  .stats__source {
+    margin-top: 14px;
+    font-size: 0.74rem;
+    color: var(--pale-4);
+    text-align: center;
+  }
+  @media (max-width: 720px) {
+    .stats__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .stat:nth-child(3) {
+      border-left: 0;
+    }
+    .stat:nth-child(n + 3) {
+      border-top: 1px solid var(--line);
+    }
+  }
+</style>

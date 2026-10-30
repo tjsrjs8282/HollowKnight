@@ -1,0 +1,174 @@
+---
+import { Image, Picture } from "astro:assets";
+import SectionHeading from "./SectionHeading.astro";
+import { STORES, MERCH } from "../data/stores";
+import cityOfTears from "../assets/bg/city-of-tears.jpg";
+
+const TABS = [
+  { key: "hollowKnight", label: "Hollow Knight" },
+  { key: "silksong", label: "Silksong" },
+] as const;
+---
+
+<section id="purchase" class="purchase section" data-section="purchase" aria-labelledby="purchase-title">
+  <div class="bg-media purchase__bg" aria-hidden="true">
+    <Picture src={cityOfTears} alt="" widths={[960, 1920]} sizes="100vw" formats={["avif", "webp"]} loading="lazy" />
+  </div>
+  <div class="purchase__veil" aria-hidden="true"></div>
+
+  <div class="container">
+    <SectionHeading
+      eyebrow="Your journey begins"
+      title="지금, 신성둥지로"
+      id="purchase-title"
+      lead="원하는 플랫폼에서 여정을 시작하세요. 모든 링크는 공식 스토어로 연결됩니다."
+    />
+
+    <div class="purchase__tabs" role="tablist" aria-label="게임 선택" data-reveal>
+      {
+        TABS.map((t, i) => (
+          <button
+            class="hk-btn purchase__tab"
+            type="button"
+            role="tab"
+            id={`store-tab-${t.key}`}
+            aria-controls={`store-panel-${t.key}`}
+            aria-selected={i === 0 ? "true" : "false"}
+            tabindex={i === 0 ? 0 : -1}
+            data-store-tab={t.key}
+          >
+            {t.label}
+          </button>
+        ))
+      }
+    </div>
+
+    {
+      TABS.map((t, i) => (
+        <div role="tabpanel" id={`store-panel-${t.key}`} aria-labelledby={`store-tab-${t.key}`} hidden={i !== 0} data-store-panel={t.key}>
+          <ul class="stores" role="list">
+            {STORES[t.key].map((s) => (
+              <li>
+                <a class="store" href={s.href} target="_blank" rel="noopener noreferrer" style={`--tint:${s.tint}`}>
+                  <Image src={s.logo} alt={s.name} width={376} loading="lazy" />
+                  <span class="sr-only">(새 창에서 열림)</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+
+    <div class="merch" data-reveal>
+      <p class="eyebrow">Official merch</p>
+      <ul class="merch__list" role="list">
+        {
+          MERCH.map((m) => (
+            <li>
+              <a class="store store--merch" href={m.href} target="_blank" rel="noopener noreferrer" style={`--tint:${m.tint}`}>
+                <Image src={m.logo} alt={m.name} width={422} loading="lazy" />
+                <span class="sr-only">(새 창에서 열림)</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .purchase__bg :global(img) {
+    opacity: 0.45;
+  }
+  .purchase__veil {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(70% 60% at 50% 45%, rgb(3 4 9 / 0.4), rgb(3 4 9 / 0.94)),
+      linear-gradient(var(--ink-0), transparent 22%, transparent 72%, var(--ink-0));
+  }
+  .purchase__tabs {
+    display: flex;
+    justify-content: center;
+    gap: clamp(28px, 6vw, 80px);
+    margin-bottom: 36px;
+  }
+  .purchase__tab {
+    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.3rem);
+    color: var(--pale-4);
+  }
+  .stores {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 1px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  [data-store-panel]:not([hidden]) .stores {
+    animation: rise 0.6s var(--ease-out);
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(12px); }
+  }
+  .store {
+    position: relative;
+    display: grid;
+    place-items: center;
+    height: clamp(96px, 12vw, 128px);
+    padding: 18px 28px;
+    overflow: hidden;
+    background: rgb(5 7 12 / 0.88);
+    isolation: isolate;
+    transition: background 0.4s;
+  }
+  .store::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(70% 90% at 50% 120%, color-mix(in srgb, var(--tint) 45%, transparent), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  .store :global(img) {
+    width: min(170px, 100%);
+    height: auto;
+    filter: grayscale(1) brightness(1.6) contrast(0.9);
+    opacity: 0.72;
+    transition: filter 0.5s, opacity 0.5s, transform 0.6s var(--ease-out);
+  }
+  .store:hover::before,
+  .store:focus-visible::before {
+    opacity: 1;
+  }
+  .store:hover :global(img),
+  .store:focus-visible :global(img) {
+    filter: none;
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  .merch {
+    display: grid;
+    justify-items: center;
+    gap: 16px;
+    margin-top: clamp(48px, 7vh, 80px);
+  }
+  .merch__list {
+    display: flex;
+    gap: 1px;
+    margin: 0;
+    padding: 0;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .store--merch {
+    width: min(260px, 42vw);
+  }
+</style>

@@ -1,0 +1,300 @@
+---
+import { Image, Picture } from "astro:assets";
+import logo from "../assets/brand/hk-logo.png";
+import corner from "../assets/ornament/frame/corner.png";
+import top from "../assets/ornament/frame/top.png";
+import bottom from "../assets/ornament/frame/bottom.png";
+import side from "../assets/ornament/frame/side.png";
+import { TRAILERS } from "../data/content";
+
+// The glow is the same picture rendered twice (one download), blurred behind the logo.
+const logoFormats: ("avif" | "webp")[] = ["avif", "webp"];
+const logoWidths = [560, 900, 1600];
+const logoSizes = "(max-width: 640px) 88vw, 720px";
+---
+
+<section id="top" class="hero" data-section="top" aria-labelledby="hero-title">
+  <div class="bg-media hero__media" data-hero-media>
+    <video
+      class="hero__video"
+      muted
+      loop
+      playsinline
+      preload="none"
+      poster="/media/hero-poster.jpg"
+      aria-hidden="true"
+      data-hero-video
+      data-src-desktop="/media/hero.webm|/media/hero.mp4"
+      data-src-mobile="/media/hero-480.mp4"></video>
+  </div>
+  <div class="hero__veil" aria-hidden="true"></div>
+  <div class="hero__fog" aria-hidden="true"><span></span><span></span></div>
+
+  <div class="hero__frame" aria-hidden="true" data-frame>
+    <Image src={corner} alt="" class="frame__corner frame__corner--tl" width={180} densities={[1, 2]} loading="lazy" />
+    <Image src={corner} alt="" class="frame__corner frame__corner--tr" width={180} densities={[1, 2]} loading="lazy" />
+    <Image src={corner} alt="" class="frame__corner frame__corner--bl" width={180} densities={[1, 2]} loading="lazy" />
+    <Image src={corner} alt="" class="frame__corner frame__corner--br" width={180} densities={[1, 2]} loading="lazy" />
+    <Image src={top} alt="" class="frame__top" width={690} densities={[1, 2]} loading="lazy" />
+    <Image src={bottom} alt="" class="frame__bottom" width={410} densities={[1, 2]} loading="lazy" />
+    <Image src={side} alt="" class="frame__side frame__side--l" width={55} densities={[1, 2]} loading="lazy" />
+    <Image src={side} alt="" class="frame__side frame__side--r" width={55} densities={[1, 2]} loading="lazy" />
+  </div>
+
+  <div class="hero__content" data-hero-content>
+    <p class="eyebrow hero__eyebrow" data-hero-in>Team Cherry · 2017</p>
+    <h1 class="hero__title" id="hero-title">
+      <span class="sr-only">Hollow Knight</span>
+      <span class="hero__logo" data-hero-logo>
+        <span class="hero__logo-glow" aria-hidden="true">
+          <Picture src={logo} alt="" formats={logoFormats} widths={logoWidths} sizes={logoSizes} loading="eager" />
+        </span>
+        <Picture src={logo} alt="" formats={logoFormats} widths={logoWidths} sizes={logoSizes} loading="eager" fetchpriority="high" />
+      </span>
+    </h1>
+    <p class="hero__tag display" data-hero-tag>Descend into the dark</p>
+    <p class="hero__lede" data-hero-in>쇠락한 흙의 마을 아래, 잠든 왕국 신성둥지로.</p>
+
+    <ul class="hero__menu" role="list">
+      <li data-hero-in><a class="hk-btn" href="#prologue">여정 시작</a></li>
+      <li data-hero-in>
+        <button class="hk-btn" type="button" data-video-open={TRAILERS.hollowKnight.id} data-video-title={TRAILERS.hollowKnight.title}>
+          트레일러 보기
+        </button>
+      </li>
+      <li data-hero-in><a class="hk-btn" href="#purchase">지금 구매</a></li>
+    </ul>
+  </div>
+
+  <div class="hero__foot" data-hero-in>
+    <a class="hero__scroll" href="#prologue" aria-label="아래로 스크롤">
+      <span class="eyebrow">Scroll</span>
+      <i aria-hidden="true"></i>
+    </a>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 100svh;
+    padding: calc(var(--hud-h) + 24px) var(--gutter) 120px;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .hero__media {
+    background: url("/media/hero-poster.jpg") center / cover no-repeat;
+    transform-origin: 50% 40%;
+  }
+  .hero__video {
+    opacity: 0;
+    transition: opacity 1.6s var(--ease-out);
+  }
+  .hero__video.is-playing {
+    opacity: 1;
+  }
+
+  .hero__veil {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(70% 60% at 50% 42%, rgb(3 4 9 / 0.15), rgb(3 4 9 / 0.72) 72%, rgb(3 4 9 / 0.96)),
+      linear-gradient(transparent 55%, var(--ink-0));
+  }
+
+  .hero__fog {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+    mix-blend-mode: screen;
+  }
+  .hero__fog span {
+    position: absolute;
+    inset: -20% -50%;
+    background:
+      radial-gradient(40% 18% at 30% 70%, rgb(180 200 255 / 0.1), transparent 70%),
+      radial-gradient(30% 14% at 70% 80%, rgb(180 200 255 / 0.08), transparent 70%),
+      radial-gradient(35% 16% at 50% 90%, rgb(200 215 255 / 0.1), transparent 70%);
+    animation: fog 38s linear infinite;
+  }
+  .hero__fog span + span {
+    animation-duration: 56s;
+    animation-direction: reverse;
+    opacity: 0.8;
+    transform: scaleY(-1);
+  }
+  @keyframes fog {
+    from { translate: -12% 0; }
+    50% { translate: 12% -2%; }
+    to { translate: -12% 0; }
+  }
+
+  /* Ornate frame from the 2020 site, sliced so it fits any aspect ratio. */
+  .hero__frame {
+    position: absolute;
+    inset: calc(var(--hud-h) + 4px) clamp(10px, 2vw, 28px) clamp(10px, 2vw, 28px);
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.7;
+    transition: opacity 0.6s;
+  }
+  :global(html.no-frame) .hero__frame {
+    opacity: 0;
+  }
+  .hero__frame :global(img) {
+    position: absolute;
+    height: auto;
+  }
+  .hero__frame :global(.frame__corner) {
+    width: clamp(70px, 9vw, 150px);
+  }
+  .hero__frame :global(.frame__corner--tl) { top: 0; left: 0; }
+  .hero__frame :global(.frame__corner--tr) { top: 0; right: 0; transform: scaleX(-1); }
+  .hero__frame :global(.frame__corner--bl) { bottom: 0; left: 0; transform: scaleY(-1); }
+  .hero__frame :global(.frame__corner--br) { bottom: 0; right: 0; transform: scale(-1); }
+  .hero__frame :global(.frame__top) {
+    top: 0;
+    left: 50%;
+    width: clamp(260px, 44vw, 640px);
+    translate: -50% 0;
+  }
+  .hero__frame :global(.frame__bottom) {
+    bottom: 0;
+    left: 50%;
+    width: clamp(180px, 26vw, 380px);
+    translate: -50% 0;
+  }
+  .hero__frame :global(.frame__side) {
+    top: 50%;
+    width: clamp(18px, 2vw, 30px);
+    translate: 0 -50%;
+  }
+  .hero__frame :global(.frame__side--l) { left: 0; }
+  .hero__frame :global(.frame__side--r) { right: 0; transform: scaleX(-1); }
+
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    justify-items: center;
+    gap: clamp(10px, 1.6vh, 18px);
+    text-align: center;
+  }
+  /* Behind the gate the hero is loaded but not painted, so it is revealed by
+     the intro rather than flashing — and the gate stays the page's LCP. */
+  :global(html.js:not(.is-entered)) .hero__content,
+  :global(html.js:not(.is-entered)) .hero__foot {
+    visibility: hidden;
+  }
+  .hero__eyebrow {
+    color: var(--pale-3);
+  }
+  .hero__title {
+    margin: 0;
+    line-height: 0;
+  }
+  .hero__logo {
+    position: relative;
+    display: block;
+    /* Scales with both axes so short laptop screens keep the menu above the fold. */
+    width: min(720px, 88vw, 66svh);
+    filter: drop-shadow(0 0 40px rgb(168 212 255 / 0.18));
+  }
+  .hero__logo :global(img) {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+  /* Soul-light breathing behind the letters, like the in-game title screen. */
+  .hero__logo-glow {
+    position: absolute;
+    inset: 0;
+    filter: blur(14px) brightness(1.6);
+    opacity: 0;
+    pointer-events: none;
+  }
+  :global(.hero__logo.is-shining) .hero__logo-glow {
+    animation: breathe 4.8s var(--ease-in-out) infinite alternate;
+  }
+  @keyframes breathe {
+    from { opacity: 0.12; }
+    to { opacity: 0.55; }
+  }
+
+  .hero__tag {
+    font-size: clamp(0.95rem, 0.8rem + 0.8vw, 1.4rem);
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--pale-2);
+    margin-right: -0.5em;
+  }
+  .hero__lede {
+    font-size: var(--fs-lead);
+    color: var(--pale-3);
+  }
+  .hero__menu {
+    display: grid;
+    justify-items: center;
+    gap: 0;
+    margin-top: clamp(8px, 2vh, 22px);
+    padding: 0;
+    list-style: none;
+  }
+  .hero__menu .hk-btn {
+    font-size: clamp(1rem, 0.92rem + 0.4vw, 1.2rem);
+    letter-spacing: 0.24em;
+  }
+
+  .hero__foot {
+    position: absolute;
+    inset: auto 0 clamp(20px, 3.4vh, 40px);
+    z-index: 2;
+    display: grid;
+    justify-items: center;
+  }
+  .hero__scroll {
+    display: grid;
+    justify-items: center;
+    gap: 10px;
+  }
+  .hero__scroll i {
+    position: relative;
+    display: block;
+    width: 1px;
+    height: 48px;
+    overflow: hidden;
+    background: var(--line);
+  }
+  .hero__scroll i::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent, var(--pale));
+    animation: drip 2.2s var(--ease-in-out) infinite;
+  }
+  @keyframes drip {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(100%); }
+  }
+
+  @media (max-width: 640px) {
+    .hero__frame {
+      display: none;
+    }
+    .hero__tag {
+      letter-spacing: 0.32em;
+      margin-right: -0.32em;
+    }
+  }
+  @media (max-height: 640px) {
+    .hero__foot {
+      display: none;
+    }
+  }
+</style>

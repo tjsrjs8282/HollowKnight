@@ -1,0 +1,105 @@
+---
+import { Image } from "astro:assets";
+import teamCherry from "../assets/brand/team-cherry.png";
+import divider from "../assets/ornament/divider-top.png";
+import { SOCIAL } from "../data/stores";
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <Image src={divider} alt="" class="footer__orn" width={440} densities={[1, 2]} loading="lazy" />
+    <a class="footer__tc" href="https://www.teamcherry.com.au/" target="_blank" rel="noopener noreferrer">
+      <Image src={teamCherry} alt="Team Cherry" width={200} densities={[1, 2]} loading="lazy" />
+    </a>
+    <nav class="footer__links" aria-label="공식 채널">
+      <ul role="list">
+        {
+          SOCIAL.map((s) => (
+            <li>
+              <a href={s.href} target="_blank" rel="noopener noreferrer">
+                {s.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <p class="footer__legal">
+      Hollow Knight, Hollow Knight: Silksong 및 이 페이지에 쓰인 모든 이미지·영상·음악의 권리는 Team Cherry와 각 저작권자에게 있습니다. 이 사이트는
+      Team Cherry와 관계없는 비영리 팬 프로젝트입니다.
+    </p>
+    <p class="footer__made">
+      2020년 첫 포트폴리오 → 2026 리마스터 ·
+      <a href="https://github.com/tjsrjs8282/HollowKnight" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </p>
+    <p class="footer__stack">Astro · GSAP · Lenis · Web Audio · Gemini · ElevenLabs · fal.ai</p>
+    <a class="hk-btn footer__top" href="#top">처음으로</a>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    position: relative;
+    padding: clamp(56px, 10vh, 120px) 0 clamp(36px, 6vh, 64px);
+    background: linear-gradient(transparent, rgb(10 14 24 / 0.6));
+  }
+  .footer__inner {
+    display: grid;
+    justify-items: center;
+    gap: 18px;
+    text-align: center;
+  }
+  .footer__orn {
+    width: min(440px, 80vw);
+    height: auto;
+    opacity: 0.7;
+  }
+  .footer__tc :global(img) {
+    width: 92px;
+    height: auto;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+  }
+  .footer__tc:hover :global(img) {
+    opacity: 1;
+  }
+  .footer__links ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 26px;
+    margin: 0;
+    padding: 0;
+  }
+  .footer__links a {
+    font-size: var(--fs-small);
+    color: var(--pale-3);
+    transition: color 0.3s;
+  }
+  .footer__links a:hover {
+    color: var(--pale);
+  }
+  .footer__legal {
+    max-width: 46em;
+    font-size: 0.78rem;
+    line-height: 1.8;
+    color: var(--pale-4);
+  }
+  .footer__made,
+  .footer__stack {
+    font-size: 0.78rem;
+    color: var(--pale-4);
+  }
+  .footer__made a {
+    color: var(--pale-3);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .footer__stack {
+    font-family: var(--font-display-stack);
+    letter-spacing: 0.16em;
+  }
+  .footer__top {
+    margin-top: 8px;
+  }
+</style>

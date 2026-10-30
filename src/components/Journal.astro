@@ -1,0 +1,351 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image, Picture } from "astro:assets";
+import SectionHeading from "./SectionHeading.astro";
+import { CHARACTERS } from "../data/characters";
+import critters from "../data/critters.json";
+import ensemble from "../assets/bg/ensemble.jpg";
+
+const KIND = { hero: "Protagonist", npc: "Wanderer", boss: "Boss" } as const;
+
+// Floating bugs from the old parallax scene, keyed by file name.
+const critterImages = import.meta.glob<{ default: ImageMetadata }>("../assets/critters/*.png", { eager: true });
+const bugs = critters.map((c) => ({ ...c, img: critterImages[`../assets/critters/${c.file}.png`].default }));
+---
+
+<section id="journal" class="journal section" data-section="journal" aria-labelledby="journal-title">
+  <div class="bg-media journal__bg" aria-hidden="true">
+    <Picture src={ensemble} alt="" widths={[960, 1600, 2560]} sizes="100vw" formats={["avif", "webp"]} loading="lazy" />
+  </div>
+  <div class="journal__veil" aria-hidden="true"></div>
+  <div class="journal__bugs" aria-hidden="true" data-bugs>
+    {
+      bugs.map((b, i) => (
+        <Image
+          src={b.img}
+          alt=""
+          class="journal__bug"
+          style={`left:${b.x * 100}%;top:${b.y * 100}%;width:${b.w * 100}%`}
+          data-depth={[0.4, 1, 0.8, 0.2, 0.5, 0.3][i] ?? 0.5}
+          width={b.img.width}
+          loading="lazy"
+        />
+      ))
+    }
+  </div>
+
+  <div class="container">
+    <SectionHeading
+      eyebrow="Hunter's Journal"
+      title="신성둥지의 존재들"
+      id="journal-title"
+      lead="잊힌 왕국을 떠도는 방랑자와 수호자, 그리고 길을 막아서는 강적들. 이름을 골라 일지를 펼쳐 보세요."
+    />
+
+    <div class="journal__book" data-journal>
+      <div class="journal__index" role="tablist" aria-label="캐릭터 목록" aria-orientation="vertical" data-reveal>
+        {
+          CHARACTERS.map((c, i) => (
+            <button
+              class="journal__tab"
+              type="button"
+              role="tab"
+              id={`tab-${c.id}`}
+              aria-controls={`panel-${c.id}`}
+              aria-selected={i === 0 ? "true" : "false"}
+              tabindex={i === 0 ? 0 : -1}
+              style={`--accent:${c.accent}`}
+              data-tab={c.id}
+            >
+              <span class="journal__num">{String(i + 1).padStart(2, "0")}</span>
+              <span class="journal__tab-name">{c.name}</span>
+            </button>
+          ))
+        }
+      </div>
+
+      <div class="journal__stage" data-reveal>
+        {
+          CHARACTERS.map((c, i) => (
+            <article
+              class="journal__panel"
+              role="tabpanel"
+              id={`panel-${c.id}`}
+              aria-labelledby={`tab-${c.id}`}
+              tabindex="0"
+              hidden={i !== 0}
+              style={`--accent:${c.accent}`}
+              data-panel={c.id}
+            >
+              <div class="journal__art" data-art>
+                <span class="journal__halo" aria-hidden="true" />
+                <Image
+                  src={c.art}
+                  alt={`${c.name} 일러스트`}
+                  widths={[380, 640, 1000]}
+                  sizes="(max-width: 900px) 78vw, 520px"
+                  loading="lazy"
+                />
+              </div>
+              <div class="journal__entry">
+                <p class="eyebrow journal__kind" data-line>
+                  {KIND[c.kind]} · {String(i + 1).padStart(2, "0")}
+                </p>
+                <h3 class="journal__name" data-line>
+                  <span class="display">{c.name}</span>
+                  <span class="journal__ko">
+                    {c.nameKo} — {c.role}
+                  </span>
+                </h3>
+                <p class="journal__desc" data-line>{c.description}</p>
+                {c.quote && <blockquote class="journal__quote" data-line>“{c.quote}”</blockquote>}
+                <div class="journal__scenes" data-line>
+                  {c.scenes.map((s, j) => (
+                    <figure class="journal__scene">
+                      <Image src={s} alt={`${c.name} 게임 장면 ${j + 1}`} widths={[320, 640]} sizes="(max-width: 900px) 44vw, 250px" loading="lazy" />
+                    </figure>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .journal {
+    overflow: hidden;
+  }
+  .journal__bg :global(img) {
+    opacity: 0.22;
+    filter: saturate(0.7) blur(2px);
+    transform: scale(1.06);
+  }
+  .journal__veil {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(80% 70% at 50% 40%, rgb(3 4 9 / 0.5), rgb(3 4 9 / 0.94)),
+      linear-gradient(var(--ink-0), transparent 18%, transparent 82%, var(--ink-0));
+  }
+  .journal__bugs {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .journal__bugs :global(.journal__bug) {
+    position: absolute;
+    height: auto;
+    opacity: 0.3;
+    filter: blur(1.5px) drop-shadow(0 0 12px rgb(168 212 255 / 0.25));
+    scale: 0.8;
+  }
+
+  .journal__book {
+    display: grid;
+    grid-template-columns: minmax(220px, 280px) 1fr;
+    gap: clamp(24px, 4vw, 64px);
+    align-items: start;
+  }
+
+  .journal__index {
+    position: sticky;
+    top: calc(var(--hud-h) + 24px);
+    display: grid;
+    gap: 2px;
+    padding: 18px 0;
+    border-block: 1px solid var(--line);
+  }
+  .journal__tab {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 10px 14px 10px 34px;
+    text-align: left;
+    color: var(--pale-3);
+    transition: color 0.3s, background 0.3s;
+  }
+  .journal__tab::before {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    width: 18px;
+    aspect-ratio: 60 / 55;
+    background: url("../assets/ornament/pointer-right.png") center / contain no-repeat;
+    opacity: 0;
+    transform: translate(-6px, -50%);
+    transition: opacity 0.3s, transform 0.4s var(--ease-out);
+  }
+  .journal__tab:hover,
+  .journal__tab:focus-visible {
+    color: var(--pale);
+  }
+  .journal__tab[aria-selected="true"] {
+    color: var(--pale);
+    background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 14%, transparent), transparent);
+  }
+  .journal__tab[aria-selected="true"]::before {
+    opacity: 1;
+    transform: translate(0, -50%);
+  }
+  .journal__num {
+    font-family: var(--font-display-stack);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--pale-4);
+  }
+  .journal__tab[aria-selected="true"] .journal__num {
+    color: var(--accent);
+  }
+  .journal__tab-name {
+    font-family: var(--font-display-stack);
+    font-size: 1.02rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+
+  .journal__stage {
+    position: relative;
+    min-height: 560px;
+  }
+  .journal__panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: clamp(20px, 3vw, 48px);
+    align-items: center;
+  }
+  .journal__panel:focus-visible {
+    outline-offset: 12px;
+  }
+  .journal__art {
+    position: relative;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+  }
+  .journal__art :global(img) {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 30px 40px rgb(0 0 0 / 0.6));
+  }
+  .journal__halo {
+    position: absolute;
+    inset: 8%;
+    border-radius: 50%;
+    background: radial-gradient(circle, color-mix(in srgb, var(--accent) 34%, transparent), transparent 66%);
+    filter: blur(20px);
+    animation: halo 6s var(--ease-in-out) infinite alternate;
+  }
+  @keyframes halo {
+    to { transform: scale(1.12); opacity: 0.7; }
+  }
+
+  .journal__entry {
+    display: grid;
+    gap: 14px;
+  }
+  .journal__kind {
+    color: var(--accent);
+  }
+  .journal__name {
+    display: grid;
+    gap: 6px;
+    font-weight: 400;
+  }
+  .journal__name .display {
+    font-size: clamp(2rem, 1.4rem + 2.4vw, 3.4rem);
+    text-shadow: 0 0 36px color-mix(in srgb, var(--accent) 40%, transparent);
+  }
+  .journal__ko {
+    font-size: var(--fs-small);
+    letter-spacing: 0.04em;
+    color: var(--pale-3);
+  }
+  .journal__desc {
+    color: var(--pale-2);
+    text-wrap: pretty;
+  }
+  .journal__quote {
+    position: relative;
+    padding-left: 18px;
+    font-size: 0.95rem;
+    font-style: italic;
+    line-height: 1.8;
+    color: color-mix(in srgb, var(--accent) 60%, var(--pale));
+    border-left: 1px solid color-mix(in srgb, var(--accent) 60%, transparent);
+  }
+  .journal__scenes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 6px;
+  }
+  .journal__scene {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border: 1px solid var(--line-2);
+    background: var(--ink-2);
+  }
+  .journal__scene :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s var(--ease-out), filter 0.8s;
+    filter: saturate(0.9);
+  }
+  .journal__scene:hover :global(img) {
+    transform: scale(1.06);
+    filter: saturate(1.1);
+  }
+
+  @media (max-width: 960px) {
+    .journal__book {
+      grid-template-columns: 1fr;
+    }
+    .journal__index {
+      position: relative;
+      top: 0;
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 8px 0;
+      scrollbar-width: none;
+      mask: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    }
+    .journal__index::-webkit-scrollbar {
+      display: none;
+    }
+    .journal__tab {
+      flex: none;
+      scroll-snap-align: center;
+      padding: 10px 16px;
+    }
+    .journal__tab::before {
+      display: none;
+    }
+    .journal__tab[aria-selected="true"] {
+      background: none;
+      box-shadow: inset 0 -1px 0 var(--accent);
+    }
+    .journal__panel {
+      grid-template-columns: 1fr;
+    }
+    .journal__art {
+      width: min(420px, 82%);
+      margin-inline: auto;
+    }
+    .journal__stage {
+      min-height: 0;
+    }
+  }
+</style>

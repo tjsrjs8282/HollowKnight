@@ -1,0 +1,433 @@
+/* ─────────────────────────────────────────────────────────────
+   Hallownest design tokens
+   ───────────────────────────────────────────────────────────── */
+:root {
+  color-scheme: dark;
+
+  --ink-0: #030409;
+  --ink-1: #06080f;
+  --ink-2: #0b0f1a;
+  --ink-3: #121828;
+  --ink-4: #1b2337;
+
+  --pale: #eef1f8;
+  --pale-2: #c9d0de;
+  --pale-3: #8f98ab;
+  --pale-4: #7d8698; /* ≥ 4.5:1 on --ink-0 for small print */
+
+  --soul: #a8d4ff;
+  --soul-2: #6fa8e8;
+  --infection: #ff9a3c;
+  --silk: #e0334a;
+  --silk-2: #ff6b5a;
+  --gold: #e3c88f;
+
+  --line: rgb(220 230 255 / 0.12);
+  --line-2: rgb(220 230 255 / 0.24);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --gutter: clamp(16px, 4vw, 56px);
+  --maxw: 1240px;
+  --hud-h: clamp(64px, 8vh, 84px);
+
+  --fs-eyebrow: clamp(0.7rem, 0.66rem + 0.18vw, 0.8rem);
+  --fs-small: clamp(0.82rem, 0.8rem + 0.1vw, 0.9rem);
+  --fs-body: clamp(0.98rem, 0.94rem + 0.2vw, 1.06rem);
+  --fs-lead: clamp(1.06rem, 0.98rem + 0.45vw, 1.28rem);
+  --fs-h3: clamp(1.5rem, 1.18rem + 1.4vw, 2.4rem);
+  --fs-h2: clamp(2.3rem, 1.3rem + 4vw, 4.8rem);
+
+  --font-display-stack: var(--font-display), var(--font-serif);
+  --font-serif-stack: var(--font-serif);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Reset
+   ───────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  background: var(--ink-0);
+  scrollbar-color: var(--ink-4) var(--ink-0);
+  scrollbar-width: thin;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  background: var(--ink-0);
+  color: var(--pale-2);
+  font-family: var(--font-serif-stack);
+  font-size: var(--fs-body);
+  line-height: 1.85;
+  letter-spacing: -0.005em;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+ul,
+ol,
+dl,
+dd {
+  margin: 0;
+}
+
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+::selection {
+  background: rgb(168 212 255 / 0.28);
+  color: var(--pale);
+}
+
+:focus-visible {
+  outline: 1px solid var(--soul);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 6px rgb(168 212 255 / 0.12);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+/* While the title gate is up the page underneath must not scroll. */
+html.is-gated,
+html.is-gated body {
+  overflow: hidden;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Film grain — a fixed noise layer over everything
+   ───────────────────────────────────────────────────────────── */
+body::after {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 1.2s steps(6) infinite;
+}
+
+@keyframes grain {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-3%, 2%); }
+  40% { transform: translate(2%, -4%); }
+  60% { transform: translate(-4%, -1%); }
+  80% { transform: translate(3%, 3%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Utilities
+   ───────────────────────────────────────────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 200;
+  padding: 10px 16px;
+  background: var(--pale);
+  color: var(--ink-0);
+  font-size: var(--fs-small);
+  transform: translateY(-160%);
+  transition: transform 0.3s var(--ease-out);
+}
+.skip-link:focus {
+  transform: none;
+}
+
+.container {
+  width: min(100% - var(--gutter) * 2, var(--maxw));
+  margin-inline: auto;
+}
+
+.section {
+  position: relative;
+  padding-block: clamp(96px, 15vh, 190px);
+  isolation: isolate;
+}
+
+/* Soft fades so every section melts into the next. */
+.section-fade {
+  position: absolute;
+  inset-inline: 0;
+  height: clamp(120px, 22vh, 260px);
+  z-index: -1;
+  pointer-events: none;
+}
+.section-fade--top {
+  top: 0;
+  background: linear-gradient(var(--ink-0), transparent);
+}
+.section-fade--bottom {
+  bottom: 0;
+  background: linear-gradient(transparent, var(--ink-0));
+}
+
+.bg-media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+}
+.bg-media > img,
+.bg-media > picture > img,
+.bg-media > video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Type
+   ───────────────────────────────────────────────────────────── */
+.eyebrow {
+  font-family: var(--font-display-stack);
+  font-size: var(--fs-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--pale-3);
+}
+
+.display {
+  font-family: var(--font-display-stack);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1.05;
+  color: var(--pale);
+}
+
+.lead {
+  font-size: var(--fs-lead);
+  line-height: 1.95;
+  color: var(--pale-2);
+}
+
+.muted {
+  color: var(--pale-3);
+}
+
+.glow {
+  text-shadow: 0 0 22px rgb(168 212 255 / 0.4), 0 0 2px rgb(255 255 255 / 0.6);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Hallownest menu buttons — the in-game title menu, with the
+   ornate pointers sliding in on hover / keyboard focus.
+   ───────────────────────────────────────────────────────────── */
+.hk-btn {
+  --pointer: 30px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  padding: 0.55em 1.2em;
+  font-family: var(--font-display-stack);
+  font-size: clamp(0.95rem, 0.9rem + 0.3vw, 1.12rem);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--pale-2);
+  white-space: nowrap;
+  transition: color 0.35s var(--ease-out), text-shadow 0.35s var(--ease-out);
+}
+.hk-btn::before,
+.hk-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: var(--pointer);
+  aspect-ratio: 60 / 55;
+  background: center / contain no-repeat;
+  opacity: 0;
+  transition: opacity 0.35s var(--ease-out), transform 0.45s var(--ease-out);
+  pointer-events: none;
+}
+.hk-btn::before {
+  right: 100%;
+  background-image: url("../assets/ornament/pointer-left.png");
+  transform: translate(10px, -50%);
+}
+.hk-btn::after {
+  left: 100%;
+  background-image: url("../assets/ornament/pointer-right.png");
+  transform: translate(-10px, -50%);
+}
+.hk-btn:hover,
+.hk-btn:focus-visible,
+.hk-btn[aria-current="true"],
+.hk-btn[aria-selected="true"] {
+  color: var(--pale);
+  text-shadow: 0 0 18px rgb(255 255 255 / 0.55);
+}
+.hk-btn:hover::before,
+.hk-btn:focus-visible::before,
+.hk-btn[aria-current="true"]::before,
+.hk-btn[aria-selected="true"]::before {
+  opacity: 1;
+  transform: translate(-2px, -50%);
+}
+.hk-btn:hover::after,
+.hk-btn:focus-visible::after,
+.hk-btn[aria-current="true"]::after,
+.hk-btn[aria-selected="true"]::after {
+  opacity: 1;
+  transform: translate(2px, -50%);
+}
+.hk-btn:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Framed variant for primary calls to action. */
+.hk-btn--framed {
+  padding: 0.85em 2em;
+  border: 1px solid var(--line-2);
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.04), rgb(255 255 255 / 0));
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.02), 0 10px 40px -20px rgb(168 212 255 / 0.5);
+}
+.hk-btn--framed:hover,
+.hk-btn--framed:focus-visible {
+  border-color: rgb(238 241 248 / 0.55);
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.01));
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Reveal defaults — JS animates these in. Without JS (or with
+   reduced motion) they simply stay visible.
+   ───────────────────────────────────────────────────────────── */
+html.js-motion [data-reveal] {
+  opacity: 0;
+  transform: translateY(36px);
+}
+
+/* Failsafe: if the app script never boots, nothing stays hidden. */
+html:not(.app-ready) .gate {
+  animation: failsafe-hide 0.8s 9s forwards;
+}
+html.js-motion:not(.app-ready) [data-reveal] {
+  animation: failsafe-show 0.8s 9s forwards;
+}
+html.is-gated:not(.app-ready) {
+  animation: failsafe-scroll 0s 9s forwards;
+}
+html.js:not(.app-ready) .hero__content,
+html.js:not(.app-ready) .hero__foot {
+  animation: failsafe-visible 0s 9s forwards;
+}
+@keyframes failsafe-visible {
+  to { visibility: visible; }
+}
+@keyframes failsafe-hide {
+  to { opacity: 0; visibility: hidden; }
+}
+@keyframes failsafe-show {
+  to { opacity: 1; transform: none; }
+}
+@keyframes failsafe-scroll {
+  to { overflow: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  body::after {
+    animation: none;
+  }
+}
+
+html.reduce-motion *,
+html.reduce-motion *::before,
+html.reduce-motion *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+}

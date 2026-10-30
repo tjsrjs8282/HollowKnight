@@ -1,0 +1,27 @@
+---
+/** One health mask from the HUD — the Knight's face. Filled or hollow via CSS. */
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<svg class:list={["mask-icon", className]} viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+  <path class="mask-icon__face" d="M14 2C9 9 7 18 13 26c-4 5-4 12-3 17 2 11 10 18 22 18s20-7 22-18c1-5 1-12-3-17 6-8 4-17-1-24-1 8-4 15-8 19-5-2-15-2-20 0-4-4-7-11-8-19z"></path>
+  <ellipse class="mask-icon__eye" cx="24" cy="41" rx="5.6" ry="8.4" transform="rotate(-8 24 41)"></ellipse>
+  <ellipse class="mask-icon__eye" cx="40" cy="41" rx="5.6" ry="8.4" transform="rotate(8 40 41)"></ellipse>
+</svg>
+
+<style>
+  .mask-icon__face {
+    fill: var(--mask-fill, var(--pale));
+    stroke: var(--mask-stroke, var(--ink-0));
+    stroke-width: 3;
+    stroke-linejoin: round;
+    transition: fill 0.4s var(--ease-out);
+  }
+  .mask-icon__eye {
+    fill: var(--mask-eye, var(--ink-0));
+    transition: opacity 0.4s var(--ease-out);
+  }
+</style>

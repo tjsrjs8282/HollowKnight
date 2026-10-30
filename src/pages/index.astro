@@ -1,0 +1,65 @@
+---
+import Base from "../layouts/Base.astro";
+import Gate from "../components/Gate.astro";
+import Hud from "../components/Hud.astro";
+import Menu from "../components/Menu.astro";
+import Hero from "../components/Hero.astro";
+import Prologue from "../components/Prologue.astro";
+import Stats from "../components/Stats.astro";
+import Journal from "../components/Journal.astro";
+import Expansions from "../components/Expansions.astro";
+import Journeys from "../components/Journeys.astro";
+import Silksong from "../components/Silksong.astro";
+import Soundtrack from "../components/Soundtrack.astro";
+import Seer from "../components/Seer.astro";
+import Purchase from "../components/Purchase.astro";
+import Footer from "../components/Footer.astro";
+import VideoDialog from "../components/VideoDialog.astro";
+import { SECTIONS } from "../data/sections";
+---
+
+<Base
+  title="HOLLOW KNIGHT — 신성둥지로의 하강 · 팬메이드 리마스터"
+  description="고대 곤충 왕국 신성둥지로 내려가는 여정. 할로우 나이트와 실크송의 이야기, 캐릭터, 무료 확장팩, 사운드트랙을 한 페이지에 담은 팬메이드 랜딩페이지."
+>
+  <Gate />
+  <Hud />
+  <canvas class="motes" aria-hidden="true" data-motes></canvas>
+
+  <main id="main">
+    <Hero />
+    <Prologue />
+    <Stats />
+    <Journal />
+    <Expansions />
+    <Journeys />
+    <Silksong />
+    <Soundtrack />
+    <Seer />
+    <Purchase />
+  </main>
+  <Footer />
+
+  <Menu />
+  <VideoDialog />
+
+  <script type="application/json" id="sections-data" set:html={JSON.stringify(SECTIONS)} />
+  <script>
+    import "../scripts/app";
+  </script>
+</Base>
+
+<style>
+  .motes {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    mix-blend-mode: screen;
+  }
+  :global(html.reduce-motion) .motes {
+    display: none;
+  }
+</style>

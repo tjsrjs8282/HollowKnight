@@ -1,0 +1,144 @@
+---
+import { Image, Picture } from "astro:assets";
+import knightArt from "../assets/bg/split-knight.jpg";
+import hornetArt from "../assets/bg/split-hornet.jpg";
+import hkLogo from "../assets/brand/hk-logo.png";
+import silkLogo from "../assets/brand/silksong-logo.png";
+
+/* The 2020 site opened on a Hollow Knight / Silksong split screen —
+   kept here as the hinge between the two games. */
+---
+
+<section class="journeys" aria-labelledby="journeys-title">
+  <h2 class="sr-only" id="journeys-title">두 개의 여정</h2>
+  <div class="journeys__split" data-journeys>
+    <a class="journey journey--knight" href="#purchase" data-journey>
+      <Picture src={knightArt} alt="" class="journey__art" widths={[480, 870]} sizes="(max-width: 800px) 100vw, 50vw" formats={["avif", "webp"]} loading="lazy" />
+      <div class="journey__body">
+        <p class="eyebrow">2017 · Hallownest</p>
+        <Image src={hkLogo} alt="Hollow Knight" class="journey__logo" widths={[400, 800]} sizes="340px" loading="lazy" />
+        <p class="journey__line">벌레들의 잊힌 왕국에서 시작된 전설.</p>
+        <span class="hk-btn">구매처 보기</span>
+      </div>
+    </a>
+    <a class="journey journey--hornet" href="#silksong" data-journey>
+      <Picture src={hornetArt} alt="" class="journey__art" widths={[480, 816]} sizes="(max-width: 800px) 100vw, 50vw" formats={["avif", "webp"]} loading="lazy" />
+      <div class="journey__body">
+        <p class="eyebrow">2025 · Pharloom</p>
+        <Image src={silkLogo} alt="Hollow Knight: Silksong" class="journey__logo" widths={[400, 800]} sizes="320px" loading="lazy" />
+        <p class="journey__line">실과 노래의 왕국, 호넷의 새로운 순례.</p>
+        <span class="hk-btn">실크송 알아보기</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<style>
+  .journeys {
+    position: relative;
+    padding: clamp(40px, 8vh, 96px) var(--gutter);
+  }
+  .journeys__split {
+    display: flex;
+    max-width: 1400px;
+    height: min(78vh, 760px);
+    min-height: 520px;
+    margin-inline: auto;
+    gap: 6px;
+  }
+  .journey {
+    position: relative;
+    flex: 1 1 0;
+    display: grid;
+    align-items: end;
+    overflow: hidden;
+    isolation: isolate;
+    transition: flex-grow 0.9s var(--ease-out), filter 0.6s;
+  }
+  .journey__art :global(img),
+  .journey :global(picture),
+  .journey :global(.journey__art) {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s var(--ease-out), filter 0.8s;
+  }
+  .journey::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    transition: opacity 0.6s;
+  }
+  .journey--knight::before {
+    background: linear-gradient(transparent 30%, rgb(3 6 16 / 0.92)), linear-gradient(90deg, rgb(3 4 9 / 0.35), transparent);
+  }
+  .journey--hornet::before {
+    background: linear-gradient(transparent 30%, rgb(24 3 6 / 0.92)), linear-gradient(-90deg, rgb(3 4 9 / 0.35), transparent);
+  }
+  .journey::after {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border: 1px solid rgb(255 255 255 / 0.14);
+    pointer-events: none;
+    transition: inset 0.7s var(--ease-out), border-color 0.6s;
+  }
+  .journey__body {
+    display: grid;
+    justify-items: center;
+    gap: 12px;
+    padding: clamp(28px, 5vh, 56px) 24px;
+    text-align: center;
+  }
+  .journey__logo {
+    width: min(340px, 70%);
+    height: auto;
+    filter: drop-shadow(0 6px 24px rgb(0 0 0 / 0.6));
+  }
+  .journey__line {
+    color: var(--pale-2);
+    max-width: 22em;
+  }
+  .journey .hk-btn {
+    pointer-events: none;
+  }
+  .journey--hornet .eyebrow {
+    color: #ffb4a8;
+  }
+
+  @media (hover: hover) and (min-width: 801px) {
+    .journeys__split:hover .journey {
+      filter: saturate(0.55) brightness(0.7);
+    }
+    .journeys__split .journey:hover,
+    .journeys__split .journey:focus-visible {
+      flex-grow: 1.7;
+      filter: none;
+    }
+    .journey:hover :global(img) {
+      transform: scale(1.05);
+    }
+    .journey:hover::after {
+      inset: 18px;
+      border-color: rgb(255 255 255 / 0.4);
+    }
+    .journey:hover .hk-btn::before,
+    .journey:hover .hk-btn::after {
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 800px) {
+    .journeys__split {
+      flex-direction: column;
+      height: auto;
+    }
+    .journey {
+      min-height: 72svh;
+    }
+  }
+</style>

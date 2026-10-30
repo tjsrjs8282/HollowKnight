@@ -1,0 +1,268 @@
+---
+import SoulVessel from "./SoulVessel.astro";
+import MaskIcon from "./MaskIcon.astro";
+import { SECTIONS } from "../data/sections";
+---
+
+<header class="hud" data-hud>
+  <div class="hud__left">
+    <a class="hud__vessel" href="#top" aria-label="맨 위로 — 스크롤 진행도" data-hud-vessel>
+      <SoulVessel id="hud" />
+    </a>
+    <nav class="hud__masks" aria-label="섹션 바로가기">
+      <ol role="list">
+        {
+          SECTIONS.map((s) => (
+            <li>
+              <a class="hud__mask" href={`#${s.id}`} data-mask={s.id}>
+                <MaskIcon />
+                <span class="hud__tip">
+                  <span class="hud__tip-en">{s.label}</span>
+                  <span class="hud__tip-ko">{s.labelKo}</span>
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </nav>
+  </div>
+
+  <div class="hud__right">
+    <div class="hud__now" data-now-playing hidden>
+      <button class="hud__now-btn" type="button" data-ost-toggle aria-label="음악 일시정지">
+        <span class="hud__eq" aria-hidden="true"><i></i><i></i><i></i></span>
+      </button>
+      <span class="hud__now-title" data-now-title></span>
+    </div>
+    <button class="hud__sound" type="button" data-sound-toggle aria-pressed="false">
+      <span class="sr-only" data-sound-label>사운드 켜기</span>
+      <span class="hud__bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+    </button>
+    <button class="hk-btn hud__menu" type="button" data-menu-open aria-haspopup="dialog" aria-controls="menu">
+      Menu
+    </button>
+  </div>
+</header>
+
+<style>
+  .hud {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--hud-h);
+    padding: 0 clamp(12px, 2.4vw, 32px);
+    pointer-events: none;
+    transition: transform 0.6s var(--ease-out), opacity 0.6s var(--ease-out);
+  }
+  .hud::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 -40px 0;
+    z-index: -1;
+    background: linear-gradient(rgb(3 4 9 / 0.75), transparent);
+    opacity: var(--hud-shade, 0);
+    transition: opacity 0.6s var(--ease-out);
+  }
+  .hud > * {
+    pointer-events: auto;
+  }
+  :global(html.is-gated) .hud {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+  :global(.hud.is-hidden) {
+    transform: translateY(-110%);
+  }
+
+  .hud__left {
+    display: flex;
+    align-items: center;
+    gap: clamp(4px, 1vw, 10px);
+  }
+  .hud__vessel {
+    display: block;
+    width: clamp(44px, 5.4vw, 60px);
+    filter: drop-shadow(0 0 14px rgb(168 212 255 / 0.25));
+  }
+  .hud__vessel :global(.vessel__liquid) {
+    transition: none;
+  }
+
+  .hud__masks ol {
+    display: flex;
+    align-items: center;
+    gap: clamp(1px, 0.35vw, 5px);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .hud__mask {
+    --mask-fill: transparent;
+    --mask-stroke: rgb(238 241 248 / 0.55);
+    --mask-eye: transparent;
+    position: relative;
+    display: block;
+    width: clamp(15px, 1.6vw, 20px);
+    padding: 3px 0;
+    transition: transform 0.35s var(--ease-out);
+  }
+  .hud__mask:hover,
+  .hud__mask:focus-visible {
+    transform: translateY(-2px) scale(1.12);
+  }
+  :global(.hud__mask.is-filled) {
+    --mask-fill: var(--pale);
+    --mask-stroke: var(--ink-0);
+    --mask-eye: var(--ink-0);
+  }
+  :global(.hud__mask.is-current) {
+    filter: drop-shadow(0 0 6px rgb(168 212 255 / 0.9));
+    animation: mask-pulse 2.4s var(--ease-in-out) infinite;
+  }
+  @keyframes mask-pulse {
+    50% {
+      filter: drop-shadow(0 0 12px rgb(168 212 255 / 1));
+    }
+  }
+  .hud__tip {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    display: grid;
+    gap: 2px;
+    padding: 8px 12px;
+    white-space: nowrap;
+    text-align: center;
+    background: rgb(6 8 15 / 0.92);
+    border: 1px solid var(--line);
+    transform: translate(-50%, -4px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s, transform 0.25s var(--ease-out);
+  }
+  .hud__mask:hover .hud__tip,
+  .hud__mask:focus-visible .hud__tip {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  .hud__tip-en {
+    font-family: var(--font-display-stack);
+    font-size: 0.72rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--pale);
+  }
+  .hud__tip-ko {
+    font-size: 0.78rem;
+    color: var(--pale-3);
+  }
+
+  .hud__right {
+    display: flex;
+    align-items: center;
+    gap: clamp(8px, 1.4vw, 18px);
+  }
+  .hud__menu {
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.3em;
+    padding-inline: 1.4em 1.2em;
+  }
+
+  .hud__sound {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    transition: border-color 0.3s;
+  }
+  .hud__sound:hover {
+    border-color: var(--line-2);
+  }
+  .hud__bars {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    height: 14px;
+  }
+  .hud__bars i {
+    display: block;
+    width: 2px;
+    height: 3px;
+    background: var(--pale-2);
+    border-radius: 2px;
+    transition: height 0.3s;
+  }
+  :global(.hud__sound[aria-pressed="true"]) .hud__bars i {
+    animation: bar 1.1s ease-in-out infinite;
+  }
+  .hud__bars i:nth-child(2) { animation-delay: -0.3s !important; }
+  .hud__bars i:nth-child(3) { animation-delay: -0.6s !important; }
+  .hud__bars i:nth-child(4) { animation-delay: -0.15s !important; }
+  .hud__bars i:nth-child(5) { animation-delay: -0.45s !important; }
+  @keyframes bar {
+    0%, 100% { height: 3px; }
+    50% { height: 14px; }
+  }
+
+  .hud__now {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 230px;
+    padding: 6px 14px 6px 6px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: rgb(6 8 15 / 0.7);
+    backdrop-filter: blur(8px);
+  }
+  .hud__now-btn {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--pale);
+  }
+  .hud__eq {
+    display: flex;
+    gap: 2px;
+    align-items: flex-end;
+    height: 10px;
+  }
+  .hud__eq i {
+    width: 2px;
+    height: 10px;
+    background: var(--ink-0);
+    animation: bar 0.9s ease-in-out infinite;
+  }
+  .hud__eq i:nth-child(2) { animation-delay: -0.3s; }
+  .hud__eq i:nth-child(3) { animation-delay: -0.6s; }
+  .hud__now-title {
+    overflow: hidden;
+    font-family: var(--font-display-stack);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--pale-2);
+  }
+
+  @media (max-width: 720px) {
+    .hud__masks {
+      display: none;
+    }
+    .hud__now-title {
+      display: none;
+    }
+    .hud__now {
+      padding: 4px;
+    }
+  }
+</style>

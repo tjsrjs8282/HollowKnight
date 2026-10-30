@@ -1,0 +1,87 @@
+---
+/**
+ * The soul vessel from the in-game HUD — a dark orb under a swept white crest.
+ * `--fill` (0–1) sets the liquid level; the surface keeps sloshing on its own.
+ */
+interface Props {
+  id: string;
+  class?: string;
+}
+const { id, class: className } = Astro.props;
+const clip = `vessel-clip-${id}`;
+const glass = `vessel-glass-${id}`;
+---
+
+<svg class:list={["vessel", className]} viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+  <defs>
+    <clipPath id={clip}>
+      <circle cx="50" cy="56" r="34"></circle>
+    </clipPath>
+    <radialGradient id={glass} cx="38%" cy="32%" r="70%">
+      <stop offset="0%" stop-color="#1c2438"></stop>
+      <stop offset="100%" stop-color="#05070c"></stop>
+    </radialGradient>
+  </defs>
+
+  <path class="vessel__crest" d="M13 68C3 42 18 13 47 8c18-3 36-4 52-8-12 8-27 13-41 15-17 3-32 11-39 27-3 7-4 16-6 26z"></path>
+  <path class="vessel__strand" d="M24 30C36 18 56 12 86 6"></path>
+  <path class="vessel__strand vessel__strand--b" d="M19 40C30 26 48 19 70 14"></path>
+
+  <circle cx="50" cy="56" r="34" fill={`url(#${glass})`}></circle>
+  <g clip-path={`url(#${clip})`}>
+    <g class="vessel__liquid">
+      <path class="vessel__wave vessel__wave--back" d="M-100 60q12.5-6 25 0t25 0 25 0 25 0 25 0 25 0 25 0 25 0 25 0 25 0 25 0 25 0V150H-100z"></path>
+      <path class="vessel__wave" d="M-100 60q12.5-5 25 0t25 0 25 0 25 0 25 0 25 0 25 0 25 0 25 0 25 0 25 0 25 0V150H-100z"></path>
+    </g>
+  </g>
+  <circle class="vessel__rim" cx="50" cy="56" r="34"></circle>
+  <ellipse class="vessel__shine" cx="39" cy="42" rx="9" ry="5" transform="rotate(-28 39 42)"></ellipse>
+</svg>
+
+<style>
+  .vessel {
+    --fill: 0;
+    overflow: visible;
+  }
+  .vessel__crest {
+    fill: var(--pale);
+  }
+  .vessel__strand {
+    fill: none;
+    stroke: var(--ink-1);
+    stroke-width: 1.2;
+    stroke-linecap: round;
+    opacity: 0.55;
+  }
+  .vessel__strand--b {
+    stroke-width: 1;
+    opacity: 0.4;
+  }
+  .vessel__rim {
+    fill: none;
+    stroke: var(--pale);
+    stroke-width: 3;
+  }
+  .vessel__shine {
+    fill: rgb(255 255 255 / 0.18);
+  }
+  .vessel__liquid {
+    /* path baseline y=60 → 90 when empty, 22 when full */
+    transform: translateY(calc(30px - var(--fill) * 68px));
+    transition: transform 0.6s var(--ease-out);
+  }
+  .vessel__wave {
+    fill: var(--pale);
+    animation: slosh 2.6s linear infinite;
+  }
+  .vessel__wave--back {
+    fill: rgb(168 212 255 / 0.55);
+    animation-duration: 3.8s;
+    animation-direction: reverse;
+  }
+  @keyframes slosh {
+    to {
+      transform: translateX(50px);
+    }
+  }
+</style>
