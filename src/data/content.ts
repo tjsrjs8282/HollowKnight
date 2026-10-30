@@ -1,4 +1,5 @@
 import type { ImageMetadata } from "astro";
+import { withBase } from "../lib/paths";
 
 import hiddenDreams from "../assets/dlc/hidden-dreams.jpg";
 import grimmTroupe from "../assets/dlc/grimm-troupe.jpg";
@@ -88,7 +89,7 @@ export const TRACKS: Track[] = [
     id: "enter-hallownest",
     title: "Enter Hallownest",
     album: "Hollow Knight OST",
-    src: "/audio/ost/enter-hallownest.mp3",
+    src: withBase("audio/ost/enter-hallownest.mp3"),
     cover: ostHollow,
     duration: "1:29",
     accent: "#a8d4ff",
@@ -97,7 +98,7 @@ export const TRACKS: Track[] = [
     id: "hornet",
     title: "Hornet",
     album: "Hollow Knight OST",
-    src: "/audio/ost/hornet.mp3",
+    src: withBase("audio/ost/hornet.mp3"),
     cover: ostHornet,
     duration: "2:46",
     accent: "#e0334a",
@@ -106,7 +107,7 @@ export const TRACKS: Track[] = [
     id: "the-grimm-troupe",
     title: "The Grimm Troupe",
     album: "Hollow Knight: Gods & Nightmares",
-    src: "/audio/ost/the-grimm-troupe.mp3",
+    src: withBase("audio/ost/the-grimm-troupe.mp3"),
     cover: ostGods,
     duration: "2:18",
     accent: "#ff4d5e",

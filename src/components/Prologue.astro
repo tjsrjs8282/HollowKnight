@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import divider from "../assets/ornament/divider-bottom.png";
+import { withBase } from "../lib/paths";
 
 const LINES = [
   "쇠퇴해 가는 흙의 마을 아래, 고대 곤충 왕국 신성둥지가 잠들어 있습니다.",
@@ -19,8 +20,8 @@ const LINES = [
         loop
         playsinline
         preload="none"
-        data-poster="/media/prologue-poster.jpg"
-        data-lazy-video="/media/prologue.webm|/media/prologue.mp4"></video>
+        data-poster={withBase("media/prologue-poster.jpg")}
+        data-lazy-video={`${withBase("media/prologue.webm")}|${withBase("media/prologue.mp4")}`}></video>
     </div>
     <div class="prologue__veil" aria-hidden="true"></div>
 

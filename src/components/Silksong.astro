@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import logo from "../assets/brand/silksong-logo.png";
 import hornet from "../assets/art/hornet-needle.png";
 import { TRAILERS } from "../data/content";
+import { withBase } from "../lib/paths";
 ---
 
 <section id="silksong" class="silksong" data-section="silksong" aria-labelledby="silksong-title">
@@ -12,8 +13,8 @@ import { TRAILERS } from "../data/content";
       loop
       playsinline
       preload="none"
-      data-poster="/media/silksong-poster.jpg"
-      data-lazy-video="/media/silksong.webm|/media/silksong.mp4"></video>
+      data-poster={withBase("media/silksong-poster.jpg")}
+      data-lazy-video={`${withBase("media/silksong.webm")}|${withBase("media/silksong.mp4")}`}></video>
   </div>
   <div class="silksong__veil" aria-hidden="true"></div>
 

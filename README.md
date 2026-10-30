@@ -150,9 +150,16 @@ npm run dev                  # http://localhost:4321
 | `npm run assets:sfx` | ElevenLabs로 효과음 재생성 (`ELEVENLABS_API_KEY`) |
 | `npm run shots` | README 스크린샷 재촬영 (빌드를 4401 포트로 서빙한 상태에서) |
 
-### 배포 (Vercel)
+### 배포
 
-Astro + `@astrojs/vercel`. 프로젝트를 연결하고 환경 변수 `GEMINI_API_KEY`만 넣으면 예언자가 깨어납니다. 없어도 페이지는 완전히 동작합니다. `vercel.json`이 미디어 캐시와 보안 헤더를 설정합니다.
+같은 코드가 두 곳으로 나갑니다.
+
+| 대상 | 명령 | 결과 |
+|---|---|---|
+| **GitHub Pages** — [tjsrjs8282.github.io/HollowKnight](https://tjsrjs8282.github.io/HollowKnight/) | `npm run build:pages` (`DEPLOY_TARGET=pages`) | `/HollowKnight` 아래 정적 파일. `master`에 푸시하면 `.github/workflows/pages.yml`이 빌드·배포. 예언자는 내장된 답변으로 응답 |
+| **Vercel** | `npm run build` | 정적 페이지 + `/api/seer` 함수. 환경 변수 `GEMINI_API_KEY`를 넣으면 예언자가 깨어남. `vercel.json`이 미디어 캐시·보안 헤더 설정 |
+
+모든 `public/` 경로는 `withBase()`(`src/lib/paths.ts`)를 거치므로 어느 쪽에서든 깨지지 않습니다.
 
 ---
 

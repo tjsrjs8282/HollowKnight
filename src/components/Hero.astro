@@ -6,6 +6,7 @@ import top from "../assets/ornament/frame/top.png";
 import bottom from "../assets/ornament/frame/bottom.png";
 import side from "../assets/ornament/frame/side.png";
 import { TRAILERS } from "../data/content";
+import { withBase } from "../lib/paths";
 
 // The glow is the same picture rendered twice (one download), blurred behind the logo.
 const logoFormats: ("avif" | "webp")[] = ["avif", "webp"];
@@ -14,18 +15,18 @@ const logoSizes = "(max-width: 640px) 88vw, 720px";
 ---
 
 <section id="top" class="hero" data-section="top" aria-labelledby="hero-title">
-  <div class="bg-media hero__media" data-hero-media>
+  <div class="bg-media hero__media" style={`--poster: url(${withBase("media/hero-poster.jpg")})`} data-hero-media>
     <video
       class="hero__video"
       muted
       loop
       playsinline
       preload="none"
-      poster="/media/hero-poster.jpg"
+      poster={withBase("media/hero-poster.jpg")}
       aria-hidden="true"
       data-hero-video
-      data-src-desktop="/media/hero.webm|/media/hero.mp4"
-      data-src-mobile="/media/hero-480.mp4"></video>
+      data-src-desktop={`${withBase("media/hero.webm")}|${withBase("media/hero.mp4")}`}
+      data-src-mobile={withBase("media/hero-480.mp4")}></video>
   </div>
   <div class="hero__veil" aria-hidden="true"></div>
   <div class="hero__fog" aria-hidden="true"><span></span><span></span></div>
@@ -86,7 +87,7 @@ const logoSizes = "(max-width: 640px) 88vw, 720px";
   }
 
   .hero__media {
-    background: url("/media/hero-poster.jpg") center / cover no-repeat;
+    background: var(--poster) center / cover no-repeat;
     transform-origin: 50% 40%;
   }
   .hero__video {

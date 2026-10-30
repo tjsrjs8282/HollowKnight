@@ -1,5 +1,6 @@
 import { audio } from "./audio";
 import { reducedMotion } from "./prefs";
+import { withBase } from "../lib/paths";
 
 /** Answers the Seer can give from memory when the oracle endpoint is unavailable. */
 const DREAMS: Record<string, string> = {
@@ -68,7 +69,7 @@ export function initSeer() {
     out.style.opacity = "0.35";
     let answer = "";
     try {
-      const res = await fetch("/api/seer", {
+      const res = await fetch(withBase("api/seer"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question: q }),

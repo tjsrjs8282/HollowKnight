@@ -2,15 +2,33 @@
 import { defineConfig, envField, fontProviders } from "astro/config";
 import vercel from "@astrojs/vercel";
 
-const site =
-  process.env.SITE_URL ??
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "http://localhost:4321");
+// Two deploy targets from one codebase:
+// - default (Vercel): static page + the Seer as an on-demand function at /api/seer
+// - DEPLOY_TARGET=pages: plain static files under /HollowKnight for GitHub Pages,
+//   where the Seer falls back to its built-in answers
+const pages = process.env.DEPLOY_TARGET === "pages";
+
+const site = pages
+  ? "https://tjsrjs8282.github.io"
+  : (process.env.SITE_URL ??
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "http://localhost:4321"));
+
+/** @type {import("astro").AstroIntegration} */
+const seerRoute = {
+  name: "seer-route",
+  hooks: {
+    "astro:config:setup": ({ injectRoute }) => {
+      injectRoute({ pattern: "/api/seer", entrypoint: "./src/server/seer.ts", prerender: false });
+    },
+  },
+};
 
 export default defineConfig({
   site,
-  // The page is fully static; only /api/seer runs on demand (Vercel function).
+  base: pages ? "/HollowKnight" : undefined,
   output: "static",
-  adapter: vercel(),
+  adapter: pages ? undefined : vercel(),
+  integrations: pages ? [] : [seerRoute],
   compressHTML: true,
   devToolbar: { enabled: false },
 

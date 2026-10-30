@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "build:pages": "node scripts/build-pages.mjs",
     "preview": "npx -y serve@14.2.4 .vercel/output/static -l 4322",
     "check": "astro check",
     "assets": "node scripts/media.mjs && node scripts/images.mjs",

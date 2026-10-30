@@ -3,6 +3,7 @@
  * generated, see scripts/sfx.mjs) on a muteable master bus, and a separate
  * music bus for the soundtrack player so pressing play always plays.
  */
+import { withBase } from "../lib/paths";
 type Sfx = "hover" | "select" | "open" | "close" | "page" | "needle" | "enter" | "seer" | "soul";
 
 const GAIN: Record<Sfx, number> = {
@@ -58,7 +59,7 @@ class AudioEngine {
     this.loading = Promise.all(
       names.map(async (name) => {
         try {
-          const res = await fetch(`/audio/sfx/${name}.mp3`);
+          const res = await fetch(withBase(`audio/sfx/${name}.mp3`));
           const buf = await ctx.decodeAudioData(await res.arrayBuffer());
           this.buffers.set(name, buf);
         } catch {

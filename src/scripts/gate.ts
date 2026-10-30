@@ -1,5 +1,6 @@
 import { gsap } from "gsap";
 import { reducedMotion } from "./prefs";
+import { withBase } from "../lib/paths";
 
 /** Resolve when an image (by URL or element) has loaded or failed — loading must never stall the gate. */
 function imageReady(src: string | HTMLImageElement | null): Promise<void> {
@@ -27,7 +28,7 @@ export function initGate(onEnter: (withSound: boolean) => Promise<void> | void) 
 
   const tasks: Promise<unknown>[] = [
     document.fonts?.ready ?? Promise.resolve(),
-    imageReady("/media/hero-poster.jpg"),
+    imageReady(withBase("media/hero-poster.jpg")),
     imageReady(document.querySelector<HTMLImageElement>("[data-hero-logo] img")),
     new Promise((r) => setTimeout(r, reduce ? 0 : 900)),
   ];

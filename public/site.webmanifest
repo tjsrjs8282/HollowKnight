@@ -2,8 +2,8 @@
   "name": "Hollow Knight — Remastered Fan Page",
   "short_name": "Hallownest",
   "icons": [
-    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
-    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
   ],
   "theme_color": "#030409",
   "background_color": "#030409",
