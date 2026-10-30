@@ -59,7 +59,13 @@ import dividerBottom from "../assets/ornament/divider-bottom.png";
         ))
       }
     </ul>
-    <p class="seer__note">Gemini가 예언자를 연기합니다 · 공식 설정과 다를 수 있고 스포일러가 담길 수 있어요</p>
+    <p class="seer__note">
+      {
+        __SEER_ONLINE__
+          ? "Gemini가 예언자를 연기합니다 · 공식 설정과 다를 수 있고 스포일러가 담길 수 있어요"
+          : "이 정적 배포본에서는 예언자가 미리 준비된 꿈으로만 답해요 · 추천 질문을 눌러 보세요"
+      }
+    </p>
   </div>
 </section>
 

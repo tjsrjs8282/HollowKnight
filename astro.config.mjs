@@ -69,6 +69,8 @@ export default defineConfig({
   },
 
   vite: {
+    // Whether /api/seer exists in this build (false on GitHub Pages).
+    define: { __SEER_ONLINE__: JSON.stringify(!pages) },
     build: {
       // GSAP + Lenis land in one shared chunk; the page itself stays tiny.
       chunkSizeWarningLimit: 700,

@@ -14,6 +14,7 @@ const DREAMS: Record<string, string> = {
 
 const MESSAGES = {
   asleep: "…예언자는 지금 깊은 꿈에 잠겨 있단다. (이 배포 환경에는 AI 예언자가 설정되어 있지 않아요.)",
+  offline: "…이 거울에서는 내가 이미 꾼 꿈만 들려줄 수 있단다. 아래의 질문 가운데 하나를 골라 보렴.",
   busy: "…꿈을 너무 많이 들여다봤구나. 잠시 숨을 고른 뒤 다시 물어봐 주겠니?",
   lost: "…꿈이 흐려졌구나. 조금 뒤에 다시 물어봐 주겠니?",
   short: "…조금 더 자세히 말해 주겠니?",
@@ -63,6 +64,11 @@ export function initSeer() {
     const q = question.trim();
     if (busy) return;
     if (q.length < 2) return say(MESSAGES.short);
+    // Static deploys (GitHub Pages) have no oracle endpoint — answer from memory.
+    if (!__SEER_ONLINE__) {
+      audio.play("seer");
+      return say(DREAMS[q] ?? MESSAGES.offline);
+    }
     busy = true;
     submit.disabled = true;
     thinking.hidden = false;
@@ -79,7 +85,7 @@ export function initSeer() {
       if (res.ok && data.answer) answer = data.answer;
       else if (DREAMS[q]) answer = DREAMS[q];
       else if (res.status === 429) answer = MESSAGES.busy;
-      else if (data.error === "not_configured" || res.status === 404) answer = MESSAGES.asleep;
+      else if (data.error === "not_configured" || res.status === 404 || res.status === 405) answer = MESSAGES.asleep;
       else answer = MESSAGES.lost;
     } catch {
       answer = DREAMS[q] ?? MESSAGES.lost;
